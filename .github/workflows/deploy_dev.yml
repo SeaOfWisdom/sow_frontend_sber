@@ -1,0 +1,39 @@
+name: Deploy to Dev Server
+
+on:
+  push:
+    branches:
+      - dev
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Setup SSH Keys
+        run: |
+          mkdir -p ~/.ssh
+          echo "${{ secrets.GIT_SSH_PRIVATE_KEY }}" > ~/.ssh/id_rsa
+          echo "${{ secrets.DEPLOYMENT_SSH_PRIVATE_KEY }}" > ~/.ssh/id_rsa_deploy
+          chmod 600 ~/.ssh/id_rsa
+          chmod 600 ~/.ssh/id_rsa_deploy
+          ssh-keyscan github.com >> ~/.ssh/known_hosts
+
+      - name: SSH and Deploy
+        uses: appleboy/ssh-action@master
+        with:
+          host: ${{ secrets.DEV_SERVER_IP }}
+          username: root
+          key: ${{ secrets.DEPLOYMENT_SSH_PRIVATE_KEY }}
+          script: |
+            eval "$(ssh-agent -s)"
+            ssh-add ~/.ssh/id_rsa
+            ssh-add ~/.ssh/id_rsa_deploy
+            cd sow_frontend
+            git pull origin dev
+            cd ../sow_deployment
+            docker-compose down
+            docker-compose up -d --build
+

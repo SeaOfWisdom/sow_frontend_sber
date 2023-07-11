@@ -1,0 +1,107 @@
+@charset "UTF-8";
+@-ms-viewport {
+  width: device-width;
+}
+@font-face {
+  src: url("/fonts/lora/Lora-Bold.ttf");
+  font-family: "Lora";
+  font-style: normal;
+  font-display: auto;
+  font-weight: bold;
+}
+@font-face {
+  src: url("/fonts/lora/Lora-Italic.ttf");
+  font-family: "Lora";
+  font-style: italic;
+  font-display: auto;
+  font-weight: 800;
+}
+@font-face {
+  src: url("/fonts/lora/Lora-BoldItalic.ttf");
+  font-family: "Lora";
+  font-style: italic;
+  font-display: auto;
+  font-weight: bold;
+}
+@font-face {
+  src: url("/fonts/lora/Lora-Medium.ttf");
+  font-family: "Lora";
+  font-style: normal;
+  font-display: auto;
+  font-weight: 500;
+}
+@font-face {
+  src: url("/fonts/lora/Lora-MediumItalic.ttf");
+  font-family: "Lora";
+  font-style: italic;
+  font-display: auto;
+  font-weight: 500;
+}
+@font-face {
+  src: url("/fonts/lora/Lora-Regular.ttf");
+  font-family: "Lora";
+  font-style: normal;
+  font-display: auto;
+  font-weight: 400;
+}
+@font-face {
+  src: url("/fonts/lora/Lora-SemiBold.ttf");
+  font-family: "Lora";
+  font-style: normal;
+  font-display: auto;
+  font-weight: 300;
+}
+@font-face {
+  src: url("/fonts/lora/Lora-SemiBoldItalic.ttf");
+  font-family: "Lora";
+  font-style: italic;
+  font-display: auto;
+  font-weight: 300;
+}
+
+@font-face {
+  src: url("/fonts/golos/GolosText-Black.ttf");
+  font-family: "Golos";
+  font-style: normal;
+  font-display: auto;
+  font-weight: 900;
+}
+@font-face {
+  src: url("/fonts/golos/GolosText-Bold.ttf");
+  font-family: "Golos";
+  font-style: normal;
+  font-display: auto;
+  font-weight: bold;
+}
+@font-face {
+  src: url("/fonts/golos/GolosText-ExtraBold.ttf");
+  font-family: "Golos";
+  font-style: normal;
+  font-display: auto;
+  font-weight: bolder;
+}
+@font-face {
+  src: url("/fonts/golos/GolosText-SemiBold.ttf");
+  font-family: "Golos";
+  font-style: normal;
+  font-display: auto;
+  font-weight: 600;
+}
+@font-face {
+  src: url("/fonts/golos/GolosText-Medium.ttf");
+  font-family: "Golos";
+  font-style: normal;
+  font-display: auto;
+  font-weight: 500;
+}
+@font-face {
+  src: url("/fonts/golos/GolosText-Regular.ttf");
+  font-family: "Golos";
+  font-style: normal;
+  font-display: auto;
+  font-weight: 400;
+}
+
+@-ms-viewport {
+  width: device-width;
+}
