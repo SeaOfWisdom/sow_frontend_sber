@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled from 'styled-components';
 
 export const Banner2Container = styled.section`
   padding: 50px 36px 0 36px;
@@ -7,7 +7,7 @@ export const Banner2Container = styled.section`
   }
   & .banner {
     background-color: #d08ae8;
-    background-image: url("/img/banner_bg2.svg");
+    background-image: url('/img/banner_bg2.svg');
     background-size: cover;
     border-radius: 20px;
     display: flex;
@@ -23,7 +23,7 @@ export const Banner2Container = styled.section`
       align-items: center;
       flex-direction: column;
       & h2 {
-        font-family: "Lora";
+        font-family: 'Lora';
         font-style: normal;
         font-weight: 600;
         font-size: 55px;
@@ -39,7 +39,7 @@ export const Banner2Container = styled.section`
         }
       }
       & p {
-        font-family: "Golos";
+        font-family: 'Golos';
         font-style: normal;
         font-weight: 400;
         font-size: 18px;

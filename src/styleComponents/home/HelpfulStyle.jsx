@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled from 'styled-components';
 
 export const HelpfulContainer = styled.section`
   padding: 50px 36px 44px 36px;
@@ -7,7 +7,7 @@ export const HelpfulContainer = styled.section`
   }
   & .library {
     & .library_title {
-      font-family: "Lora";
+      font-family: 'Lora';
       font-style: normal;
       font-weight: 600;
       font-size: 36px;
@@ -57,7 +57,7 @@ export const HelpfulContainer = styled.section`
             align-items: center;
             & .time {
               margin-left: 8px;
-              font-family: "Golos";
+              font-family: 'Golos';
               font-style: normal;
               font-weight: 400;
               font-size: 14px;
@@ -66,7 +66,7 @@ export const HelpfulContainer = styled.section`
             }
           }
           & .title {
-            font-family: "Lora";
+            font-family: 'Lora';
             font-style: normal;
             font-weight: 500;
             font-size: 24px;
@@ -77,7 +77,7 @@ export const HelpfulContainer = styled.section`
           }
           & .author {
             & .alink {
-              font-family: "Golos";
+              font-family: 'Golos';
               font-style: normal;
               font-weight: 400;
               font-size: 16px;
@@ -114,7 +114,7 @@ export const HelpfulContainer = styled.section`
             }
             & .author {
               & .alink {
-                font-family: "Golos";
+                font-family: 'Golos';
                 font-style: normal;
                 font-weight: 400;
                 font-size: 14px;

@@ -6,10 +6,11 @@ import {
   ModalFooter,
   ModalBody,
   ModalCloseButton,
-} from "@chakra-ui/react";
-import { ModalContainer } from "../../styleComponents/layout/ModalStyle";
-import React from "react";
-import styled from "styled-components";
+} from '@chakra-ui/react';
+import React from 'react';
+import styled from 'styled-components';
+import { ModalContainer } from '../../styleComponents/layout/ModalStyle';
+
 const Style = styled.div`
   .modal {
     display: none;
@@ -25,12 +26,12 @@ const Style = styled.div`
 const ModalMobile = ({
   isOpen = false,
   onOpen = () => {},
-  header = "",
-  children = "",
-  footer = "",
-  is_strong = false,
+  header = '',
+  children = '',
+  footer = '',
+  isStrong = false,
 }) => {
-  const [scrollBehavior, setScrollBehavior] = React.useState("inside");
+  const [scrollBehavior, setScrollBehavior] = React.useState('inside');
   const btnRef = React.useRef(null);
   return (
     <Style>
@@ -42,7 +43,7 @@ const ModalMobile = ({
           // mobile_none={mobile_none}
           className="modal"
           onClose={() => {
-            if (!is_strong) {
+            if (!isStrong) {
               onOpen(false);
             }
           }}
@@ -53,7 +54,7 @@ const ModalMobile = ({
           <ModalContainer>
             <ModalContent>
               <ModalHeader>{header}</ModalHeader>
-              {is_strong ? <></> : <ModalCloseButton className="close_btn" />}
+              {isStrong ? null : <ModalCloseButton className="close_btn" />}
               <ModalBody>{children}</ModalBody>
               <ModalFooter>{footer}</ModalFooter>
             </ModalContent>

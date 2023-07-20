@@ -1,9 +1,10 @@
-import React from "react";
-import styled from "styled-components";
-import { HStack, PinInput, PinInputField } from "@chakra-ui/react";
+import React from 'react';
+import styled from 'styled-components';
+import { HStack, PinInput, PinInputField } from '@chakra-ui/react';
+
 const ModalEmailStyle = styled.div`
   & h2 {
-    font-family: "Lora";
+    font-family: 'Lora';
     font-style: normal;
     font-weight: 600;
     font-size: 16px;
@@ -19,7 +20,7 @@ const ModalEmailStyle = styled.div`
     background-color: #e0e5e7;
   }
   & > .mtitle {
-    font-family: "Lora";
+    font-family: 'Lora';
     font-style: normal;
     font-weight: 600;
     font-size: 24px;
@@ -28,7 +29,7 @@ const ModalEmailStyle = styled.div`
     color: #2a2c35;
   }
   & > .desc {
-    font-family: "Golos";
+    font-family: 'Golos';
     font-style: normal;
     font-weight: 400;
     font-size: 14px;
@@ -47,7 +48,7 @@ const ModalEmailStyle = styled.div`
       border-radius: 6px;
       width: 48px;
       height: 60px;
-      font-family: "Golos";
+      font-family: 'Golos';
       font-style: normal;
       font-weight: 400;
       font-size: 16px;
@@ -72,7 +73,7 @@ const ModalEmailStyle = styled.div`
         margin-bottom: 36px;
       }
       & label {
-        font-family: "Golos";
+        font-family: 'Golos';
         font-style: normal;
         font-weight: 400;
         font-size: 14px;
@@ -83,7 +84,7 @@ const ModalEmailStyle = styled.div`
         justify-content: flex-start;
         align-items: center;
         & span {
-          font-family: "Golos";
+          font-family: 'Golos';
           font-style: normal;
           font-weight: 500;
           font-size: 14px;
@@ -93,7 +94,7 @@ const ModalEmailStyle = styled.div`
         }
       }
       & button {
-        font-family: "Golos";
+        font-family: 'Golos';
         font-style: normal;
         font-weight: 500;
         font-size: 16px;
@@ -112,7 +113,7 @@ const ModalEmailStyle = styled.div`
     }
   }
   & > .footext {
-    font-family: "Golos";
+    font-family: 'Golos';
     font-style: normal;
     font-weight: 400;
     font-size: 14px;
@@ -127,38 +128,38 @@ const ModalEmailStyle = styled.div`
     }
   }
 `;
-const ModalSmsNumber = ({ setmodal }) => {
-  return (
-    <ModalEmailStyle>
-      <h2>Подтвердите почту</h2>
-      <hr />
+const ModalSmsNumber = ({ setmodal }) => (
+  <ModalEmailStyle>
+    <h2>Подтвердите почту</h2>
+    <hr />
 
-      <div className="desc">
-        Мы отправили Вам на почту верификационный код. Введите его в поле ниже,
-        чтобы продолжить
+    <div className="desc">
+      Мы отправили Вам на почту верификационный код. Введите его в поле ниже,
+      чтобы продолжить
+    </div>
+    <div className="code">
+      <HStack>
+        <PinInput placeholder="" focusBorderColor="transparent">
+          <PinInputField />
+          <PinInputField />
+          <PinInputField />
+          <PinInputField />
+          <PinInputField />
+        </PinInput>
+      </HStack>
+    </div>
+    <div className="form">
+      <div className="input-target">
+        <button type="button" onClick={() => setmodal(false)}>
+          Подтвердить
+        </button>
       </div>
-      <div className="code">
-        <HStack>
-          <PinInput placeholder="" focusBorderColor="transparent">
-            <PinInputField />
-            <PinInputField />
-            <PinInputField />
-            <PinInputField />
-            <PinInputField />
-          </PinInput>
-        </HStack>
-      </div>
-      <div className="form">
-        <div className="input-target">
-          <button onClick={() => setmodal(false)}>Подтвердить</button>
-        </div>
-      </div>
-      <div className="footext">
-        Не получили код?
-        <span>Отправить повторно</span>
-      </div>
-    </ModalEmailStyle>
-  );
-};
+    </div>
+    <div className="footext">
+      Не получили код?
+      <span>Отправить повторно</span>
+    </div>
+  </ModalEmailStyle>
+);
 
 export default ModalSmsNumber;

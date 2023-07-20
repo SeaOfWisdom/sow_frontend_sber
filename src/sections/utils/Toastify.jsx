@@ -1,14 +1,14 @@
-import React, { useState } from "react";
-import { useEffect } from "react";
-import styled from "styled-components";
+import React, { useState } from 'react';
+import { useEffect } from 'react';
+import styled from 'styled-components';
 const ToastifyModal = styled.div`
   width: auto;
   position: absolute;
   top: 60px;
   transition: opacity 0.3s ease, transform 0.4s ease, visibility 0.3s;
-  transform: translateY(${({ isActive }) => (isActive ? "0" : "-20px")});
+  transform: translateY(${({ isActive }) => (isActive ? '0' : '-20px')});
   opacity: ${({ isActive }) => (isActive ? 1 : 0)};
-  visibility: ${({ isActive }) => (isActive ? "visible" : "hidden")};
+  visibility: ${({ isActive }) => (isActive ? 'visible' : 'hidden')};
   & .toast {
     display: flex;
     align-items: center;
@@ -21,7 +21,7 @@ const ToastifyModal = styled.div`
       margin-right: 14px;
     }
     & span {
-      font-family: "Lora";
+      font-family: 'Lora';
       font-style: normal;
       font-weight: 600;
       font-size: 16px;
@@ -30,7 +30,7 @@ const ToastifyModal = styled.div`
     }
   }
 `;
-const Toastify = ({ text = "asdsd", toastList }) => {
+const Toastify = ({ text = 'asdsd', toastList }) => {
   const [list, setList] = useState(toastList);
 
   useEffect(() => {
@@ -38,7 +38,7 @@ const Toastify = ({ text = "asdsd", toastList }) => {
   }, [toastList, list]);
 
   return (
-    <ToastifyModal >
+    <ToastifyModal>
       <div className="toast">
         <img src="/img/vector.svg" alt="" />
         <span>{text}</span>

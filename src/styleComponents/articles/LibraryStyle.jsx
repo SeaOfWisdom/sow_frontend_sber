@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled from 'styled-components';
 
 export const LibraryContainer = styled.section`
   padding: 0px 36px 0px 36px;
@@ -6,7 +6,7 @@ export const LibraryContainer = styled.section`
     padding: 15px;
   }
   & .title {
-    font-family: "Lora";
+    font-family: 'Lora';
     font-style: normal;
     font-weight: 600;
     font-size: 36px;
@@ -48,7 +48,7 @@ export const LibraryContainer = styled.section`
       color: #2a2c35;
       cursor: pointer;
       & div {
-        font-family: "Golos";
+        font-family: 'Golos';
       }
       & .close_btn {
         margin-left: 4px;
@@ -60,7 +60,7 @@ export const LibraryContainer = styled.section`
     & .mobile {
       display: none;
       @media (max-width: 500px) {
-        display: flex!important;
+        display: flex !important;
         display: block;
       }
     }
@@ -82,7 +82,7 @@ export const LibraryContainer = styled.section`
     margin: 0px 0 36px 0;
     padding-top: 50px;
     & .rtitle {
-      font-family: "Lora";
+      font-family: 'Lora';
       font-style: normal;
       font-weight: 600;
       font-size: 24px;
@@ -91,7 +91,7 @@ export const LibraryContainer = styled.section`
     }
     & .rtext {
       padding-top: 16px;
-      font-family: "Golos";
+      font-family: 'Golos';
       font-style: normal;
       font-weight: 400;
       font-size: 16px;

@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled from 'styled-components';
 
 export const MyLibraryContainer = styled.section`
   padding: 0px 36px 0px 36px;
@@ -20,7 +20,7 @@ export const MyLibraryContainer = styled.section`
     padding: 32px 24px;
     display: flex;
     justify-content: space-between;
-    
+
     @media (max-width: 700px) {
       display: block;
       padding: 16px 16px 26px;
@@ -33,7 +33,7 @@ export const MyLibraryContainer = styled.section`
       margin-top: 16px;
     }
     & .title {
-      font-family: "Lora";
+      font-family: 'Lora';
       font-style: normal;
       font-weight: 600;
       font-size: 24px;
@@ -48,7 +48,7 @@ export const MyLibraryContainer = styled.section`
       & .btn {
         background: #fff;
         border-radius: 1000px;
-        font-family: "Golos";
+        font-family: 'Golos';
         font-style: normal;
         font-weight: 500;
         font-size: 14px;
@@ -65,7 +65,7 @@ export const MyLibraryContainer = styled.section`
       & .active {
         background: #2a2c35;
         border-radius: 1000px;
-        font-family: "Golos";
+        font-family: 'Golos';
         font-style: normal;
         font-weight: 500;
         font-size: 14px;
@@ -105,7 +105,7 @@ export const MyLibraryContainer = styled.section`
         width: 90px;
       }
       & > .ntitle {
-        font-family: "Lora";
+        font-family: 'Lora';
         font-style: normal;
         font-weight: 600;
         font-size: 16px;
@@ -115,7 +115,7 @@ export const MyLibraryContainer = styled.section`
         padding: 24px 0 8px 0;
       }
       & > .desc {
-        font-family: "Golos";
+        font-family: 'Golos';
         font-style: normal;
         font-weight: 400;
         font-size: 14px;
@@ -129,7 +129,7 @@ export const MyLibraryContainer = styled.section`
         border: 1px solid #2a2c35;
         box-shadow: 0px 2px 0px #2a2c35;
         border-radius: 1000px;
-        font-family: "Golos";
+        font-family: 'Golos';
         font-style: normal;
         font-weight: 500;
         font-size: 14px;
@@ -141,7 +141,6 @@ export const MyLibraryContainer = styled.section`
         justify-content: center;
         align-items: center;
         cursor: pointer;
-      
       }
     }
   }

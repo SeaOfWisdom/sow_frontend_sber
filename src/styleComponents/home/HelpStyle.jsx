@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled from 'styled-components';
 
 export const HelpContainer = styled.section`
   /* padding: 0px 36px 0 36px; */
@@ -22,7 +22,7 @@ export const HelpContainer = styled.section`
       }
       & .title_p {
         font-size: 16px;
-        font-family: "Golos";
+        font-family: 'Golos';
         line-height: 170%;
         color: #2a2c35;
         margin-top: 16px;
@@ -45,7 +45,7 @@ export const HelpContainer = styled.section`
             }
             & .title_card {
               font-size: 14px;
-              font-family: "Golos";
+              font-family: 'Golos';
               line-height: 160%;
               color: #2a2c35;
             }
@@ -143,7 +143,7 @@ export const HelpContainer = styled.section`
         }
       }
       & .cards-2 {
-        background-image: url("/img/banner_bg_about.svg");
+        background-image: url('/img/banner_bg_about.svg');
         background-repeat: no-repeat;
         background-position: center;
         background: no-repeat scroll center scroll;
@@ -224,7 +224,7 @@ export const HelpContainer = styled.section`
         }
         & .text {
           & h1 {
-            font-family: "Lora";
+            font-family: 'Lora';
             font-style: normal;
             font-size: 24px;
             font-weight: 600;
@@ -232,7 +232,7 @@ export const HelpContainer = styled.section`
             color: #2a2c35;
           }
           & .desc {
-            font-family: "Golos";
+            font-family: 'Golos';
             font-style: normal;
             font-size: 16px;
             /* font-family: Golos; */
@@ -247,7 +247,7 @@ export const HelpContainer = styled.section`
             & .btn {
               font-weight: 500;
               margin-bottom: 10px;
-              font-family: "Golos";
+              font-family: 'Golos';
               display: flex;
               align-items: center;
               background: #f0f3f4;
@@ -332,7 +332,7 @@ export const HelpContainer = styled.section`
 
           & h4 {
             margin: 0;
-            font-family: "Lora";
+            font-family: 'Lora';
             font-style: normal;
             font-weight: 600;
             font-size: 18px;
@@ -352,7 +352,7 @@ export const HelpContainer = styled.section`
           }
         }
         & .text {
-          font-family: "Golos";
+          font-family: 'Golos';
           font-style: normal;
           font-weight: 400;
           font-size: 16px;

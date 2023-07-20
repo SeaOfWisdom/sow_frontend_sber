@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled from 'styled-components';
 
 export const MissionContainer = styled.section`
   padding: 30px 36px 50px;
@@ -17,7 +17,7 @@ export const MissionContainer = styled.section`
       flex: 1;
       & h2 {
         margin: 0 0 10px 0;
-        font-family: "Lora";
+        font-family: 'Lora';
         font-style: normal;
         font-weight: 600;
         font-size: 36px;
@@ -55,7 +55,7 @@ export const MissionContainer = styled.section`
           margin-bottom: 24px;
           & h4 {
             margin: 0;
-            font-family: "Lora";
+            font-family: 'Lora';
             font-style: normal;
             font-weight: 500;
             font-size: 24px;
@@ -64,7 +64,7 @@ export const MissionContainer = styled.section`
             margin-bottom: 11px;
           }
           & p {
-            font-family: "Golos";
+            font-family: 'Golos';
             font-style: normal;
             font-weight: 400;
             font-size: 16px;

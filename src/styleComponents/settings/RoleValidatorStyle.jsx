@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled from 'styled-components';
 
 export const RoleValidatorContainer = styled.section`
   padding: 0 36px;
@@ -22,7 +22,7 @@ export const RoleValidatorContainer = styled.section`
         padding: 16px;
       }
       & > .title {
-        font-family: "Lora";
+        font-family: 'Lora';
         font-style: normal;
         font-weight: 600;
         font-size: 24px;
@@ -40,8 +40,8 @@ export const RoleValidatorContainer = styled.section`
           & > .col {
             flex: 1;
             margin: 12px;
-            & .select_label{
-              font-family: "Golos";
+            & .select_label {
+              font-family: 'Golos';
               font-style: normal;
               font-weight: 400;
               font-size: 14px;
@@ -51,7 +51,7 @@ export const RoleValidatorContainer = styled.section`
             & > .checkbox {
               display: flex;
               align-items: center;
-              font-family: "Golos";
+              font-family: 'Golos';
               font-style: normal;
               font-weight: 400;
               font-size: 14px;
@@ -63,7 +63,7 @@ export const RoleValidatorContainer = styled.section`
                 margin-right: 12px;
               }
               & > span {
-                font-family: "Golos";
+                font-family: 'Golos';
                 font-style: normal;
                 font-weight: 500;
                 font-size: 14px;
@@ -72,7 +72,7 @@ export const RoleValidatorContainer = styled.section`
                 margin-left: 2px;
               }
               & > .bolt {
-                font-family: "Golos";
+                font-family: 'Golos';
                 font-style: normal;
                 font-weight: 500;
                 font-size: 16px;
@@ -105,7 +105,7 @@ export const RoleValidatorContainer = styled.section`
         border: 1px solid #2a2c35;
         box-shadow: 0px 3px 0px #2a2c35;
         border-radius: 1000px;
-        font-family: "Golos";
+        font-family: 'Golos';
         font-style: normal;
         font-weight: 500;
         font-size: 16px;
@@ -122,7 +122,7 @@ export const RoleValidatorContainer = styled.section`
         border: 1px solid #2a2c35;
         box-shadow: 0px 3px 0px #2a2c35;
         border-radius: 1000px;
-        font-family: "Golos";
+        font-family: 'Golos';
         font-style: normal;
         font-weight: 500;
         font-size: 16px;
@@ -153,7 +153,7 @@ export const RoleValidatorContainer = styled.section`
           display: block;
         }
         & .title {
-          font-family: "Lora";
+          font-family: 'Lora';
           font-style: normal;
           font-weight: 600;
           font-size: 24px;
@@ -161,7 +161,7 @@ export const RoleValidatorContainer = styled.section`
           color: #2a2c35;
         }
         & > .bolt {
-          font-family: "Golos";
+          font-family: 'Golos';
           font-style: normal;
           font-weight: 500;
           font-size: 16px;
@@ -174,7 +174,7 @@ export const RoleValidatorContainer = styled.section`
         }
       }
       & .desc {
-        font-family: "Golos";
+        font-family: 'Golos';
         font-style: normal;
         font-weight: 400;
         font-size: 16px;
@@ -201,7 +201,7 @@ export const RoleValidatorContainer = styled.section`
         }
         & .ftext1 {
           max-width: 374px;
-          font-family: "Lora";
+          font-family: 'Lora';
           font-style: normal;
           font-weight: 600;
           font-size: 18px;
@@ -211,7 +211,7 @@ export const RoleValidatorContainer = styled.section`
           padding: 24px 0 12px 0;
         }
         & .ftext2 {
-          font-family: "Golos";
+          font-family: 'Golos';
           font-style: normal;
           font-weight: 400;
           font-size: 14px;
@@ -220,13 +220,13 @@ export const RoleValidatorContainer = styled.section`
           padding-bottom: 24px;
         }
         & > .btn {
-          font-family: "Golos";
+          font-family: 'Golos';
           font-style: normal;
           font-weight: 400;
           font-size: 14px;
           line-height: 17px;
           padding: 16px 24px;
-          background: #2A2C35;
+          background: #2a2c35;
           opacity: 0.5;
           border-radius: 1000px;
           color: #ffffff;
@@ -237,7 +237,7 @@ export const RoleValidatorContainer = styled.section`
         }
       }
       & .image_err {
-        font-family: "Golos";
+        font-family: 'Golos';
         font-style: normal;
         font-weight: 400;
         font-size: 14px;
@@ -270,7 +270,7 @@ export const RoleValidatorContainer = styled.section`
             }
             & .img_info {
               & .name {
-                font-family: "Lora";
+                font-family: 'Lora';
                 font-style: normal;
                 font-weight: 600;
                 font-size: 16px;
@@ -279,7 +279,7 @@ export const RoleValidatorContainer = styled.section`
                 padding-bottom: 4px;
               }
               & .size {
-                font-family: "Golos";
+                font-family: 'Golos';
                 font-style: normal;
                 font-weight: 400;
                 font-size: 12px;
@@ -305,7 +305,7 @@ export const RoleValidatorContainer = styled.section`
           & > .checkbox {
             display: flex;
             align-items: center;
-            font-family: "Golos";
+            font-family: 'Golos';
             font-style: normal;
             font-weight: 400;
             font-size: 14px;
@@ -315,7 +315,7 @@ export const RoleValidatorContainer = styled.section`
               margin-right: 14px;
             }
             & > span {
-              font-family: "Golos";
+              font-family: 'Golos';
               font-style: normal;
               font-weight: 500;
               font-size: 14px;
@@ -324,7 +324,7 @@ export const RoleValidatorContainer = styled.section`
               margin-left: 2px;
             }
             & > .bolt {
-              font-family: "Golos";
+              font-family: 'Golos';
               font-style: normal;
               font-weight: 400;
               font-size: 14px;
@@ -348,7 +348,7 @@ export const RoleValidatorContainer = styled.section`
 
 export const SuccesModalStyle = styled.div`
   .title {
-    font-family: "Lora";
+    font-family: 'Lora';
     font-style: normal;
     font-weight: 600;
     font-size: 24px;
@@ -358,7 +358,7 @@ export const SuccesModalStyle = styled.div`
     margin-bottom: 8px;
   }
   .text {
-    font-family: "Golos";
+    font-family: 'Golos';
     font-style: normal;
     font-weight: 400;
     font-size: 14px;
@@ -367,7 +367,7 @@ export const SuccesModalStyle = styled.div`
     color: #2a2c35;
     & .tg_btn {
       margin: 0 8px;
-      font-family: "Golos";
+      font-family: 'Golos';
       font-style: normal;
       font-weight: 500;
       font-size: 14px;
@@ -388,7 +388,7 @@ export const SuccesModalStyle = styled.div`
       box-shadow: 0px 2px 0px #2a2c35;
       border-radius: 1000px;
       padding: 16px 24px;
-      font-family: "Golos";
+      font-family: 'Golos';
       font-style: normal;
       font-weight: 500;
       font-size: 14px;

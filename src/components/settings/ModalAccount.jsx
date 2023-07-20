@@ -1,25 +1,25 @@
-import { useDispatch, useSelector } from "react-redux";
-import { ModalEmailStyle } from "../../styleComponents/settings/ModalEmail";
-import { useEffect, useState } from "react";
-import Axios from "../../utils/httpClient";
-
-import { Box, useToast } from "@chakra-ui/react";
-import SettingsInput from "../../sections/settings/SettingsInput";
-import { get, remove } from "lodash";
-import { useNavigate } from "react-router-dom";
-import SettingsSelect from "../../sections/settings/SettingsSelect";
-import Select from "react-select";
-import SettingsSaveBtn from "../../sections/settings/SettingsSaveBtn";
-import ModalDiplom from "../../sections/layout/ModalDiplom";
-import { setToken } from "../../utils/tokenStorge";
-import { ValidatorAccountContainer } from "../../styleComponents/settings/ValidatorAccountStyle";
-import { DefaultOptionsSingle } from "../../sections/utils/DefaultOptionsSingle";
-import { DefaultOptionsMulti } from "../../sections/utils/DefaultOptionsMulti";
+import { useDispatch, useSelector } from 'react-redux';
+import { useEffect, useState } from 'react';
+import { Box, useToast } from '@chakra-ui/react';
+import { get, remove } from 'lodash';
+import { useNavigate } from 'react-router-dom';
+import Select from 'react-select';
 import { useTranslation } from 'react-i18next';
+import { ModalEmailStyle } from '../../styleComponents/settings/ModalEmail';
+import Axios from '../../utils/httpClient';
+
+import SettingsInput from '../../sections/settings/SettingsInput';
+import SettingsSelect from '../../sections/settings/SettingsSelect';
+import SettingsSaveBtn from '../../sections/settings/SettingsSaveBtn';
+import ModalDiplom from '../../sections/layout/ModalDiplom';
+import { setToken } from '../../utils/tokenStorge';
+import { ValidatorAccountContainer } from '../../styleComponents/settings/ValidatorAccountStyle';
+import { DefaultOptionsSingle } from '../../sections/utils/DefaultOptionsSingle';
+import { DefaultOptionsMulti } from '../../sections/utils/DefaultOptionsMulti';
 
 const ModalAccount = ({ setmodal }) => {
   const { t, i18n } = useTranslation();
-  const { account, walletData } = useSelector((s) => s);
+  const { account, walletData } = useSelector(s => s);
   const toast = useToast();
 
   const dispatch = useDispatch();
@@ -29,8 +29,8 @@ const ModalAccount = ({ setmodal }) => {
   const [errUser, setErrUser] = useState({});
   //  teacher
   const language = [
-    { id: 1, name: "Russian" },
-    { id: 2, name: "English" },
+    { id: 1, name: 'Russian' },
+    { id: 2, name: 'English' },
   ];
   const [objAuthor, setObjAuthor] = useState({});
   const [errAuthor, setErrAuthor] = useState({});
@@ -46,42 +46,82 @@ const ModalAccount = ({ setmodal }) => {
   const [selectSciencesvalidator, setSelectSciencessValidator] = useState({});
   const [isOpen, setIsOpen] = useState(false);
   const [files, setFiles] = useState([]);
+  const getBasicInfo = () => {
+    Axios()
+      .get(`/get_basic_info`)
+      .then(res => {
+        setObjUser({
+          nickname: res?.data?.nickname,
+        });
+      })
+      .finally(() => {})
+      .catch(r => {});
+  };
+  const getSelectAuthorData = () => {
+    dispatch({ type: 'SET_LOADING', payload: true });
 
-  
-  
- 
+    Axios()
+      .get(`/author_data`)
+      .then(res => {
+        setSelectAuthor(res?.data?.sciences);
+      })
+      .finally(() => {
+        dispatch({ type: 'SET_LOADING', payload: false });
+      })
+      .catch(r => {});
+  };
+  const getAuthorData = () => {
+    Axios()
+      .get(`/author_info/${walletData?.accountAddress}`)
+      .then(res => {
+        // setAuthorData(res?.data);
+        setObjAuthor({
+          name: res?.data?.author_info?.name,
+          surname: res?.data?.author_info?.surname,
+          email_address: res?.data?.author_info?.email_address,
+          middlename: res?.data?.author_info?.middlename,
+        });
+      })
+      .catch(r => {});
+  };
+  const getValidatorData = () => {
+    Axios()
+      .get(`/validator_info/${walletData?.accountAddress}`)
+      .then(res => {
+        console.log(res?.data, 'vali');
+        // setAuthorData(res?.data);
+
+        setObjValidator({
+          name: res?.data?.validator_info?.name,
+          surname: res?.data?.validator_info?.surname,
+          email_address: res?.data?.validator_info?.email_address,
+          middlename: res?.data?.validator_info?.middlename,
+        });
+      })
+      .catch(r => {});
+  };
+
   useEffect(() => {
     // user
     getBasicInfo();
     // author
     getSelectAuthorData();
     getAuthorData();
-    //validator
+    // validator
 
     getValidatorData();
   }, []);
 
   // User Settings ===
 
-  const handleChangeUser = (e) => {
+  const handleChangeUser = e => {
     setObjUser({ ...objUser, [e.target.name]: e.target.value });
     setErrUser({ ...errUser, [e.target.name]: false });
   };
-  const getBasicInfo = () => {
-    Axios()
-      .get(`/get_basic_info`)
-      .then((res) => {
-        setObjUser({
-          nickname: res?.data?.nickname,
-        });
-      })
-      .finally(() => {})
-      .catch((r) => {});
-  };
-  const Setting = (e) => {
-    dispatch({ type: "SET_LOADING", payload: true });
-    let t = true,
-      error = {};
+  const Setting = e => {
+    dispatch({ type: 'SET_LOADING', payload: true });
+    const t = true;
+    let error = {};
 
     if (objUser?.nickname) {
       error = { ...error, nickname: true };
@@ -89,13 +129,13 @@ const ModalAccount = ({ setmodal }) => {
 
     if (t) {
       Axios()
-        .post("/update_basic_info", objUser)
-        .then((res) => {
+        .post('/update_basic_info', objUser)
+        .then(res => {
           toast({
             // title: "Account created.",
-            status: "success",
+            status: 'success',
             duration: 1000,
-            position: "top",
+            position: 'top',
             isClosable: true,
 
             render: () => (
@@ -104,21 +144,21 @@ const ModalAccount = ({ setmodal }) => {
                 p={3}
                 bg="white.500"
                 style={{
-                  display: "flex",
-                  fontFamily: "Lora",
-                  fontSize: "16px",
-                  background: "white",
-                  fontWeight: "600",
-                  lineHeight: "150%",
-                  position: "absolute",
-                  top: "60px",
-                  padding: "24px 36px",
-                  borderRadius: "8px",
-                  boxShadow: "0px 4px 15px rgba(0, 0, 0, 0.05)",
+                  display: 'flex',
+                  fontFamily: 'Lora',
+                  fontSize: '16px',
+                  background: 'white',
+                  fontWeight: '600',
+                  lineHeight: '150%',
+                  position: 'absolute',
+                  top: '60px',
+                  padding: '24px 36px',
+                  borderRadius: '8px',
+                  boxShadow: '0px 4px 15px rgba(0, 0, 0, 0.05)',
                 }}
               >
                 <img
-                  style={{ marginRight: "14px" }}
+                  style={{ marginRight: '14px' }}
                   src="/img/vector.svg"
                   alt=""
                 />
@@ -127,23 +167,23 @@ const ModalAccount = ({ setmodal }) => {
             ),
           });
         })
-        .catch((e) => {})
+        .catch(e => {})
         .finally(() => {
-          dispatch({ type: "SET_LOADING", payload: false });
+          dispatch({ type: 'SET_LOADING', payload: false });
           setmodal(false);
         });
     } else {
-      dispatch({ type: "SET_LOADING", payload: false });
+      dispatch({ type: 'SET_LOADING', payload: false });
       setErrUser(error);
     }
   };
   /// TeacherSettings ===
 
-  const become_author = (e) => {
+  const becomeAuthor = e => {
     e.preventDefault();
-    dispatch({ type: "SET_LOADING", payload: true });
-    let t = true,
-      error = {};
+    dispatch({ type: 'SET_LOADING', payload: true });
+    let t = true;
+    let error = {};
     if (!objAuthor?.name) {
       error = { ...error, name: true };
       t = false;
@@ -158,8 +198,8 @@ const ModalAccount = ({ setmodal }) => {
     //   }
     if (
       !objAuthor?.email_address ||
-      !objAuthor?.email_address?.includes("@") ||
-      !objAuthor?.email_address?.includes(".")
+      !objAuthor?.email_address?.includes('@') ||
+      !objAuthor?.email_address?.includes('.')
     ) {
       error = { ...error, email_address: true };
       t = false;
@@ -176,12 +216,12 @@ const ModalAccount = ({ setmodal }) => {
           objAuthor
           // sciences: [obj?.sciences]
         )
-        .then((res) => {
+        .then(res => {
           toast({
             // title: "Account created.",
-            status: "success",
+            status: 'success',
             duration: 1000,
-            position: "top",
+            position: 'top',
             isClosable: true,
 
             render: () => (
@@ -190,21 +230,21 @@ const ModalAccount = ({ setmodal }) => {
                 p={3}
                 bg="white.500"
                 style={{
-                  display: "flex",
-                  fontFamily: "Lora",
-                  fontSize: "16px",
-                  background: "white",
-                  fontWeight: "600",
-                  lineHeight: "150%",
-                  position: "absolute",
-                  top: "60px",
-                  padding: "24px 36px",
-                  borderRadius: "8px",
-                  boxShadow: "0px 4px 15px rgba(0, 0, 0, 0.05)",
+                  display: 'flex',
+                  fontFamily: 'Lora',
+                  fontSize: '16px',
+                  background: 'white',
+                  fontWeight: '600',
+                  lineHeight: '150%',
+                  position: 'absolute',
+                  top: '60px',
+                  padding: '24px 36px',
+                  borderRadius: '8px',
+                  boxShadow: '0px 4px 15px rgba(0, 0, 0, 0.05)',
                 }}
               >
                 <img
-                  style={{ marginRight: "14px" }}
+                  style={{ marginRight: '14px' }}
                   src="/img/vector.svg"
                   alt=""
                 />
@@ -214,34 +254,21 @@ const ModalAccount = ({ setmodal }) => {
           });
           setmodal(false);
         })
-        .catch((e) => {})
+        .catch(e => {})
         .finally(() => {
-          dispatch({ type: "SET_LOADING", payload: false });
+          dispatch({ type: 'SET_LOADING', payload: false });
         });
     } else {
-      dispatch({ type: "SET_LOADING", payload: false });
+      dispatch({ type: 'SET_LOADING', payload: false });
       setErrAuthor(error);
     }
   };
-  const handleChangeauther = (e) => {
+  const handleChangeauther = e => {
     setObjAuthor({ ...objAuthor, [e.target.name]: e.target.value });
     setErrAuthor({ ...errAuthor, [e.target.name]: false });
   };
 
-  const getSelectAuthorData = () => {
-    dispatch({ type: "SET_LOADING", payload: true });
-
-    Axios()
-      .get(`/author_data`)
-      .then((res) => {
-        setSelectAuthor(res?.data?.sciences);
-      })
-      .finally(() => {
-        dispatch({ type: "SET_LOADING", payload: false });
-      })
-      .catch((r) => {});
-  };
-  const SelectLanguage = (val) => {
+  const SelectLanguage = val => {
     setSelectlanguage({ language: val });
     setObjAuthor({
       ...objAuthor,
@@ -250,41 +277,39 @@ const ModalAccount = ({ setmodal }) => {
 
     setErrAuthor({ ...errAuthor, tags: false });
   };
-  const SelectAuthor = (val) => {
+  const SelectAuthor = val => {
     setSelectSciencess({ sciences: val });
     setObjAuthor({
       ...objAuthor,
-      sciences: val?.map((label) => {
-        return label?.label;
-      }),
+      sciences: val?.map(label => label?.label),
     });
 
     setErrAuthor({ ...errAuthor, sciences: false });
   };
 
-  const getAuthorData = () => {
+  const uploadFiles = () => {
+    const fd = new FormData();
+    const diplomDocs = window.document.getElementById('diplom_docs').files;
+    // fd.append("doc", diplom_docs[0]);
+    for (let i = 0; i < diplomDocs.length; i++) {
+      fd.append('doc', diplomDocs[i]);
+    }
     Axios()
-      .get(`/author_info/${walletData?.accountAddress}`)
-      .then((res) => {
-        // setAuthorData(res?.data);
-        setObjAuthor({
-          name: res?.data?.author_info?.name,
-          surname: res?.data?.author_info?.surname,
-          email_address: res?.data?.author_info?.email_address,
-          middlename: res?.data?.author_info?.middlename,
-
-        });
-      })
-      .catch((r) => {});
+      .put(`/upload_doc/diploma `, fd)
+      .then(res => {})
+      .catch(e => {})
+      .finally(() => {
+        dispatch({ type: 'SET_LOADING', payload: false });
+      });
   };
 
   // Validator Settings ===
 
-  const become_validator = (e) => {
+  const becomeValidator = e => {
     e.preventDefault();
-    dispatch({ type: "SET_LOADING", payload: true });
-    let t = true,
-      error = {};
+    dispatch({ type: 'SET_LOADING', payload: true });
+    let t = true;
+    let error = {};
     if (!objValidator?.name) {
       error = { ...error, name: true };
       t = false;
@@ -299,8 +324,8 @@ const ModalAccount = ({ setmodal }) => {
     //   }
     if (
       !objValidator?.email_address ||
-      !objValidator?.email_address?.includes("@") ||
-      !objValidator?.email_address?.includes(".")
+      !objValidator?.email_address?.includes('@') ||
+      !objValidator?.email_address?.includes('.')
     ) {
       error = { ...error, email_address: true };
       t = false;
@@ -317,13 +342,13 @@ const ModalAccount = ({ setmodal }) => {
     if (t) {
       Axios()
         .post(`/update_validator_info`, { ...objValidator })
-        .then((res) => {
-          setmodal(false)
+        .then(res => {
+          setmodal(false);
           toast({
             // title: "Account created.",
-            status: "success",
+            status: 'success',
             duration: 1000,
-            position: "top",
+            position: 'top',
             isClosable: true,
 
             render: () => (
@@ -332,21 +357,21 @@ const ModalAccount = ({ setmodal }) => {
                 p={3}
                 bg="white.500"
                 style={{
-                  display: "flex",
-                  fontFamily: "Lora",
-                  fontSize: "16px",
-                  background: "white",
-                  fontWeight: "600",
-                  lineHeight: "150%",
-                  position: "absolute",
-                  top: "60px",
-                  padding: "24px 36px",
-                  borderRadius: "8px",
-                  boxShadow: "0px 4px 15px rgba(0, 0, 0, 0.05)",
+                  display: 'flex',
+                  fontFamily: 'Lora',
+                  fontSize: '16px',
+                  background: 'white',
+                  fontWeight: '600',
+                  lineHeight: '150%',
+                  position: 'absolute',
+                  top: '60px',
+                  padding: '24px 36px',
+                  borderRadius: '8px',
+                  boxShadow: '0px 4px 15px rgba(0, 0, 0, 0.05)',
                 }}
               >
                 <img
-                  style={{ marginRight: "14px" }}
+                  style={{ marginRight: '14px' }}
                   src="/img/vector.svg"
                   alt=""
                 />
@@ -357,23 +382,23 @@ const ModalAccount = ({ setmodal }) => {
           if (res?.data?.jwt_token) {
             uploadFiles();
             setToken(res?.data?.jwt_token);
-            dispatch({ type: "SET_ACCOUNT", payload: { role: 4 } });
-            dispatch({ type: "SET_ROLE", payload: 4 });
+            dispatch({ type: 'SET_ACCOUNT', payload: { role: 4 } });
+            dispatch({ type: 'SET_ROLE', payload: 4 });
           }
-          dispatch({ type: "SET_LOADING", payload: false });
+          dispatch({ type: 'SET_LOADING', payload: false });
           // setSuccesModal(true);
         })
-        .catch((e) => {})
+        .catch(e => {})
         .finally(() => {
-          dispatch({ type: "SET_LOADING", payload: false });
+          dispatch({ type: 'SET_LOADING', payload: false });
         });
     } else {
-      dispatch({ type: "SET_LOADING", payload: false });
+      dispatch({ type: 'SET_LOADING', payload: false });
       setErrValidator(error);
     }
   };
 
-  const handleChangeValidator = (e) => {
+  const handleChangeValidator = e => {
     setObjValidator({ ...objValidator, [e.target.name]: e.target.value });
     setErrValidator({ ...errValidator, [e.target.name]: false });
   };
@@ -385,7 +410,7 @@ const ModalAccount = ({ setmodal }) => {
   //     })
   //     .catch((r) => {});
   // };
-  const SelectLanguageValidator = (val) => {
+  const SelectLanguageValidator = val => {
     setSelectlanguageValidator({ language: val });
     setObjValidator({
       ...objValidator,
@@ -394,66 +419,32 @@ const ModalAccount = ({ setmodal }) => {
 
     setErrValidator({ ...errValidator, tags: false });
   };
-  const selectValidator = (val) => {
+  const selectValidator = val => {
     setSelectSciencessValidator({ sciences: val });
     setObjValidator({
       ...objValidator,
-      sciences: val?.map((label) => {
-        return label?.label;
-      }),
+      sciences: val?.map(label => label?.label),
     });
 
     setErrValidator({ ...errValidator, sciences: false });
   };
 
-  const selectFiles = (e) => {
+  const selectFiles = e => {
     const f = e?.target?.files ?? [];
-    let file_list = [];
+    const fileList = [];
     for (let i = 0; i < f.length; i++) {
       const imgUrl = URL.createObjectURL(get(f, i));
-      file_list.push({
+      fileList.push({
         id: i,
-        name: get(f, `${i}.name`, ""),
+        name: get(f, `${i}.name`, ''),
         size: Number.parseFloat(get(f, `${i}.size`, 0) / 1048576).toFixed(2),
         url: imgUrl,
       });
     }
-    setFiles(file_list);
+    setFiles(fileList);
     setErrValidator({ ...errValidator, images: false });
   };
-  const uploadFiles = () => {
-    var fd = new FormData();
-    const diplom_docs = window.document.getElementById("diplom_docs").files;
-    // fd.append("doc", diplom_docs[0]);
-    for (let i = 0; i < diplom_docs.length; i++) {
-      fd.append("doc", diplom_docs[i]);
-    }
-    Axios()
-      .put(`/upload_doc/diploma `, fd)
-      .then((res) => {})
-      .catch((e) => {})
-      .finally(() => {
-        dispatch({ type: "SET_LOADING", payload: false });
-      });
-  };
 
-  const getValidatorData = () => {
-    Axios()
-      .get(`/validator_info/${walletData?.accountAddress}`)
-      .then((res) => {
-        console.log(res?.data, "vali");
-        // setAuthorData(res?.data);
-
-        setObjValidator({
-          name: res?.data?.validator_info?.name,
-          surname: res?.data?.validator_info?.surname,
-          email_address: res?.data?.validator_info?.email_address,
-          middlename: res?.data?.validator_info?.middlename,
-
-        });
-      })
-      .catch((r) => {});
-  };
   return (
     <>
       <ModalEmailStyle>
@@ -462,218 +453,221 @@ const ModalAccount = ({ setmodal }) => {
         <div
           className="form"
           style={{
-            padding: "16px",
-            justifyContent: "center",
+            padding: '16px',
+            justifyContent: 'center',
           }}
         >
+          {/* eslint-disable-next-line no-nested-ternary */}
           {account?.role === 1 ? (
-            <>
-              <div className="input-target">
-                <label htmlFor="">
-                  {t('modal_account.userName')} <span>*</span>
-                </label>
-                <input
-                  type="text"
-                  label={t('modal_account.nickname')}
-                  onChange={handleChangeUser}
-                  name="nickname"
-                  value={objUser?.nickname}
-                />
-                <button onClick={Setting}>{t('modal_account.saveChanges')}</button>
-              </div>
-            </>
-          ) : account?.role === 2 ? (
-            <>
-              <form onSubmit={become_author}>
-                <div className="input_container">
-                  <div className="row">
-                    <div className="col">
-                      <SettingsInput
-                        label={t('modal_account.surname')}
-                        value={get(objAuthor, "surname", "")}
-                        onChange={handleChangeauther}
-                        name="surname"
-                        is_error={get(errAuthor, "surname", false)}
-                        errorText={t('modal_account.enterSurname')}
-                        is_requared={false}
-                        disabled={true}
-                      />
-                    </div>
-                    <div className="col">
-                      <SettingsInput
-                        label={t('modal_account.name')}
-                        value={get(objAuthor, "name", "")}
-                        onChange={handleChangeauther}
-                        name="name"
-                        is_error={get(errAuthor, "name", false)}
-                        errorText={t('modal_account.enterName')}
-                        is_requared={false}
-                        disabled={true}
-                      />
-                    </div>
-                    <div className="col">
-                      <SettingsInput
-                        label={t('modal_account.middleName')}
-                        is_requared={false}
-                        value={get(objAuthor, "middlename", "")}
-                        onChange={handleChangeauther}
-                        name="middlename"
-                        is_error={get(errAuthor, "middlename", false)}
-                        errorText={t('modal_account.enterMiddleName')}
-                      />
-                    </div>
+            <div className="input-target">
+              {/* eslint-disable-next-line */}
+              <label htmlFor="">
+                {t('modal_account.userName')} <span>*</span>
+              </label>
+              <input
+                type="text"
+                label={t('modal_account.nickname')}
+                onChange={handleChangeUser}
+                name="nickname"
+                value={objUser?.nickname}
+              />
+              <button type="button" onClick={Setting}>
+                {t('modal_account.saveChanges')}
+              </button>
+            </div>
+          ) : // eslint-disable-next-line no-nested-ternary
+          account?.role === 2 ? (
+            <form onSubmit={becomeAuthor}>
+              <div className="input_container">
+                <div className="row">
+                  <div className="col">
+                    <SettingsInput
+                      label={t('modal_account.surname')}
+                      value={get(objAuthor, 'surname', '')}
+                      onChange={handleChangeauther}
+                      name="surname"
+                      is_error={get(errAuthor, 'surname', false)}
+                      errorText={t('modal_account.enterSurname')}
+                      required={false}
+                      disabled
+                    />
                   </div>
-                  <div className="row">
-                    <div className="col">
-                      <SettingsInput
-                        label={t('modal_account.userName')}
-                        value={account?.nickname}
-                        is_requared={false}
-                        disabled={true}
-                      />
-                    </div>
-                    <div className="col">
-                      <SettingsInput
-                        label={t('modal_account.email')}
-                        value={get(objAuthor, "email_address", "")}
-                        onChange={handleChangeauther}
-                        name="email_address"
-                        is_error={get(errAuthor, "email_address", false)}
-                        errorText={t('modal_account.enterEmail')}
-                        disabled={true}
-                      />
-                    </div>
+                  <div className="col">
+                    <SettingsInput
+                      label={t('modal_account.name')}
+                      value={get(objAuthor, 'name', '')}
+                      onChange={handleChangeauther}
+                      name="name"
+                      is_error={get(errAuthor, 'name', false)}
+                      errorText={t('modal_account.enterName')}
+                      required={false}
+                      disabled
+                    />
                   </div>
-                  <div className="row">
-                    <div className="col">
-                      <label htmlFor="">
-                        {t('modal_account.chooseLanguage')}
-                      </label>
-
-                      <Select
-                        options={language.map((val) => ({
-                          label: val?.name,
-                          value: val?.id,
-                        }))}
-                        name="language"
-                        value={selectLanguage?.language}
-                        {...DefaultOptionsSingle}
-                        onChange={(value) => SelectLanguage(value)}
-                      />
-                    </div>
-                    <div className="col">
-                      <SettingsSelect
-                        label={t('modal_account.location')}
-                        is_requared={false}
-                      />
-                    </div>
-                  </div>
-                  <div className="row">
-                    <div className="col">
-                      <SettingsInput
-                        label={t('modal_account.googleScholar')}
-                        is_requared={false}
-                        value={get(objAuthor, "scholar_ship_profile", "")}
-                        onChange={handleChangeauther}
-                        name="scholar_ship_profile"
-                        is_error={get(errAuthor, "scholar_ship_profile", false)}
-                        errorText={t('modal_account.enterGoogleScholar')}
-                      />
-                    </div>
-                    <div className="col">
-                      <SettingsInput
-                        label="ORCID"
-                        is_requared={false}
-                        value={get(objAuthor, "orcid", "")}
-                        onChange={handleChangeauther}
-                        name="orcid"
-                        is_error={get(errAuthor, "orcid", false)}
-                        errorText={t('modal_account.enterORCID')}
-                        type="number"
-                      />
-                    </div>
-                  </div>
-                  <div className="row">
-                    <div className="col ">
-                      <label htmlFor="">
-                        {t('modal_account.sciences')}{" "}
-                        <span style={{ color: "red" }}>*</span>
-                      </label>
-                      <Select
-                        options={selectauthor.map((val, index) => ({
-                          label: val,
-                          value: index,
-                        }))}
-                        name="sciences"
-                        value={selectSciences?.sciences}
-                        {...DefaultOptionsMulti}
-                        onChange={(value) => SelectAuthor(value)}
-                      />
-
-                      {errAuthor?.sciences === true ? (
-                        <span
-                          style={{
-                            fontFamily: "Golos",
-                            fontStyle: "normal",
-                            fontWeight: 500,
-                            fontSize: "14px",
-                            lineHeight: "17px",
-                            color: "rgb(255, 106, 106)",
-                            marginLeft: "2px",
-                          }}
-                        >
-                          {t('modal_account.enterSciences')}
-                        </span>
-                      ) : null}
-                    </div>
+                  <div className="col">
+                    <SettingsInput
+                      label={t('modal_account.middleName')}
+                      required={false}
+                      value={get(objAuthor, 'middlename', '')}
+                      onChange={handleChangeauther}
+                      name="middlename"
+                      is_error={get(errAuthor, 'middlename', false)}
+                      errorText={t('modal_account.enterMiddleName')}
+                    />
                   </div>
                 </div>
+                <div className="row">
+                  <div className="col">
+                    <SettingsInput
+                      label={t('modal_account.userName')}
+                      value={account?.nickname}
+                      required={false}
+                      disabled
+                    />
+                  </div>
+                  <div className="col">
+                    <SettingsInput
+                      label={t('modal_account.email')}
+                      value={get(objAuthor, 'email_address', '')}
+                      onChange={handleChangeauther}
+                      name="email_address"
+                      is_error={get(errAuthor, 'email_address', false)}
+                      errorText={t('modal_account.enterEmail')}
+                      disabled
+                    />
+                  </div>
+                </div>
+                <div className="row">
+                  <div className="col">
+                    {/* eslint-disable-next-line jsx-a11y/label-has-associated-control */}
+                    <label htmlFor="">
+                      {t('modal_account.chooseLanguage')}
+                    </label>
 
-                <SettingsSaveBtn
-                  text={t('modal_account.saveChanges')}
-                  onClick={become_author}
-                />
-              </form>
-            </>
+                    <Select
+                      options={language.map(val => ({
+                        label: val?.name,
+                        value: val?.id,
+                      }))}
+                      name="language"
+                      value={selectLanguage?.language}
+                      {...DefaultOptionsSingle}
+                      onChange={value => SelectLanguage(value)}
+                    />
+                  </div>
+                  <div className="col">
+                    <SettingsSelect
+                      label={t('modal_account.location')}
+                      required={false}
+                    />
+                  </div>
+                </div>
+                <div className="row">
+                  <div className="col">
+                    <SettingsInput
+                      label={t('modal_account.googleScholar')}
+                      required={false}
+                      value={get(objAuthor, 'scholar_ship_profile', '')}
+                      onChange={handleChangeauther}
+                      name="scholar_ship_profile"
+                      is_error={get(errAuthor, 'scholar_ship_profile', false)}
+                      errorText={t('modal_account.enterGoogleScholar')}
+                    />
+                  </div>
+                  <div className="col">
+                    <SettingsInput
+                      label="ORCID"
+                      required={false}
+                      value={get(objAuthor, 'orcid', '')}
+                      onChange={handleChangeauther}
+                      name="orcid"
+                      is_error={get(errAuthor, 'orcid', false)}
+                      errorText={t('modal_account.enterORCID')}
+                      type="number"
+                    />
+                  </div>
+                </div>
+                <div className="row">
+                  <div className="col ">
+                    {/* eslint-disable-next-line jsx-a11y/label-has-associated-control */}
+                    <label htmlFor="">
+                      {t('modal_account.sciences')}{' '}
+                      <span style={{ color: 'red' }}>*</span>
+                    </label>
+                    <Select
+                      options={selectauthor.map((val, index) => ({
+                        label: val,
+                        value: index,
+                      }))}
+                      name="sciences"
+                      value={selectSciences?.sciences}
+                      {...DefaultOptionsMulti}
+                      onChange={value => SelectAuthor(value)}
+                    />
+
+                    {errAuthor?.sciences === true ? (
+                      <span
+                        style={{
+                          fontFamily: 'Golos',
+                          fontStyle: 'normal',
+                          fontWeight: 500,
+                          fontSize: '14px',
+                          lineHeight: '17px',
+                          color: 'rgb(255, 106, 106)',
+                          marginLeft: '2px',
+                        }}
+                      >
+                        {t('modal_account.enterSciences')}
+                      </span>
+                    ) : null}
+                  </div>
+                </div>
+              </div>
+
+              <SettingsSaveBtn
+                text={t('modal_account.saveChanges')}
+                onClick={becomeAuthor}
+              />
+            </form>
           ) : account?.role === 4 ? (
             <>
-              {" "}
-              <form onSubmit={become_validator}>
+              {' '}
+              <form onSubmit={becomeValidator}>
                 <div>
                   <div className="input_container">
                     <div className="row">
                       <div className="col">
                         <SettingsInput
                           label={t('modal_account.surname')}
-                          value={get(objValidator, "surname", "")}
+                          value={get(objValidator, 'surname', '')}
                           onChange={handleChangeValidator}
                           name="surname"
-                          is_error={get(errValidator, "surname", false)}
+                          is_error={get(errValidator, 'surname', false)}
                           errorText={t('modal_account.enterSurname')}
-                          is_requared={false}
-                          disabled={true}
+                          required={false}
+                          disabled
                         />
                       </div>
                       <div className="col">
                         <SettingsInput
                           label={t('modal_account.name')}
-                          value={get(objValidator, "name", "")}
+                          value={get(objValidator, 'name', '')}
                           onChange={handleChangeValidator}
                           name="name"
-                          is_error={get(errValidator, "name", false)}
+                          is_error={get(errValidator, 'name', false)}
                           errorText={t('modal_account.enterName')}
-                          is_requared={false}
-                          disabled={true}
+                          required={false}
+                          disabled
                         />
                       </div>
                       <div className="col">
                         <SettingsInput
                           label={t('modal_account.middleName')}
-                          is_requared={false}
-                          value={get(objValidator, "middlename", "")}
+                          requared={false}
+                          value={get(objValidator, 'middlename', '')}
                           onChange={handleChangeValidator}
                           name="middlename"
-                          is_error={get(errValidator, "middlename", false)}
+                          is_error={get(errValidator, 'middlename', false)}
                           errorText={t('modal_account.enterMiddleName')}
                         />
                       </div>
@@ -683,24 +677,25 @@ const ModalAccount = ({ setmodal }) => {
                         <SettingsInput
                           label={t('modal_account.nickname')}
                           value={account?.nickname}
-                          is_requared={false}
-                          disabled={true}
+                          required={false}
+                          disabled
                         />
                       </div>
                       <div className="col">
                         <SettingsInput
                           label={t('modal_account.email')}
-                          value={get(objValidator, "email_address", "")}
+                          value={get(objValidator, 'email_address', '')}
                           onChange={handleChangeValidator}
                           name="email_address"
-                          is_error={get(errValidator, "email_address", false)}
+                          is_error={get(errValidator, 'email_address', false)}
                           errorText={t('modal_account.enterEmail')}
-                          disabled={true}
+                          disabled
                         />
                       </div>
                     </div>
                     <div className="row">
                       <div className="col">
+                        {/* eslint-disable-next-line jsx-a11y/label-has-associated-control */}
                         <label htmlFor="">
                           {t('modal_account.chooseLanguage')}
                         </label>
@@ -708,22 +703,22 @@ const ModalAccount = ({ setmodal }) => {
                         <Select
                           name="language"
                           value={selectLanguagevalidator?.language}
-                          options={language.map((val) => ({
+                          options={language.map(val => ({
                             label: val?.name,
                             value: val?.id,
                           }))}
                           {...DefaultOptionsSingle}
-                          onChange={(value) => SelectLanguageValidator(value)}
+                          onChange={value => SelectLanguageValidator(value)}
                         />
                       </div>
                       <div className="col">
                         <SettingsInput
                           label="ORCID"
-                          is_requared={false}
-                          value={get(objValidator, "orcid", "")}
+                          required={false}
+                          value={get(objValidator, 'orcid', '')}
                           onChange={handleChangeValidator}
                           name="orcid"
-                          is_error={get(errValidator, "orcid", false)}
+                          is_error={get(errValidator, 'orcid', false)}
                           errorText={t('modal_account.enterORCID')}
                           type="number"
                         />
@@ -731,9 +726,10 @@ const ModalAccount = ({ setmodal }) => {
                     </div>
                     <div className="row">
                       <div className="col ">
+                        {/* eslint-disable-next-line jsx-a11y/label-has-associated-control */}
                         <label htmlFor="">
-                          {t('modal_account.sciences')}{" "}
-                          <span style={{ color: "red" }}>*</span>
+                          {t('modal_account.sciences')}{' '}
+                          <span style={{ color: 'red' }}>*</span>
                         </label>
                         <Select
                           options={selectauthor.map((val, index) => ({
@@ -743,18 +739,18 @@ const ModalAccount = ({ setmodal }) => {
                           name="sciences"
                           value={selectSciencesvalidator?.sciences}
                           {...DefaultOptionsMulti}
-                          onChange={(value) => selectValidator(value)}
+                          onChange={value => selectValidator(value)}
                         />
                         {errValidator?.sciences === true ? (
                           <span
                             style={{
-                              fontFamily: "Golos",
-                              fontStyle: "normal",
+                              fontFamily: 'Golos',
+                              fontStyle: 'normal',
                               fontWeight: 500,
-                              fontSize: "14px",
-                              lineHeight: "17px",
-                              color: "rgb(255, 106, 106)",
-                              marginLeft: "2px",
+                              fontSize: '14px',
+                              lineHeight: '17px',
+                              color: 'rgb(255, 106, 106)',
+                              marginLeft: '2px',
                             }}
                           >
                             {t('modal_account.enterSciences')}
@@ -769,22 +765,27 @@ const ModalAccount = ({ setmodal }) => {
                   <div
                     className="diploma_target"
                     style={{
-                      marginTop: "16px",
-                      padding: " 30px 16px",
-                      background: "#F0F3F4",
+                      marginTop: '16px',
+                      padding: ' 30px 16px',
+                      background: '#F0F3F4',
                     }}
                   >
                     <div className="head">
-                      <div className="title">{t('modal_account.addDiploma')}</div>
-                      <div className="bolt">{t('modal_account.lookUpExample')}</div>
+                      <div className="title">
+                        {t('modal_account.addDiploma')}
+                      </div>
+                      <div className="bolt">
+                        {t('modal_account.lookUpExample')}
+                      </div>
                     </div>
                     <div className="desc">
                       {t('modal_account.uploadDiploma')}
                     </div>
+                    {/* eslint-disable-next-line jsx-a11y/label-has-associated-control */}
                     <label className="file_input" id="dropContainer">
                       <img alt="" src="/img/paper.svg" />
                       <div className="ftext1">
-                        {t('modal_account.chooseImages')}{" "}
+                        {t('modal_account.chooseImages')}{' '}
                       </div>
                       <div className="ftext2">
                         {t('modal_account.imageLimit')}
@@ -793,9 +794,11 @@ const ModalAccount = ({ setmodal }) => {
                         {t('modal_account.chooseFile')}
                       </span>
                       {errValidator?.images ? (
-                        <div className="image_err">{t('modal_account.uploadImages')}</div>
+                        <div className="image_err">
+                          {t('modal_account.uploadImages')}
+                        </div>
                       ) : (
-                        ""
+                        ''
                       )}
                       <input
                         id="diplom_docs"
@@ -804,14 +807,15 @@ const ModalAccount = ({ setmodal }) => {
                         name="file"
                         accept="image/*"
                         multiple
-                        onChange={(e) => selectFiles(e)}
+                        onChange={e => selectFiles(e)}
                       />
                       {/* <button onClick={()=>uploadFiles()}>test upload</button> */}
                     </label>
 
                     <div className="images">
                       {files.map((item, index) => (
-                        <div className="image" key={index}>
+                        <div className="image" key={Math.random() * Date.now()}>
+                          {/* eslint-disable-next-line jsx-a11y/click-events-have-key-events,jsx-a11y/no-static-element-interactions */}
                           <div className="info" onClick={() => setIsOpen(true)}>
                             <div className="icon">
                               <img alt="" src="/img/paper.svg" />
@@ -821,10 +825,11 @@ const ModalAccount = ({ setmodal }) => {
                               <div className="size">{item?.size} MB</div>
                             </div>
                           </div>
+                          {/* eslint-disable-next-line jsx-a11y/click-events-have-key-events,jsx-a11y/no-static-element-interactions */}
                           <div
                             className="delete"
                             onClick={() => {
-                              const l = remove(files, (f) => f.id !== index);
+                              const l = remove(files, f => f.id !== index);
                               setFiles(l);
                             }}
                           >
@@ -836,9 +841,9 @@ const ModalAccount = ({ setmodal }) => {
                   </div>
                   <div
                     className="btns"
-                    style={{ justifyContent: "center", width: "100%" }}
+                    style={{ justifyContent: 'center', width: '100%' }}
                   >
-                    <div className="cancel"></div>
+                    <div className="cancel" />
                     <button className="save" type="submit">
                       {t('modal_account.saveChanges')}
                     </button>
@@ -860,8 +865,8 @@ const ModalAccount = ({ setmodal }) => {
       <ModalDiplom
         isOpen={isOpen}
         onOpen={setIsOpen}
-        images={files.map((item) => item?.url)}
-      ></ModalDiplom>
+        images={files.map(item => item?.url)}
+      />
     </>
   );
 };

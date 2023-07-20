@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled from 'styled-components';
 
 export const ArticleViewContainer = styled.section`
   padding: 5px 36px 50px 36px;
@@ -28,7 +28,7 @@ export const ArticleViewContainer = styled.section`
         align-items: center;
         & .time {
           margin-left: 8px;
-          font-family: "Golos";
+          font-family: 'Golos';
           font-style: normal;
           font-weight: 400;
           font-size: 14px;
@@ -37,7 +37,7 @@ export const ArticleViewContainer = styled.section`
         }
       }
       & .title {
-        font-family: "Lora";
+        font-family: 'Lora';
         font-style: normal;
         font-weight: 600;
         font-size: 32px;
@@ -51,7 +51,7 @@ export const ArticleViewContainer = styled.section`
       }
       & .author {
         & span {
-          font-family: "Golos";
+          font-family: 'Golos';
           font-style: normal;
           font-weight: 400;
           font-size: 16px;
@@ -63,7 +63,7 @@ export const ArticleViewContainer = styled.section`
         }
       }
       & .annotation {
-        font-family: "Lora";
+        font-family: 'Lora';
         font-style: normal;
         font-weight: 600;
         font-size: 24px;
@@ -76,7 +76,7 @@ export const ArticleViewContainer = styled.section`
         }
       }
       & .desc {
-        font-family: "Golos";
+        font-family: 'Golos';
         font-style: normal;
         font-weight: 400;
         font-size: 16px;
@@ -150,7 +150,7 @@ export const ArticleViewContainer = styled.section`
         }
         & .price_p {
           & .price_v {
-            font-family: "Golos";
+            font-family: 'Golos';
             font-style: normal;
             font-weight: 500;
             font-size: 18px;
@@ -158,7 +158,7 @@ export const ArticleViewContainer = styled.section`
             color: #2a2c35;
           }
           & .price_y {
-            font-family: "Golos";
+            font-family: 'Golos';
             font-style: normal;
             font-weight: 400;
             font-size: 14px;
@@ -172,7 +172,7 @@ export const ArticleViewContainer = styled.section`
         border: 1px solid #8be4d4;
         box-shadow: 0px 2px 0px #2a2c35;
         border-radius: 1000px;
-        font-family: "Golos";
+        font-family: 'Golos';
         font-style: normal;
         font-weight: 500;
         font-size: 14px;
@@ -187,8 +187,8 @@ export const ArticleViewContainer = styled.section`
           margin: 15px 0;
         }
       }
-      & .pay_btn_d{
-        opacity: .5;
+      & .pay_btn_d {
+        opacity: 0.5;
         cursor: default;
       }
       & .hr {
@@ -197,7 +197,7 @@ export const ArticleViewContainer = styled.section`
         margin: auto;
       }
       & .price_desc {
-        font-family: "Golos";
+        font-family: 'Golos';
         font-style: normal;
         font-weight: 400;
         font-size: 14px;

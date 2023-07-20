@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled from 'styled-components';
 
 export const BannerContainer = styled.section`
   padding: 0 36px;
@@ -10,7 +10,7 @@ export const BannerContainer = styled.section`
     max-height: 593px;
     min-height: 450px;
     background-color: #82dbcb;
-    background-image: url("/img/banner_bg.svg");
+    background-image: url('/img/banner_bg.svg');
     background-size: cover;
     border-radius: 20px;
     display: flex;
@@ -25,7 +25,7 @@ export const BannerContainer = styled.section`
       padding: 24px;
     }
     & h1 {
-      font-family: "Lora";
+      font-family: 'Lora';
       font-style: normal;
       font-weight: 600;
       font-size: 55px;
@@ -47,7 +47,7 @@ export const BannerContainer = styled.section`
       }
     }
     & p {
-      font-family: "Golos";
+      font-family: 'Golos';
       font-style: normal;
       font-weight: 400;
       font-size: 18px;
@@ -78,7 +78,7 @@ export const BannerContainer = styled.section`
         height: 20px;
       }
       & .search_input {
-        font-family: "Golos" !important;
+        font-family: 'Golos' !important;
         font-style: normal;
         font-weight: 400;
         font-size: 16px;
@@ -112,7 +112,7 @@ export const BannerContainer = styled.section`
         height: 21px;
         -webkit-appearance: none;
         appearance: none;
-        background-image: url("/img/close-circle-search.svg");
+        background-image: url('/img/close-circle-search.svg');
         cursor: pointer;
         background-repeat: no-repeat;
         background-position: center;
@@ -132,12 +132,12 @@ export const BannerContainer = styled.section`
                 box-shadow: 0px 2px 0px #2A2C35;
                 border-radius: 100px;
                 padding: 14px 20px; */
-                &.mobile {
-            display: none;
-          }
+        &.mobile {
+          display: none;
+        }
         margin: 0 8px;
         @media (max-width: 700px) {
-          margin: 0 0 15px 0; 
+          margin: 0 0 15px 0;
           &.decktop {
             display: none;
           }

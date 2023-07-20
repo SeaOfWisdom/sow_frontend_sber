@@ -1,17 +1,17 @@
-import styled from "styled-components";
+import styled from 'styled-components';
 
 const StyleCheckbox = styled.span`
- .checkbox_target {
+  .checkbox_target {
     align-items: center;
     display: flex;
     width: 20px;
     height: 20px;
-    position: relative; 
+    position: relative;
     cursor: pointer;
     font-size: 22px;
     user-select: none;
   }
-  
+
   /* Hide the browser's default checkbox */
   .checkbox_target input {
     position: absolute;
@@ -20,7 +20,7 @@ const StyleCheckbox = styled.span`
     height: 0;
     width: 0;
   }
-  
+
   /* Create a custom checkbox */
   .checkmark {
     position: absolute;
@@ -29,33 +29,33 @@ const StyleCheckbox = styled.span`
     height: 20px;
     width: 20px;
     background-color: #ffffff;
-    border: 1.5px solid #CFD2D8;
+    border: 1.5px solid #cfd2d8;
     border-radius: 6px;
   }
-  
+
   /* On mouse-over, add a grey background color */
   .checkbox_target:hover input ~ .checkmark {
-    background-color: #E5E5E5;
+    background-color: #e5e5e5;
   }
-  
+
   /* When the checkbox is checked, add a blue background */
   .checkbox_target input:checked ~ .checkmark {
-    background-color: #8BE4D4;
-    border: 1.5px solid #8BE4D4;
+    background-color: #8be4d4;
+    border: 1.5px solid #8be4d4;
   }
-  
+
   /* Create the checkmark/indicator (hidden when not checked) */
   .checkmark:after {
-    content: "";
+    content: '';
     position: absolute;
     display: none;
   }
-  
+
   /* Show the checkmark when checked */
   .checkbox_target input:checked ~ .checkmark:after {
     display: block;
   }
-  
+
   /* Style the checkmark/indicator */
   .checkbox_target .checkmark:after {
     left: 6.5px;
@@ -70,20 +70,25 @@ const StyleCheckbox = styled.span`
   }
 `;
 
-const Checkbox = ({name="", checked=false, className='', onChange=()=>{}}) => {
-    return(<span className={className}>
-        <StyleCheckbox>
-            <span class="checkbox_target"> 
-                <input 
-                    type="checkbox" 
-                    name={name} 
-                    checked={checked} 
-                    onChange={onChange}
-                />
-                <span class="checkmark"></span>
-            </span>
-        </StyleCheckbox>
-    </span>)
-}
+const Checkbox = ({
+  name = '',
+  checked = false,
+  className = '',
+  onChange = () => {},
+}) => (
+  <span className={className}>
+    <StyleCheckbox>
+      <span className="checkbox_target">
+        <input
+          type="checkbox"
+          name={name}
+          checked={checked}
+          onChange={onChange}
+        />
+        <span className="checkmark" />
+      </span>
+    </StyleCheckbox>
+  </span>
+);
 
 export default Checkbox;

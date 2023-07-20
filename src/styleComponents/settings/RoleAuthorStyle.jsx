@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled from 'styled-components';
 
 export const RoleAuthorContainer = styled.section`
   padding: 0 36px;
@@ -22,7 +22,7 @@ export const RoleAuthorContainer = styled.section`
         padding: 16px;
       }
       & > .title {
-        font-family: "Lora";
+        font-family: 'Lora';
         font-style: normal;
         font-weight: 600;
         font-size: 24px;
@@ -34,14 +34,14 @@ export const RoleAuthorContainer = styled.section`
         margin: -12px;
         & .row {
           display: flex;
-          @media (max-width:900px) {
+          @media (max-width: 900px) {
             display: block;
           }
           & > .col {
             flex: 1;
             margin: 12px;
-            & .select_label{
-              font-family: "Golos";
+            & .select_label {
+              font-family: 'Golos';
               font-style: normal;
               font-weight: 400;
               font-size: 14px;
@@ -52,7 +52,7 @@ export const RoleAuthorContainer = styled.section`
               cursor: pointer;
               display: flex;
               align-items: center;
-              font-family: "Golos";
+              font-family: 'Golos';
               font-style: normal;
               font-weight: 400;
               font-size: 14px;
@@ -62,7 +62,7 @@ export const RoleAuthorContainer = styled.section`
                 margin-right: 14px;
               }
               & > span {
-                font-family: "Golos";
+                font-family: 'Golos';
                 font-style: normal;
                 font-weight: 500;
                 font-size: 14px;
@@ -71,7 +71,7 @@ export const RoleAuthorContainer = styled.section`
                 margin-left: 2px;
               }
               & > .bolt {
-                font-family: "Golos";
+                font-family: 'Golos';
                 font-style: normal;
                 font-weight: 400;
                 font-size: 14px;
@@ -98,7 +98,7 @@ export const RoleAuthorContainer = styled.section`
         border: 1px solid #2a2c35;
         box-shadow: 0px 3px 0px #2a2c35;
         border-radius: 1000px;
-        font-family: "Golos";
+        font-family: 'Golos';
         font-style: normal;
         font-weight: 500;
         font-size: 16px;
@@ -115,7 +115,7 @@ export const RoleAuthorContainer = styled.section`
         border: 1px solid #2a2c35;
         box-shadow: 0px 3px 0px #2a2c35;
         border-radius: 1000px;
-        font-family: "Golos";
+        font-family: 'Golos';
         font-style: normal;
         font-weight: 500;
         font-size: 16px;

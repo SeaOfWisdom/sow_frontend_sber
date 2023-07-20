@@ -1,4 +1,2 @@
-const WebSocketProvider = props => {
-    return props.children;
-}
+const WebSocketProvider = props => props.children;
 export default WebSocketProvider;

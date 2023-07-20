@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled from 'styled-components';
 
 export const Helpful2Container = styled.section`
   padding: 0px 36px 50px 36px;
@@ -42,7 +42,7 @@ export const Helpful2Container = styled.section`
             align-items: center;
           }
           & .title {
-            font-family: "Lora";
+            font-family: 'Lora';
             font-style: normal;
             font-weight: 600;
             font-size: 24px;
@@ -52,7 +52,7 @@ export const Helpful2Container = styled.section`
             word-break: break-word;
           }
           & .desc {
-            font-family: "Golos";
+            font-family: 'Golos';
             font-style: normal;
             font-weight: 400;
             font-size: 16px;
@@ -64,7 +64,7 @@ export const Helpful2Container = styled.section`
       }
       @media (max-width: 1250px) {
         overflow-x: scroll;
-      
+
         background: none !important;
         & .card {
           min-width: 343px;
@@ -93,27 +93,27 @@ export const Helpful2Container = styled.section`
           }
         }
       }
-      
+
       & .card1 {
         & > .card_body {
-          background-image: url("/img/h_1.svg");
-          background-color: "#EBABAE";
+          background-image: url('/img/h_1.svg');
+          background-color: '#EBABAE';
           background-size: cover;
           background-position: center;
         }
       }
       & .card2 {
         & > .card_body {
-          background-image: url("/img/h_2.svg");
-          background-color: "#8FD3C8";
+          background-image: url('/img/h_2.svg');
+          background-color: '#8FD3C8';
           background-size: cover;
           background-position: center;
         }
       }
       & .card3 {
         & > .card_body {
-          background-image: url("/img/h_3.svg");
-          background-color: "#DBD9D5";
+          background-image: url('/img/h_3.svg');
+          background-color: '#DBD9D5';
           background-size: cover;
           background-position: center;
         }

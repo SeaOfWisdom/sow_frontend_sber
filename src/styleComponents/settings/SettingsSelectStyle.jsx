@@ -1,15 +1,15 @@
-import styled from "styled-components";
+import styled from 'styled-components';
 
 export const SettingsSelectContainer = styled.div`
   & > .label {
-    font-family: "Golos";
+    font-family: 'Golos';
     font-style: normal;
     font-weight: 400;
     font-size: 14px;
     line-height: 17px;
     color: #2a2c35;
     & > span {
-      font-family: "Golos";
+      font-family: 'Golos';
       font-style: normal;
       font-weight: 500;
       font-size: 14px;
@@ -43,10 +43,9 @@ export const SettingsSelectContainer = styled.div`
     background-color: #f0f3f4 !important;
     color: #847f99;
     cursor: not-allowed;
-    
   }
   & > .error {
-    font-family: "Golos";
+    font-family: 'Golos';
     font-style: normal;
     font-weight: 500;
     font-size: 14px;

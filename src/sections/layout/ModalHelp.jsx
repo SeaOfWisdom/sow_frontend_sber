@@ -6,19 +6,19 @@ import {
   ModalFooter,
   ModalBody,
   ModalCloseButton,
-} from "@chakra-ui/react";
-import { ModalContainerHelp } from "../../styleComponents/layout/ModalStyle";
-import React from "react";
+} from '@chakra-ui/react';
+import React from 'react';
+import { ModalContainerHelp } from '../../styleComponents/layout/ModalStyle';
 
 const ModalHelp = ({
   isOpen = false,
   onOpen = () => {},
-  header = "",
-  children = "",
-  footer = "",
-  is_strong = false,
+  header = '',
+  children = '',
+  footer = '',
+  isStrong = false,
 }) => {
-  const [scrollBehavior, setScrollBehavior] = React.useState("inside");
+  const [scrollBehavior, setScrollBehavior] = React.useState('inside');
   const btnRef = React.useRef(null);
   return (
     <ChakraModal
@@ -26,7 +26,7 @@ const ModalHelp = ({
       finalFocusRef={btnRef}
       isOpen={isOpen}
       onClose={() => {
-        if (!is_strong) {
+        if (!isStrong) {
           onOpen(false);
         }
       }}
@@ -37,7 +37,7 @@ const ModalHelp = ({
       <ModalContainerHelp>
         <ModalContent>
           <ModalHeader>{header}</ModalHeader>
-          {is_strong ? <></> : <ModalCloseButton className="close_btn" />}
+          {isStrong ? null : <ModalCloseButton className="close_btn" />}
           <ModalBody>{children}</ModalBody>
           <ModalFooter>{footer}</ModalFooter>
         </ModalContent>

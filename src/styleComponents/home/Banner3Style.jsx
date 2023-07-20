@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled from 'styled-components';
 
 export const Banner3Container = styled.section`
   padding: 0 36px 36px 36px;
@@ -12,15 +12,15 @@ export const Banner3Container = styled.section`
       margin-bottom: 20px;
     }
   }
-  .video-mobile{
-   display: none;
-   @media (max-width:700px) {
-   display : block;
-   }
+  .video-mobile {
+    display: none;
+    @media (max-width: 700px) {
+      display: block;
+    }
   }
   & .banner {
     background-color: #d08ae8;
-    background-image: url("/img/banner_bg3.svg");
+    background-image: url('/img/banner_bg3.svg');
     border-radius: 20px;
     display: flex;
     justify-content: space-between;
@@ -50,7 +50,7 @@ export const Banner3Container = styled.section`
         margin-bottom: 12px;
       }
       & h2 {
-        font-family: "Lora";
+        font-family: 'Lora';
         font-style: normal;
         font-weight: 600;
         font-size: 48px;
@@ -60,7 +60,6 @@ export const Banner3Container = styled.section`
         @media (max-width: 1100px) {
           font-weight: 600;
           font-size: 40px;
-        
         }
         @media (max-width: 800px) {
           font-weight: 600;
@@ -73,7 +72,7 @@ export const Banner3Container = styled.section`
         border: 1px solid #2a2c35;
         box-shadow: 0px 3px 0px #2a2c35;
         border-radius: 1000px;
-        font-family: "Golos";
+        font-family: 'Golos';
         font-style: normal;
         font-weight: 500;
         font-size: 16px;
@@ -156,7 +155,7 @@ export const Banner3Container = styled.section`
           font-size: 14px;
           line-height: 170%;
           text-align: center;
-          font-family: "Golos";
+          font-family: 'Golos';
           margin-bottom: 24px;
         }
         & .btn {
@@ -167,7 +166,6 @@ export const Banner3Container = styled.section`
       }
       @media (max-width: 700px) {
         display: flex;
-      
       }
     }
   }

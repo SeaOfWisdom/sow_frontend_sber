@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled from 'styled-components';
 
 export const MobileTableCheck = styled.div`
   & .table_mobile {
@@ -12,7 +12,7 @@ export const MobileTableCheck = styled.div`
         margin-top: 18px;
       }
       & .text {
-        font-family: "Golos";
+        font-family: 'Golos';
         font-style: normal;
         font-weight: 400;
         font-size: 16px;
@@ -22,7 +22,7 @@ export const MobileTableCheck = styled.div`
       }
       & .roise {
         display: flex;
-        margin:18px 0px ;
+        margin: 18px 0px;
         align-items: center;
         & img {
           width: 20px;
@@ -30,7 +30,7 @@ export const MobileTableCheck = styled.div`
           margin-right: 14px;
         }
         & .roise_item {
-          font-family: "Lora";
+          font-family: 'Lora';
           font-style: normal;
           font-weight: 600;
           font-size: 16px;

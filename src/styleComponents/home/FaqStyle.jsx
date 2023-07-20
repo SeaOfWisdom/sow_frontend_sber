@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled from 'styled-components';
 
 export const FaqContainer = styled.section`
   padding: 0 36px;
@@ -9,7 +9,7 @@ export const FaqContainer = styled.section`
     border-top: 1px solid #2a2c35;
     & .title {
       font-size: 36px;
-      font-family: "Lora";
+      font-family: 'Lora';
       font-weight: 600;
       line-height: 150%;
       padding-top: 50px;
@@ -36,7 +36,7 @@ export const FaqContainer = styled.section`
 
         & h2 {
           margin: 0;
-          font-family: "Lora";
+          font-family: 'Lora';
           font-style: normal;
           font-weight: 600;
           font-size: 36px;
@@ -74,7 +74,7 @@ export const FaqContainer = styled.section`
 
             & h4 {
               margin: 0;
-              font-family: "Lora";
+              font-family: 'Lora';
               font-style: normal;
               font-weight: 600;
               font-size: 18px;
@@ -94,7 +94,7 @@ export const FaqContainer = styled.section`
             }
           }
           & .text {
-            font-family: "Golos";
+            font-family: 'Golos';
             font-style: normal;
             font-weight: 400;
             font-size: 16px;
@@ -141,7 +141,7 @@ export const FaqContainer = styled.section`
 
         & h2 {
           margin: 0;
-          font-family: "Lora";
+          font-family: 'Lora';
           font-style: normal;
           font-weight: 600;
           font-size: 36px;
@@ -157,6 +157,5 @@ export const FaqContainer = styled.section`
         }
       }
     }
-   
   }
 `;

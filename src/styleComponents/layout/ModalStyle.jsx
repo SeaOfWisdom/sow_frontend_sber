@@ -1,7 +1,6 @@
-import styled from "styled-components";
+import styled from 'styled-components';
 
 export const ModalContainer = styled.div`
- 
   & .chakra-modal__content {
     max-width: 552px;
     background: #f0f3f4;

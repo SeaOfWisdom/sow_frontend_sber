@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled from 'styled-components';
 
 export const UiTableMobileStyle = styled.div`
   display: none;
@@ -19,7 +19,7 @@ export const UiTableMobileStyle = styled.div`
           border-radius: 100px;
           font-weight: 400;
           font-size: 14px;
-          font-family: "Golos";
+          font-family: 'Golos';
           width: max-content;
           padding: 6px 12px;
         }
@@ -37,7 +37,7 @@ export const UiTableMobileStyle = styled.div`
         }
       }
       & .text {
-        font-family: "Golos";
+        font-family: 'Golos';
         font-style: normal;
         font-weight: 400;
         font-size: 14px;
@@ -58,7 +58,7 @@ export const UiTableMobileStyle = styled.div`
           padding: 6px 12px;
         }
         .date-item {
-          font-family: "Golos";
+          font-family: 'Golos';
           font-style: normal;
           font-weight: 400;
           font-size: 12px;
@@ -66,7 +66,7 @@ export const UiTableMobileStyle = styled.div`
           color: #2a2c35;
         }
         & .date-item__value {
-          font-family: "Golos";
+          font-family: 'Golos';
           font-style: normal;
           font-weight: 500;
           font-size: 12px;
@@ -99,7 +99,7 @@ export const UiTableMobileStyle = styled.div`
             z-index: 3;
             height: 24px;
             font-size: 12px;
-            font-family: "Golos";
+            font-family: 'Golos';
             text-align: center;
             align-items: center;
             display: flex;
@@ -133,7 +133,7 @@ export const UiTableMobileStyle = styled.div`
         & .reward {
           font-weight: 500;
           font-size: 12px;
-          font-family: "Golos";
+          font-family: 'Golos';
           font-weight: 500;
         }
       }
@@ -145,7 +145,7 @@ export const UiTableMobileStyle = styled.div`
         background: #f0f3f4;
         padding: 12px 16px;
         text-align: center;
-        font-family: "Golos";
+        font-family: 'Golos';
         font-style: normal;
         font-weight: 500;
         font-size: 14px;

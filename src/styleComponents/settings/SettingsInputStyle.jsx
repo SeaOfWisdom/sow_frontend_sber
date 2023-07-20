@@ -1,15 +1,15 @@
-import styled from "styled-components";
+import styled from 'styled-components';
 
 export const SettingsInputContainer = styled.div`
   & > .label {
-    font-family: "Golos";
+    font-family: 'Golos';
     font-style: normal;
     font-weight: 400;
     font-size: 14px;
     line-height: 17px;
     color: #2a2c35;
     & > span {
-      font-family: "Golos";
+      font-family: 'Golos';
       font-style: normal;
       font-weight: 500;
       font-size: 14px;
@@ -28,7 +28,7 @@ export const SettingsInputContainer = styled.div`
       padding: 16px 24px;
       border-radius: 6px;
       width: 100%;
-      font-family: "Golos";
+      font-family: 'Golos';
       font-style: normal;
       font-weight: 400;
       font-size: 14px;
@@ -42,7 +42,7 @@ export const SettingsInputContainer = styled.div`
     }
   }
   & > .error {
-    font-family: "Golos";
+    font-family: 'Golos';
     font-style: normal;
     font-weight: 400;
     font-size: 14px;

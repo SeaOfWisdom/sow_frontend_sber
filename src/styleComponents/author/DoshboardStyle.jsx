@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled from 'styled-components';
 
 export const ContainerDoshboard = styled.div`
   padding: 0px 36px;
@@ -85,7 +85,7 @@ export const ContainerDoshboard = styled.div`
         }
         & .doshboard-count-card__item {
           p {
-            font-family: "Golos";
+            font-family: 'Golos';
             font-weight: 400;
             font-size: 16px;
             margin-bottom: 8px;
@@ -99,12 +99,12 @@ export const ContainerDoshboard = styled.div`
             font-weight: 700;
             font-size: 24px;
             line-height: 31px;
-            font-family: "Lora";
+            font-family: 'Lora';
 
             & span {
               font-weight: 400;
               font-size: 16px;
-              font-family: "Golos";
+              font-family: 'Golos';
               color: #847f99;
             }
           }
@@ -145,7 +145,7 @@ export const ContainerDoshboard = styled.div`
         h4 {
           font-weight: 600;
           font-size: 24px;
-          font-family: "Lora";
+          font-family: 'Lora';
           line-height: 31px;
           font-weight: 600;
           font-size: 24px;
@@ -156,7 +156,7 @@ export const ContainerDoshboard = styled.div`
           display: flex;
           align-items: center;
           position: relative;
-          font-family: "Golos";
+          font-family: 'Golos';
           & .hr-calendar {
             margin: 0px 8px;
             border: 1px solid #cfd2d8;
@@ -164,7 +164,7 @@ export const ContainerDoshboard = styled.div`
           }
 
           & button {
-            font-family: "Golos";
+            font-family: 'Golos';
             font-weight: 500;
             font-size: 14px;
             line-height: 17px;
@@ -177,7 +177,7 @@ export const ContainerDoshboard = styled.div`
             & span {
               color: #847f99;
               margin-right: 5px;
-              font-family: "Golos";
+              font-family: 'Golos';
               @media (max-width: 900px) {
                 margin-right: 2px;
               }
@@ -197,7 +197,7 @@ export const ContainerDoshboard = styled.div`
           }
         }
         & .doshboard-title-items__btn {
-          font-family: "Golos";
+          font-family: 'Golos';
           font-size: 14px;
           color: white;
           padding: 15px 24px;

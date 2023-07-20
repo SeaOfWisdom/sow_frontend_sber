@@ -1,17 +1,16 @@
-import { useEffect, useState } from "react";
-import SettingsInput from "../../sections/settings/SettingsInput";
-import SettingsSaveBtn from "../../sections/settings/SettingsSaveBtn";
-import { UserAccountContainer } from "../../styleComponents/settings/UserAccountStyle";
-import Layout from "../Layout";
-import SettingsBar from "./SettingsBar";
-import { useDispatch, useSelector } from "react-redux";
-import Axios from "../../utils/httpClient";
-import { Box, useToast } from "@chakra-ui/react";
+import { useEffect, useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { Box, useToast } from '@chakra-ui/react';
 import { useTranslation } from 'react-i18next';
+import SettingsInput from '../../sections/settings/SettingsInput';
+import SettingsSaveBtn from '../../sections/settings/SettingsSaveBtn';
+import { UserAccountContainer } from '../../styleComponents/settings/UserAccountStyle';
+import SettingsBar from './SettingsBar';
+import Axios from '../../utils/httpClient';
 
 const UserAccount = () => {
   const { t, i18n } = useTranslation();
-  const { account, walletData } = useSelector((s) => s);
+  const { account, walletData } = useSelector(s => s);
   const toast = useToast();
 
   const dispatch = useDispatch();
@@ -19,32 +18,35 @@ const UserAccount = () => {
   const [obj, setObj] = useState({});
   const [err, setErr] = useState({});
 
-  const handleChange = (e) => {
+  const handleChange = e => {
     setObj({ ...obj, [e.target.name]: e.target.value });
     setErr({ ...err, [e.target.name]: false });
   };
-  useEffect(()=>{setObj({nickname: account?.nickname??''})}, [account])
+  useEffect(() => {
+    setObj({ nickname: account?.nickname ?? '' });
+  }, [account]);
   // useEffect(() => {
   //   getBasicInfo();
   // }, []);
 
   const getBasicInfo = () => {
-    dispatch({ type: "SET_LOADING", payload: true });
+    dispatch({ type: 'SET_LOADING', payload: true });
     Axios()
       .get(`/get_basic_info`)
-      .then((res) => { 
+      .then(res => {
         setObj({
           nickname: res?.data?.nickname,
         });
       })
-      .catch((r) => {}).finally(()=>{
-        dispatch({ type: "SET_LOADING", payload: false });
+      .catch(r => {})
+      .finally(() => {
+        dispatch({ type: 'SET_LOADING', payload: false });
       });
   };
-  const Setting = (e) => {
-    dispatch({ type: "SET_LOADING", payload: true });
-    let t = true,
-      error = {};
+  const Setting = e => {
+    dispatch({ type: 'SET_LOADING', payload: true });
+    const t = true;
+    let error = {};
 
     if (obj?.nickname) {
       error = { ...error, nickname: true };
@@ -52,14 +54,14 @@ const UserAccount = () => {
 
     if (t) {
       Axios()
-        .post("/update_basic_info", obj)
-        .then((res) => {
+        .post('/update_basic_info', obj)
+        .then(res => {
           console.log(res);
           toast({
             // title: "Account created.",
-            status: "success",
+            status: 'success',
             duration: 1000,
-            position: "top",
+            position: 'top',
             isClosable: true,
 
             render: () => (
@@ -68,57 +70,56 @@ const UserAccount = () => {
                 p={3}
                 bg="white.500"
                 style={{
-                  display: "flex",
-                  fontFamily: "Lora",
-                  fontSize: "16px",
-                  background: "white",
-                  fontWeight: "600",
-                  lineHeight: "150%",
-                  position: "absolute",
-                  top: "60px",
-                  padding: "24px 36px",
-                  borderRadius: "8px",
-                  boxShadow: "0px 4px 15px rgba(0, 0, 0, 0.05)",
+                  display: 'flex',
+                  fontFamily: 'Lora',
+                  fontSize: '16px',
+                  background: 'white',
+                  fontWeight: '600',
+                  lineHeight: '150%',
+                  position: 'absolute',
+                  top: '60px',
+                  padding: '24px 36px',
+                  borderRadius: '8px',
+                  boxShadow: '0px 4px 15px rgba(0, 0, 0, 0.05)',
                 }}
               >
                 <img
-                  style={{ marginRight: "14px" }}
+                  style={{ marginRight: '14px' }}
                   src="/img/vector.svg"
                   alt=""
                 />
-                  {t('user_account.dataSaved')}
+                {t('user_account.dataSaved')}
               </Box>
             ),
           });
         })
-        .catch((e) => {})
+        .catch(e => {})
         .finally(() => {
-          dispatch({ type: "SET_LOADING", payload: false });
+          dispatch({ type: 'SET_LOADING', payload: false });
         });
     } else {
-      dispatch({ type: "SET_LOADING", payload: false });
+      dispatch({ type: 'SET_LOADING', payload: false });
       setErr(error);
     }
   };
   return (
-    <>
-      <Layout>
-        <SettingsBar> 
-          <UserAccountContainer>
-            <div className="title">{t('user_account.editAccount')}</div>
-            <form>
-              <SettingsInput
-                label={t('user_account.nickname')}
-                onChange={handleChange}
-                name="nickname"
-                value={obj?.nickname}
-              />
-              <SettingsSaveBtn text={t('user_account.saveChanges')} onClick={Setting} />
-            </form>
-          </UserAccountContainer>
-        </SettingsBar>
-      </Layout>
-    </>
+    <SettingsBar>
+      <UserAccountContainer>
+        <div className="title">{t('user_account.editAccount')}</div>
+        <form>
+          <SettingsInput
+            label={t('user_account.nickname')}
+            onChange={handleChange}
+            name="nickname"
+            value={obj?.nickname}
+          />
+          <SettingsSaveBtn
+            text={t('user_account.saveChanges')}
+            onClick={Setting}
+          />
+        </form>
+      </UserAccountContainer>
+    </SettingsBar>
   );
 };
 export default UserAccount;

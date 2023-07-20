@@ -1,9 +1,9 @@
-import styled from "styled-components";
+import styled from 'styled-components';
 
 export const HelpSettingsMobileContainer = styled.div`
   padding: 14px 16px;
   & .htitle {
-    font-family: "Lora";
+    font-family: 'Lora';
     font-style: normal;
     font-weight: 600;
     font-size: 24px;
@@ -15,11 +15,11 @@ export const HelpSettingsMobileContainer = styled.div`
     padding: 36px 16px;
     border-radius: 12px;
     margin-bottom: 36px;
-    @media (max-width:900px) {
+    @media (max-width: 900px) {
       margin-top: 24px;
     }
     & .hdesc {
-      font-family: "Lora";
+      font-family: 'Lora';
       font-style: normal;
       font-weight: 600;
       font-size: 26px;
@@ -28,7 +28,7 @@ export const HelpSettingsMobileContainer = styled.div`
       color: #2a2c35;
       padding-bottom: 16px;
       & span {
-        font-family: "Golos";
+        font-family: 'Golos';
         font-style: normal;
         font-weight: 400;
         font-size: 14px;
@@ -54,7 +54,7 @@ export const HelpSettingsMobileContainer = styled.div`
         justify-content: center;
         padding: 0 24px;
         margin-right: 16px;
-        font-family: "Golos";
+        font-family: 'Golos';
         font-style: normal;
         font-weight: 500;
         font-size: 14px;
@@ -77,7 +77,7 @@ export const HelpSettingsMobileContainer = styled.div`
     }
   }
   & .help {
-    font-family: "Lora";
+    font-family: 'Lora';
     font-style: normal;
     font-weight: 600;
     font-size: 20px;
@@ -103,7 +103,7 @@ export const HelpSettingsMobileContainer = styled.div`
 
         & h4 {
           margin: 0;
-          font-family: "Lora";
+          font-family: 'Lora';
           font-style: normal;
           font-weight: 600;
           font-size: 18px;
@@ -112,7 +112,7 @@ export const HelpSettingsMobileContainer = styled.div`
         }
         & .btn {
           min-width: 20px;
-                        height: 20px;
+          height: 20px;
           & img {
             transform: rotate(0deg);
             transition: transform 150ms ease;
@@ -120,7 +120,7 @@ export const HelpSettingsMobileContainer = styled.div`
         }
       }
       & .text {
-        font-family: "Golos";
+        font-family: 'Golos';
         font-style: normal;
         font-weight: 400;
         font-size: 16px;

@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled from 'styled-components';
 
 export const AuthorCreateContainer = styled.div`
   .authorcontainer {
@@ -25,7 +25,7 @@ export const AuthorCreateContainer = styled.div`
         }
         & .review-item {
           & h4 {
-            font-family: "Lora";
+            font-family: 'Lora';
             font-weight: 600;
             font-size: 24px;
             line-height: 31px;
@@ -37,7 +37,7 @@ export const AuthorCreateContainer = styled.div`
               font-weight: 400;
               font-size: 16px;
               line-height: 160%;
-              font-family: "Golos";
+              font-family: 'Golos';
               color: #5e4eda;
               :nth-child(1) {
                 margin-right: 8px;
@@ -114,11 +114,11 @@ export const AuthorCreateContainer = styled.div`
             text-transform: uppercase;
             color: #847f99;
             line-height: 150%;
-            font-family: "Golos";
+            font-family: 'Golos';
             white-space: pre;
           }
           & p {
-            font-family: "Lora";
+            font-family: 'Lora';
             font-weight: 600;
             font-size: 17px;
             @media (max-width: 600px) {
@@ -177,10 +177,10 @@ export const AuthorCreateContainer = styled.div`
             text-transform: uppercase;
             color: #847f99;
             line-height: 150%;
-            font-family: "Golos";
+            font-family: 'Golos';
           }
           & p {
-            font-family: "Lora";
+            font-family: 'Lora';
             font-weight: 600;
             font-size: 17px;
           }
@@ -247,7 +247,7 @@ export const AuthorCreateContainer = styled.div`
             }
             & .img_info {
               & .name {
-                font-family: "Lora";
+                font-family: 'Lora';
                 font-style: normal;
                 font-weight: 600;
                 font-size: 16px;
@@ -256,7 +256,7 @@ export const AuthorCreateContainer = styled.div`
                 padding-bottom: 4px;
               }
               & .size {
-                font-family: "Golos";
+                font-family: 'Golos';
                 font-style: normal;
                 font-weight: 400;
                 font-size: 12px;
@@ -276,7 +276,7 @@ export const AuthorCreateContainer = styled.div`
       }
       & .writing-text {
         & p {
-          font-family: "Golos";
+          font-family: 'Golos';
           font-style: normal;
           font-weight: 400;
           font-size: 16px;
@@ -284,9 +284,9 @@ export const AuthorCreateContainer = styled.div`
           line-height: 32px;
           color: #2a2c35;
         }
-        @media (max-width:900px) {
+        @media (max-width: 900px) {
           font-size: 16px;
-line-height: 150%;
+          line-height: 150%;
         }
       }
       & .btns-writing {
@@ -298,7 +298,7 @@ line-height: 150%;
           display: flex;
           & .review-article {
             padding: 14px 25px;
-            font-family: "Golos";
+            font-family: 'Golos';
             font-weight: 500;
             font-size: 14px;
             margin-left: 16px;
@@ -323,7 +323,7 @@ line-height: 150%;
       & p {
         font-weight: 400;
         font-size: 16px;
-        font-family: "Golos";
+        font-family: 'Golos';
         color: #2a2c35;
         line-height: 180%;
       }
@@ -337,14 +337,14 @@ line-height: 150%;
           font-weight: 500;
           font-size: 18px;
           color: #2a2c35;
-          font-family: "Golos";
+          font-family: 'Golos';
         }
       }
       & .placement-text {
         color: #2a2c35;
         font-weight: 400;
         font-size: 16px;
-        font-family: "Golos";
+        font-family: 'Golos';
         line-height: 180%;
         margin-bottom: 24px;
 
@@ -356,7 +356,7 @@ line-height: 150%;
         }
       }
       h4 {
-        font-family: "Lora";
+        font-family: 'Lora';
         font-weight: 600;
         font-size: 24px;
         @media (max-width: 900px) {
@@ -370,7 +370,7 @@ line-height: 150%;
           font-weight: 400;
           font-size: 14px;
           color: #2a2c35;
-          font-family: "Golos";
+          font-family: 'Golos';
           & span {
             color: #ff6a6a;
             font-weight: 500;
@@ -385,7 +385,7 @@ line-height: 150%;
           border-radius: 6px;
           width: 100%;
           padding: 15px 24px;
-          font-family: "Golos";
+          font-family: 'Golos';
           font-style: normal;
           font-weight: 400;
           font-size: 14px;
@@ -405,7 +405,7 @@ line-height: 150%;
           margin-left: 2px;
         }
         & textarea {
-          font-family: "Golos";
+          font-family: 'Golos';
           font-style: normal;
           font-weight: 400;
           font-size: 14px;
@@ -456,7 +456,7 @@ line-height: 150%;
           font-weight: 400;
           font-size: 14px;
           color: #2a2c35;
-          font-family: "Golos";
+          font-family: 'Golos';
           & span {
             color: #ff6a6a;
             font-weight: 500;
@@ -502,7 +502,7 @@ line-height: 150%;
         padding: 36px;
         margin-top: 36px;
         h2 {
-          font-family: "Lora";
+          font-family: 'Lora';
           font-weight: 600;
           font-size: 32px;
           line-height: 160%;
@@ -554,13 +554,13 @@ line-height: 150%;
             font-weight: 600;
             font-size: 18px;
             line-height: 180%;
-            font-family: "Lora";
+            font-family: 'Lora';
             margin-bottom: 12px;
             width: 345px;
           }
         }
         & span {
-          font-family: "Golos";
+          font-family: 'Golos';
           margin-bottom: 24px;
           font-weight: 400;
           font-size: 14px;
@@ -573,7 +573,7 @@ line-height: 150%;
           margin-bottom: 24px;
         }
         & button {
-          font-family: "Golos";
+          font-family: 'Golos';
           padding: 12px 24px;
           background: #2a2c35;
           border-radius: 1000px;
@@ -599,7 +599,7 @@ line-height: 150%;
           }
           font-size: 14px;
           line-height: 17px;
-          font-family: "Golos";
+          font-family: 'Golos';
           padding: 15px 25px;
           background: #2a2c35;
           color: white;
@@ -626,7 +626,7 @@ line-height: 150%;
         margin-top: 16px;
         background-color: rgba(42, 44, 53, 0.04);
         padding: 15px;
-        font-family: "Golos";
+        font-family: 'Golos';
         align-items: center;
         font-weight: 500;
         font-size: 14px;
@@ -647,28 +647,27 @@ line-height: 150%;
           font-weight: 400;
           font-size: 16px;
           color: #847f99;
-          font-family: "Golos";
+          font-family: 'Golos';
         }
         & .article-detail-items {
-          
           margin-top: 24px;
-           
+
           h5 {
             font-weight: 600;
             font-size: 24px;
             line-height: 31px;
-            font-family: "Lora";
+            font-family: 'Lora';
             color: #2a2c35;
             margin-bottom: 16px;
           }
           p {
-            font-family: "Golos";
+            font-family: 'Golos';
             font-weight: 400;
             font-size: 16px;
             line-height: 180%;
             color: #2a2c35;
           }
-            & .table_mobile {
+          & .table_mobile {
             display: none;
             @media (max-width: 900px) {
               display: block;
@@ -679,7 +678,7 @@ line-height: 150%;
                 margin-top: 18px;
               }
               & .text {
-                font-family: "Golos";
+                font-family: 'Golos';
                 font-style: normal;
                 font-weight: 400;
                 font-size: 16px;
@@ -695,7 +694,7 @@ line-height: 150%;
                   margin-right: 14px;
                 }
                 & .roise_item {
-                  font-family: "Lora";
+                  font-family: 'Lora';
                   font-style: normal;
                   font-weight: 600;
                   font-size: 16px;
@@ -730,7 +729,7 @@ line-height: 150%;
         box-shadow: 0px 3px 0px #2a2c35;
         border-radius: 1000px;
         cursor: pointer;
-        font-family: "Golos";
+        font-family: 'Golos';
         font-weight: 500;
         font-size: 16px;
         color: #2a2c35;
@@ -768,16 +767,16 @@ line-height: 150%;
     }
   }
   & .error_test {
-          font-family: Golos;
-          font-style: normal;
-          font-weight: 400;
-          font-size: 14px;
-          line-height: 17px;
-          color: rgb(255, 106, 106);
-          margin-left: 2px;
-          margin-top: 8px;
-        }
-  & .rt_title{
+    font-family: Golos;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 17px;
+    color: rgb(255, 106, 106);
+    margin-left: 2px;
+    margin-top: 8px;
+  }
+  & .rt_title {
     text-align: center;
   }
 `;

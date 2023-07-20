@@ -1,6 +1,6 @@
-import React from "react";
-import styled from "styled-components";
-import Checkbox from "../utils/Checkbox";
+import React from 'react';
+import styled from 'styled-components';
+import Checkbox from '../utils/Checkbox';
 
 const ModalDateMobileStyle = styled.div`
   & .date {
@@ -34,41 +34,35 @@ const ModalDateMobileStyle = styled.div`
     box-shadow: 0px 2px 0px 0px #2a2c35;
     cursor: pointer;
   }
- 
+
   & .btn-confirm {
     margin-top: 24px;
     background-color: #8be4d4;
   }
 `;
-const ModalLan = ({ setIsDateModal }) => {
-  return (
-   <>
-   
-    <ModalDateMobileStyle>
-     
-      <div className="date">
-        <div className="date-item">
-          <span>Русский язык</span>{" "}
-          <Checkbox
-            className="checkbox"
-            name="check2"
-            // checked={check?.check2}
-            // onChange={(e) => {
-            //   setCheck({ ...check, check2: !check?.check2 });
-            //   setErr({ ...err, check2: false });
-            // }}
-          />
-        </div>
-
-        <div className="date-item">
-          <span>English</span> <Checkbox className="checkbox" name="check2" />
-        </div>
+const ModalLan = ({ setIsDateModal }) => (
+  <ModalDateMobileStyle>
+    <div className="date">
+      <div className="date-item">
+        <span>Русский язык</span>{' '}
+        <Checkbox
+          className="checkbox"
+          name="check2"
+          // checked={check?.check2}
+          // onChange={(e) => {
+          //   setCheck({ ...check, check2: !check?.check2 });
+          //   setErr({ ...err, check2: false });
+          // }}
+        />
       </div>
-      {/* <div className="btn btn-select">Выбрать даты</div> */}
-      <div className="btn btn-confirm">Подтвердить</div>
-    </ModalDateMobileStyle>
-   </>
-  );
-};
+
+      <div className="date-item">
+        <span>English</span> <Checkbox className="checkbox" name="check2" />
+      </div>
+    </div>
+    {/* <div className="btn btn-select">Выбрать даты</div> */}
+    <div className="btn btn-confirm">Подтвердить</div>
+  </ModalDateMobileStyle>
+);
 
 export default ModalLan;

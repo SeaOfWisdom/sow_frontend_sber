@@ -1,5 +1,4 @@
-
-/*export default function Video(props) {
+/* export default function Video(props) {
   const {  } = props;
   return (
     <div className="video">
@@ -13,10 +12,12 @@
   );
 }
  */
-import Plyr from "plyr";
-import { string } from "prop-types";
-import { useEffect, useRef } from "react";
-import styled from "styled-components";
+
+import Plyr from 'plyr';
+import { string } from 'prop-types';
+import { useEffect, useRef } from 'react';
+import styled from 'styled-components';
+
 const StyledElement = styled.div`
   & * {
     box-sizing: border-box;
@@ -34,8 +35,8 @@ const StyledElement = styled.div`
         /* background-color: #5762f7; */
       }
     }
-    & .plyr__video-wrapper--fixed-ratio video{
-     background-image: url('/img/videobackground.svg')!important;
+    & .plyr__video-wrapper--fixed-ratio video {
+      background-image: url('/img/videobackground.svg') !important;
     }
     & .plyr__control--overlaid {
       border-radius: 14.5783px;
@@ -58,19 +59,19 @@ export default function Video({ source, poster, handleShowVideo }) {
   useEffect(() => {
     const defaultOptions = {
       controls: [
-        "play-large",
-        "play",
-        "progress",
-        "current-time",
-        "mute",
-        "volume",
-        "captions",
+        'play-large',
+        'play',
+        'progress',
+        'current-time',
+        'mute',
+        'volume',
+        'captions',
         // "settings",
         // "pip",
-        "airplay",
-        "fullscreen",
+        'airplay',
+        'fullscreen',
       ],
-      ratio: "16:9",
+      ratio: '16:9',
       autoplay: true,
       debug: true,
       volume: 0,
@@ -82,6 +83,7 @@ export default function Video({ source, poster, handleShowVideo }) {
     <div className="video">
       <div className="video-list">
         <StyledElement>
+          {/* eslint-disable-next-line jsx-a11y/media-has-caption */}
           <video
             controls
             crossOrigin="true"
@@ -89,11 +91,12 @@ export default function Video({ source, poster, handleShowVideo }) {
             preload="none"
             poster={poster}
             ref={ref}
-            src={'video/17_021_03 (1).mov'}
+            src="video/17_021_03 (1).mov"
             allowfullscreen
-            allowtransparency
+            // allowtransparency
           />
         </StyledElement>
+        {/* eslint-disable-next-line jsx-a11y/click-events-have-key-events,jsx-a11y/no-static-element-interactions */}
         <div className="material-icons video-close" onClick={handleShowVideo}>
           <img src="/img/close-circle.svg" alt="" />
         </div>
@@ -102,8 +105,8 @@ export default function Video({ source, poster, handleShowVideo }) {
   );
 }
 Video.defaultProps = {
-  source: "",
-  poster: "",
+  source: '',
+  poster: '',
 };
 Video.propTypes = {
   source: string,

@@ -1,6 +1,6 @@
-import React from "react";
-import styled from "styled-components";
-import Checkbox from "../utils/Checkbox";
+import React from 'react';
+import styled from 'styled-components';
+import Checkbox from '../utils/Checkbox';
 
 const ModalDateMobileStyle = styled.div`
   & .date {
@@ -42,46 +42,45 @@ const ModalDateMobileStyle = styled.div`
     background-color: #8be4d4;
   }
 `;
-const ModalStatus = ({ setIsDateModal }) => {
-  return (
-    <>
-      <ModalDateMobileStyle>
-        <div className="date">
-          <div className="date-item">
-            <Checkbox
-              className="checkbox"
-              name="check2"
-              // checked={check?.check2}
-              // onChange={(e) => {
-              //   setCheck({ ...check, check2: !check?.check2 });
-              //   setErr({ ...err, check2: false });
-              // }}
-            />
-            <span>Все статусы </span>{" "}
-          </div>
-
-          <div className="date-item">
-            <Checkbox className="checkbox" name="check2" />{" "}
-            <span>Опубликована</span>
-          </div>
-          <div className="date-item">
-            <Checkbox className="checkbox" name="check2" />{" "}
-            <span>На рассмотрении</span>
-          </div>
-          <div className="date-item">
-            <Checkbox className="checkbox" name="check2" />{" "}
-            <span>Отклонена админом </span>
-          </div>
-          <div className="date-item">
-            <Checkbox className="checkbox" name="check2" />{" "}
-            <span>Отклонена валидатором</span>
-          </div>
+const ModalStatus = ({ setIsDateModal }) => (
+  // eslint-disable-next-line
+  <>
+    <ModalDateMobileStyle>
+      <div className="date">
+        <div className="date-item">
+          <Checkbox
+            className="checkbox"
+            name="check2"
+            // checked={check?.check2}
+            // onChange={(e) => {
+            //   setCheck({ ...check, check2: !check?.check2 });
+            //   setErr({ ...err, check2: false });
+            // }}
+          />
+          <span>Все статусы </span>{' '}
         </div>
-        {/* <div className="btn btn-select">Выбрать даты</div> */}
-        <div className="btn btn-confirm">Сохранить изменения</div>
-      </ModalDateMobileStyle>
-    </>
-  );
-};
+
+        <div className="date-item">
+          <Checkbox className="checkbox" name="check2" />{' '}
+          <span>Опубликована</span>
+        </div>
+        <div className="date-item">
+          <Checkbox className="checkbox" name="check2" />{' '}
+          <span>На рассмотрении</span>
+        </div>
+        <div className="date-item">
+          <Checkbox className="checkbox" name="check2" />{' '}
+          <span>Отклонена админом </span>
+        </div>
+        <div className="date-item">
+          <Checkbox className="checkbox" name="check2" />{' '}
+          <span>Отклонена валидатором</span>
+        </div>
+      </div>
+      {/* <div className="btn btn-select">Выбрать даты</div> */}
+      <div className="btn btn-confirm">Сохранить изменения</div>
+    </ModalDateMobileStyle>
+  </>
+);
 
 export default ModalStatus;

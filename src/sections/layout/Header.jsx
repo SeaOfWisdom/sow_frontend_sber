@@ -1,5 +1,4 @@
-import { Link, NavLink, useNavigate } from "react-router-dom";
-import { HeaderContainer } from "../../styleComponents/layout/HeaderStyle";
+import { Link, NavLink, useNavigate } from 'react-router-dom';
 import {
   Drawer,
   DrawerBody,
@@ -14,24 +13,26 @@ import {
   Stack,
   Progress,
   Tooltip,
-} from "@chakra-ui/react";
-import { useRef } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { useState } from "react";
-import { useEffect } from "react";
-import { UiSelect } from "../../styleComponents/UiComponents/UISelect";
-import { UiSelectwallet } from "../../styleComponents/UiComponents/UIselectwallet";
-import { getLanguage } from "../../components/helpers/language";
-import { removeToken } from "../../utils/tokenStorge";
-import { copyText } from "../../utils/functions";
-import { logOutUpWallet } from "../../utils/wallet_utils/walletActions";
-
-import styled from "styled-components";
-import { BottomMenu } from "../../styleComponents/layout/BottomMenu";
-import ModalWalletMobile from "./ModalWalletMobile";
-import FillYourProfile from "./FillYourProfile";
-import { wallet_types } from "../../utils/constants";
+} from '@chakra-ui/react';
+import { useRef, useState, useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import styled from 'styled-components';
 import { useTranslation } from 'react-i18next';
+import { HeaderContainer } from '../../styleComponents/layout/HeaderStyle';
+import { UiSelect } from '../../styleComponents/UiComponents/UISelect';
+import { UiSelectwallet } from '../../styleComponents/UiComponents/UIselectwallet';
+import { getLanguage } from '../../components/helpers/language';
+import { removeToken } from '../../utils/tokenStorge';
+import { copyText } from '../../utils/functions';
+import {
+  isWalletConnect,
+  logOutUpWallet,
+} from '../../utils/wallet_utils/walletActions';
+
+import { BottomMenu } from '../../styleComponents/layout/BottomMenu';
+import ModalWalletMobile from './ModalWalletMobile';
+import FillYourProfile from './FillYourProfile';
+import { walletTypes } from '../../utils/constants';
 
 const OverlayMenu = styled.ul`
   list-style: none;
@@ -40,8 +41,8 @@ const OverlayMenu = styled.ul`
   padding: 16px;
   position: relative;
   li {
-    opacity: ${(props) => (props.open ? 1 : 0)};
-    display: ${(props) => (props.open ? "block" : "none")};
+    opacity: ${props => (props.open ? 1 : 0)};
+    display: ${props => (props.open ? 'block' : 'none')};
     font-size: 25px;
     margin: 16px 0px;
     // transition: opacity 0.8s ease-in-out;
@@ -55,8 +56,8 @@ const OverlayMenu = styled.ul`
     /* margin: 8px 0px; */
   }
   .wallet {
-    opacity: ${(props) => (props.open ? 1 : 0)};
-    display: ${(props) => (props.open ? "block" : "none")};
+    opacity: ${props => (props.open ? 1 : 0)};
+    display: ${props => (props.open ? 'block' : 'none')};
     position: absolute;
     bottom: 30px;
     width: calc(100% - 32px);
@@ -78,7 +79,7 @@ const OverlayMenu = styled.ul`
         font-size: 14px;
         line-height: 17px;
         color: #2a2c35;
-        font-family: "Golos";
+        font-family: 'Golos';
       }
     }
   }
@@ -89,66 +90,70 @@ const Overlay = styled.div`
   left: 0px;
   top: 59px;
   bottom: 0px;
-  /* height: ${(props) => (props.open ? "100%" : 0)}; */
+  /* height: ${props => (props.open ? '100%' : 0)}; */
   /* height: 91vh; */
-  width: ${(props) => (props.open ? " 100%" : 0)};
-  opacity: ${(props) => (props.open ? 1 : 0)};
+  width: ${props => (props.open ? ' 100%' : 0)};
+  opacity: ${props => (props.open ? 1 : 0)};
   /* transition: 0.6s ease-in-out; */
   transition: width 0.3s ease-in-out;
   transition: opacity 0.3s ease-in-out;
   @media (min-width: 900px) {
     display: none;
   }
-  /* background-image: url(${(props) =>
+  /* background-image: url(${props =>
+    // eslint-disable-next-line no-nested-ternary
     props?.account__role === 1
-      ? "/img/diagonal_lines.svg"
-      : props?.account__role === 2
-      ? "/img/shapes.svg"
+      ? '/img/diagonal_lines.svg'
+      : // eslint-disable-next-line no-nested-ternary
+      props?.account__role === 2
+      ? '/img/shapes.svg'
       : props?.account__role === 4
-      ? "/img/mathematics.svg"
-      : ""}) !important;
+      ? '/img/mathematics.svg'
+      : ''}) !important;
        */
-  background: ${(props) =>
+  background: ${props =>
+    // eslint-disable-next-line no-nested-ternary
     props?.account__role === 1
-      ? "#f0f3f4"
-      : props?.account__role === 2
-      ? "#f9f0f0"
+      ? '#f0f3f4'
+      : // eslint-disable-next-line no-nested-ternary
+      props?.account__role === 2
+      ? '#f9f0f0'
       : props?.account__role === 4
-      ? "#f5fffe"
-      : "#F0F3F4"};
-  & .btn{
-    & a{
+      ? '#f5fffe'
+      : '#F0F3F4'};
+  & .btn {
+    & a {
       font-size: 14px;
       font-family: Golos;
       font-weight: 500;
     }
   }
-  & .btn-wallet{ 
+  & .btn-wallet {
     margin-bottom: 24px;
     cursor: pointer;
     display: flex;
     justify-content: space-between;
     border-radius: 1000px;
-    border: 1px solid   #2A2C35;
-    background:  #FFF;
+    border: 1px solid #2a2c35;
+    background: #fff;
     align-items: center;
-    box-shadow: 0px 2px 0px 0px #2A2C35;
+    box-shadow: 0px 2px 0px 0px #2a2c35;
     padding: 12px 24px;
-    & .wallet_target{
+    & .wallet_target {
       display: flex;
       align-items: center;
-      & img{
+      & img {
         width: 32px;
         height: 32px;
         margin-right: 12px;
       }
-      & .wallet_id{
+      & .wallet_id {
         font-size: 14px;
         font-family: Golos;
         font-weight: 500;
       }
-      & .balance{
-        color:   #847F99;
+      & .balance {
+        color: #847f99;
         font-size: 12px;
         font-family: Golos;
       }
@@ -192,7 +197,7 @@ const Item = styled.li`
     border: 1px solid #2a2c35;
     border-radius: 1000px;
     display: block;
-    font-family: "Golos";
+    font-family: 'Golos';
     font-style: normal;
     font-weight: 500;
     font-size: 14px;
@@ -204,50 +209,50 @@ const Item = styled.li`
   }
 `;
 
-const Header = () => {
+const Down = () => (
+  <svg
+    width="10"
+    height="6"
+    viewBox="0 0 10 6"
+    fill="none"
+    xmlns="http://www.w3.org/2000/svg"
+  >
+    <path
+      fillRule="evenodd"
+      clipRule="evenodd"
+      d="M9.80562 1.35781L5.58206 5.58137C5.32288 5.84054 4.90267 5.84054 4.64349 5.58137L0.419927 1.35781C0.160747 1.09863 0.160748 0.678416 0.419927 0.419237C0.679105 0.160058 1.09932 0.160058 1.3585 0.419237L5.11277 4.17351L8.86705 0.419238C9.12623 0.160059 9.54644 0.160059 9.80562 0.419238C10.0648 0.678416 10.0648 1.09863 9.80562 1.35781Z"
+      fill="#2A2C35"
+    />
+  </svg>
+);
+const Up = () => (
+  <svg
+    width="10"
+    height="6"
+    viewBox="0 0 10 6"
+    fill="none"
+    xmlns="http://www.w3.org/2000/svg"
+  >
+    <path
+      fillRule="evenodd"
+      clipRule="evenodd"
+      d="M9.80562 4.64219L5.58206 0.418634C5.32288 0.159455 4.90267 0.159455 4.64349 0.418634L0.419927 4.64219C0.160747 4.90137 0.160748 5.32158 0.419927 5.58076C0.679105 5.83994 1.09932 5.83994 1.3585 5.58076L5.11277 1.82649L8.86705 5.58076C9.12623 5.83994 9.54644 5.83994 9.80562 5.58076C10.0648 5.32158 10.0648 4.90137 9.80562 4.64219Z"
+      fill="#2A2C35"
+    />
+  </svg>
+);
+
+const Header = ({ isCorrectNetwork, setAuthAction }) => {
   const navigate = useNavigate();
   const [toggle, toggleNav] = useState(false);
   const ref = useRef(null);
   const dispatch = useDispatch();
 
-  const { walletData, account } = useSelector((s) => s);
+  const { walletData, account } = useSelector(s => s);
   const [active, setActive] = useState(false);
   const [activewallet, setActivewallet] = useState(false);
   const { t, i18n } = useTranslation();
   const [modalwallet, setModalWallet] = useState(false);
-
-  const Down = () => (
-    <svg
-      width="10"
-      height="6"
-      viewBox="0 0 10 6"
-      fill="none"
-      xmlns="http://www.w3.org/2000/svg"
-    >
-      <path
-        fillRule="evenodd"
-        clipRule="evenodd"
-        d="M9.80562 1.35781L5.58206 5.58137C5.32288 5.84054 4.90267 5.84054 4.64349 5.58137L0.419927 1.35781C0.160747 1.09863 0.160748 0.678416 0.419927 0.419237C0.679105 0.160058 1.09932 0.160058 1.3585 0.419237L5.11277 4.17351L8.86705 0.419238C9.12623 0.160059 9.54644 0.160059 9.80562 0.419238C10.0648 0.678416 10.0648 1.09863 9.80562 1.35781Z"
-        fill="#2A2C35"
-      />
-    </svg>
-  );
-  const Up = () => (
-    <svg
-      width="10"
-      height="6"
-      viewBox="0 0 10 6"
-      fill="none"
-      xmlns="http://www.w3.org/2000/svg"
-    >
-      <path
-        fillRule="evenodd"
-        clipRule="evenodd"
-        d="M9.80562 4.64219L5.58206 0.418634C5.32288 0.159455 4.90267 0.159455 4.64349 0.418634L0.419927 4.64219C0.160747 4.90137 0.160748 5.32158 0.419927 5.58076C0.679105 5.83994 1.09932 5.83994 1.3585 5.58076L5.11277 1.82649L8.86705 5.58076C9.12623 5.83994 9.54644 5.83994 9.80562 5.58076C10.0648 5.32158 10.0648 4.90137 9.80562 4.64219Z"
-        fill="#2A2C35"
-      />
-    </svg>
-  );
 
   useEffect(() => {
     const onClick = () => {
@@ -255,59 +260,59 @@ const Header = () => {
       setActivewallet(false);
     };
     if (active || activewallet) {
-      window.addEventListener("click", onClick);
+      window.addEventListener('click', onClick);
     }
     return () => {
-      window.removeEventListener("click", onClick);
+      window.removeEventListener('click', onClick);
     };
   }, [active, activewallet, ref]);
-  const onLanguageHandle = (newLang) => {
-    i18n.changeLanguage(newLang); 
+  const onLanguageHandle = newLang => {
+    i18n.changeLanguage(newLang);
   };
   const lan = getLanguage();
-  const openAuthModal = (is_open = false) => {
-    dispatch({ type: "SET_OPEN_AUTH", payload: is_open });
+  const openAuthModal = (isOpen = false) => {
+    dispatch({ type: 'SET_OPEN_AUTH', payload: isOpen });
   };
-  const logOut =   () => {
-    const walletType = localStorage.getItem("walletType");
+  const logOut = () => {
+    const walletType = localStorage.getItem('walletType');
 
-    if (walletType === wallet_types.Unipass) {
+    if (walletType === walletTypes.Unipass) {
       logOutUpWallet();
-    } 
+    }
     removeToken();
-    localStorage.removeItem("accountAddress");
-    localStorage.removeItem("walletType");
+    localStorage.removeItem('accountAddress');
+    localStorage.removeItem('walletType');
     dispatch({
-      type: "SET_WALLET",
+      type: 'SET_WALLET',
       payload: {
         isConnect: false,
-        accountAddress: "",
+        accountAddress: '',
         tokenBalance: -1, //  -1 Tokent Not Found
         isError: false,
       },
     });
 
     dispatch({
-      type: "SET_ACCOUNT",
+      type: 'SET_ACCOUNT',
       payload: {
         role: 0,
         user_role: 0,
       },
     });
     dispatch({
-      type: "SET_ROLE",
+      type: 'SET_ROLE',
       payload: 0,
     });
     // navigate("/");
   };
   const toast = useToast();
-  const copyToClipboard = (text = "") => {
+  const copyToClipboard = (text = '') => {
     copyText(text);
     toast({
       // title: "Account created.",
-      status: "success",
+      status: 'success',
       duration: 1000,
-      position: "top",
+      position: 'top',
       isClosable: true,
 
       render: () => (
@@ -316,20 +321,20 @@ const Header = () => {
           p={3}
           bg="white.500"
           style={{
-            display: "flex",
-            fontFamily: "Lora",
-            fontSize: "16px",
-            background: "white",
-            fontWeight: "600",
-            lineHeight: "150%",
-            position: "absolute",
-            top: "60px",
-            padding: "24px 36px",
-            borderRadius: "8px",
-            boxShadow: "0px 4px 15px rgba(0, 0, 0, 0.05)",
+            display: 'flex',
+            fontFamily: 'Lora',
+            fontSize: '16px',
+            background: 'white',
+            fontWeight: '600',
+            lineHeight: '150%',
+            position: 'absolute',
+            top: '60px',
+            padding: '24px 36px',
+            borderRadius: '8px',
+            boxShadow: '0px 4px 15px rgba(0, 0, 0, 0.05)',
           }}
         >
-          <img style={{ marginRight: "14px" }} src="/img/vector.svg" alt="" />
+          <img style={{ marginRight: '14px' }} src="/img/vector.svg" alt="" />
           {t('header.idCopied')}
         </Box>
       ),
@@ -340,10 +345,11 @@ const Header = () => {
       <HeaderContainer open={toggle}>
         <div className="left">
           <Link to="/" className="logo_link">
-            <img src={"/img/logo.svg"} alt="logo" className="logo" />
+            <img src="/img/logo.svg" alt="logo" className="logo" />
           </Link>
 
           {/* author */}
+          {/* eslint-disable-next-line no-nested-ternary */}
           {account?.role === 2 ? (
             <>
               {/* <NavLink className="btn" to="/author/dashboard">
@@ -359,7 +365,8 @@ const Header = () => {
                 {t('header.settings')}
               </NavLink>
             </>
-          ) : account?.role === 4 ? (
+          ) : // eslint-disable-next-line no-nested-ternary
+          account?.role === 4 ? (
             <>
               <NavLink className="btn" to="/validator/articles-for-review">
                 {t('header.papersToBeReviewed')}
@@ -402,18 +409,18 @@ const Header = () => {
             hasArrow
             label={t('header.library')}
             bg="#D890F0"
-            padding={'10px'}
-            marginTop={'8px'}
-            fontFamily={"Golos"}
-            borderRadius={"6px"}
+            padding="10px"
+            marginTop="8px"
+            fontFamily="Golos"
+            borderRadius="6px"
           >
-            <Link className="btn-library" to={"/library"}>
+            <Link className="btn-library" to="/library">
               <img src="/img/book.svg" alt="" />
             </Link>
           </Tooltip>
           {account?.role === 2 ? (
             <>
-              <Link className="create-btn" to={"/author/create"}>
+              <Link className="create-btn" to="/author/create">
                 <img src="/img/add-circle.svg" alt="" />
                 {t('header.publishPaper')}
               </Link>
@@ -422,55 +429,59 @@ const Header = () => {
                   {t('header.becomeReviewer')}
                 </Link>
               ) : (
-                ""
+                ''
               )}
             </>
           ) : null}
           {account?.user_role === 1 ? (
             <span className="btn get_role_btn">
               <Link to="/select-author">{t('header.contributeAuthor')}</Link>/
-              <Link to="/select-validator">{t('header.contributeReviewer')}</Link>
+              <Link to="/select-validator">
+                {t('header.contributeReviewer')}
+              </Link>
             </span>
           ) : (
             <UiSelect
               isActive={active}
-              onClick={(e) => {
+              onClick={e => {
                 e.stopPropagation();
                 setActive(!active);
               }}
             >
               <div
                 style={{
-                  cursor: "pointer",
-                  alignItems: "center",
-                  display: "flex",
+                  cursor: 'pointer',
+                  alignItems: 'center',
+                  display: 'flex',
                 }}
               >
                 <span className="langspan">
                   {/* {lan === "ru" ? "Руc" : "Eng"} */}
-                  {lan === "ru" ? "Русский" : "English"}
+                  {lan === 'ru' ? 'Русский' : 'English'}
                 </span>
                 {active ? <Up /> : <Down />}
               </div>
               <ul>
-                <div onClick={() => onLanguageHandle("ru")}>
+                {/* eslint-disable-next-line jsx-a11y/click-events-have-key-events,jsx-a11y/no-static-element-interactions */}
+                <div onClick={() => onLanguageHandle('ru')}>
                   <span
                     //   onClick={() => onLanguageHandle("ru")}
                     style={{
-                      display: "flex",
-                      justifyContent: "left",
-                      alignItems: "center",
+                      display: 'flex',
+                      justifyContent: 'left',
+                      alignItems: 'center',
                     }}
-                    className={lan === "en" ? "" : "activelanguage"}
+                    className={lan === 'en' ? '' : 'activelanguage'}
                   >
                     {t('header.ruLang')}
                   </span>
                 </div>
-                <div onClick={() => onLanguageHandle("en")}>
+                {/* eslint-disable-next-line jsx-a11y/click-events-have-key-events,jsx-a11y/no-static-element-interactions */}
+                <div onClick={() => onLanguageHandle('en')}>
                   <span
                     //   onClick={() => onLanguageHandle("en")}
-                    style={{ display: "flex", justifyContent: "left" }}
-                    className={lan === "en" ? "activelanguage" : ""}
+                    style={{ display: 'flex', justifyContent: 'left' }}
+                    className={lan === 'en' ? 'activelanguage' : ''}
                   >
                     {t('header.engLang')}
                   </span>
@@ -479,10 +490,10 @@ const Header = () => {
             </UiSelect>
           )}
 
-          {walletData?.isConnect ? (
+          {walletData?.isConnect && isCorrectNetwork ? (
             <UiSelectwallet
               isActivewallet={activewallet}
-              onClick={(e) => {
+              onClick={e => {
                 e.stopPropagation();
                 setActivewallet(!activewallet);
               }}
@@ -499,10 +510,12 @@ const Header = () => {
                     {walletData?.accountAddress.slice(-4)}
                   </div>
                   <div className="balance">
-                    {walletData?.tokenBalance} {walletData?.tokenName}
+                    {walletData?.tokenBalance < 0
+                      ? t('header.noToken')
+                      : `${walletData?.tokenBalance} ${walletData?.tokenName}`}
                   </div>
                 </div>
-                <div style={{ marginLeft: "9px" }}>
+                <div style={{ marginLeft: '9px' }}>
                   {activewallet ? <Up /> : <Down />}
                 </div>
               </span>
@@ -524,10 +537,13 @@ const Header = () => {
                             {walletData?.accountAddress.slice(-4)}
                           </p>
                           <span>
-                            {walletData?.tokenBalance} {walletData?.tokenName}
+                            {walletData?.tokenBalance < 0
+                              ? t('header.noToken')
+                              : `${walletData?.tokenBalance} ${walletData?.tokenName}`}
                           </span>
                         </div>
                       </div>
+                      {/* eslint-disable-next-line jsx-a11y/click-events-have-key-events,jsx-a11y/no-noninteractive-element-interactions */}
                       <img
                         src="/img/copy.svg"
                         alt=""
@@ -539,148 +555,188 @@ const Header = () => {
                   </div>
                   <div className="walletoption-items">
                     <h2>{t('header.useSOWas')}</h2>
-                    {account?.role === 1 ?<div className="walletoption-item">
-                      <div className={ account?.user_role >= 1
-                            ? "walletoption-item-acc"
-                            : "walletoption-item-acc walletoption-item-passive"
-                        }
-                        onClick={() => {
-                          if (account?.user_role >= 1) {
-                            dispatch({ type: "SET_ROLE", payload: 1 });
-                            navigate("/");
+                    {account?.role === 1 ? (
+                      <div className="walletoption-item">
+                        {/* eslint-disable-next-line jsx-a11y/click-events-have-key-events,jsx-a11y/no-static-element-interactions */}
+                        <div
+                          className={
+                            account?.user_role >= 1
+                              ? 'walletoption-item-acc'
+                              : 'walletoption-item-acc walletoption-item-passive'
                           }
-                        }}
-                      >
-                        <img src="/img/user_avatar_1.svg" alt="" />
-                        <p>{t('header.reader')}</p>
+                          onClick={() => {
+                            if (account?.user_role >= 1) {
+                              dispatch({ type: 'SET_ROLE', payload: 1 });
+                              navigate('/');
+                            }
+                          }}
+                        >
+                          <img src="/img/user_avatar_1.svg" alt="" />
+                          <p>{t('header.reader')}</p>
+                        </div>
+                        {account?.role === 1 ? (
+                          <p className="current">{t('header.current')}</p>
+                        ) : (
+                          ''
+                        )}
                       </div>
-                      {account?.role === 1 ? (
-                        <p className="current">{t('header.current')}</p>
-                      ) : (
-                        ""
-                      )}
-                    </div>:''}
-                    {account?.role === 4 ?<div className="walletoption-item">
-                      <div
-                        className={
-                          account?.user_role >= 4
-                            ? "walletoption-item-acc"
-                            : "walletoption-item-acc walletoption-item-passive"
-                        }
-                        onClick={() => {
-                          if (account?.user_role >= 4) {
-                            dispatch({ type: "SET_ROLE", payload: 4 });
-                            navigate("/");
+                    ) : (
+                      ''
+                    )}
+                    {account?.role === 4 ? (
+                      <div className="walletoption-item">
+                        {/* eslint-disable-next-line jsx-a11y/click-events-have-key-events,jsx-a11y/no-static-element-interactions */}
+                        <div
+                          className={
+                            account?.user_role >= 4
+                              ? 'walletoption-item-acc'
+                              : 'walletoption-item-acc walletoption-item-passive'
                           }
-                        }}
-                      >
-                        <img src="/img/user_avatar_2.svg" alt="" />
-                        <p>{t('header.reviewer')}</p>
+                          onClick={() => {
+                            if (account?.user_role >= 4) {
+                              dispatch({ type: 'SET_ROLE', payload: 4 });
+                              navigate('/');
+                            }
+                          }}
+                        >
+                          <img src="/img/user_avatar_2.svg" alt="" />
+                          <p>{t('header.reviewer')}</p>
+                        </div>
+                        {account?.role === 4 ? (
+                          <p className="current">{t('header.current')}</p>
+                        ) : (
+                          ''
+                          // <p className="under-review">на проверке</p>
+                        )}
                       </div>
-                      {account?.role === 4 ? (
-                        <p className="current">{t('header.current')}</p>
-                      ) : (
-                        ""
-                        // <p className="under-review">на проверке</p>
-                      )}
-                    </div>:""}
-                    {account?.role === 2 ?<div className="walletoption-item">
-                      <div
-                        className={
-                          account?.user_role >= 2
-                            ? "walletoption-item-acc"
-                            : "walletoption-item-acc walletoption-item-passive"
-                        }
-                        onClick={() => {
-                          if (account?.user_role >= 2) {
-                            dispatch({ type: "SET_ROLE", payload: 2 });
-                            navigate("/");
+                    ) : (
+                      ''
+                    )}
+                    {account?.role === 2 ? (
+                      <div className="walletoption-item">
+                        {/* eslint-disable-next-line jsx-a11y/click-events-have-key-events,jsx-a11y/no-static-element-interactions */}
+                        <div
+                          className={
+                            account?.user_role >= 2
+                              ? 'walletoption-item-acc'
+                              : 'walletoption-item-acc walletoption-item-passive'
                           }
-                        }}
-                      >
-                        <img src="/img/user_avatar_3.svg" alt="" />
-                        <p>{t('header.author')}</p>
+                          onClick={() => {
+                            if (account?.user_role >= 2) {
+                              dispatch({ type: 'SET_ROLE', payload: 2 });
+                              navigate('/');
+                            }
+                          }}
+                        >
+                          <img src="/img/user_avatar_3.svg" alt="" />
+                          <p>{t('header.author')}</p>
+                        </div>
+                        {account?.role === 2 ? (
+                          <p className="current">{t('header.current')}</p>
+                        ) : (
+                          ''
+                        )}
                       </div>
-                      {account?.role === 2 ? (
-                        <p className="current">{t('header.current')}</p>
-                      ) : (
-                        ""
-                      )}
-                    </div>:""}
-                    {account?.role !== 1 ?<div className="walletoption-item">
-                      <div className={ account?.user_role >= 1
-                            ? "walletoption-item-acc"
-                            : "walletoption-item-acc walletoption-item-passive"
-                        }
-                        onClick={() => {
-                          if (account?.user_role >= 1) {
-                            dispatch({ type: "SET_ROLE", payload: 1 });
-                            navigate("/");
+                    ) : (
+                      ''
+                    )}
+                    {account?.role !== 1 ? (
+                      <div className="walletoption-item">
+                        {/* eslint-disable-next-line jsx-a11y/click-events-have-key-events,jsx-a11y/no-static-element-interactions */}
+                        <div
+                          className={
+                            account?.user_role >= 1
+                              ? 'walletoption-item-acc'
+                              : 'walletoption-item-acc walletoption-item-passive'
                           }
-                        }}
-                      >
-                        <img src="/img/user_avatar_1.svg" alt="" />
-                        <p>{t('header.reader')}</p>
+                          onClick={() => {
+                            if (account?.user_role >= 1) {
+                              dispatch({ type: 'SET_ROLE', payload: 1 });
+                              navigate('/');
+                            }
+                          }}
+                        >
+                          <img src="/img/user_avatar_1.svg" alt="" />
+                          <p>{t('header.reader')}</p>
+                        </div>
+                        {account?.role === 1 ? (
+                          <p className="current">{t('header.current')}</p>
+                        ) : (
+                          ''
+                        )}
                       </div>
-                      {account?.role === 1 ? (
-                        <p className="current">{t('header.current')}</p>
-                      ) : (
-                        ""
-                      )}
-                    </div>:""}
-                    {account?.role !== 4 ?<div className="walletoption-item">
-                      <div
-                        className={
-                          account?.user_role >= 4
-                            ? "walletoption-item-acc"
-                            : "walletoption-item-acc walletoption-item-passive"
-                        }
-                        onClick={() => {
-                          if (account?.user_role >= 4) {
-                            dispatch({ type: "SET_ROLE", payload: 4 });
-                            navigate("/");
+                    ) : (
+                      ''
+                    )}
+                    {account?.role !== 4 ? (
+                      <div className="walletoption-item">
+                        {/* eslint-disable-next-line jsx-a11y/click-events-have-key-events,jsx-a11y/no-static-element-interactions */}
+                        <div
+                          className={
+                            account?.user_role >= 4
+                              ? 'walletoption-item-acc'
+                              : 'walletoption-item-acc walletoption-item-passive'
                           }
-                        }}
-                      >
-                        <img src="/img/user_avatar_2.svg" alt="" />
-                        <p>{t('header.reviewer')}</p>
+                          onClick={() => {
+                            if (account?.user_role >= 4) {
+                              dispatch({ type: 'SET_ROLE', payload: 4 });
+                              navigate('/');
+                            }
+                          }}
+                        >
+                          <img src="/img/user_avatar_2.svg" alt="" />
+                          <p>{t('header.reviewer')}</p>
+                        </div>
+                        {account?.role === 4 ? (
+                          <p className="current">{t('header.current')}</p>
+                        ) : (
+                          ''
+                          // <p className="under-review">на проверке</p>
+                        )}
                       </div>
-                      {account?.role === 4 ? (
-                        <p className="current">{t('header.current')}</p>
-                      ) : (
-                        ""
-                        // <p className="under-review">на проверке</p>
-                      )}
-                    </div>:""}
-                    {account?.role !== 2 ?<div className="walletoption-item">
-                      <div
-                        className={
-                          account?.user_role >= 2
-                            ? "walletoption-item-acc"
-                            : "walletoption-item-acc walletoption-item-passive"
-                        }
-                        onClick={() => {
-                          if (account?.user_role >= 2) {
-                            dispatch({ type: "SET_ROLE", payload: 2 });
-                            navigate("/");
+                    ) : (
+                      ''
+                    )}
+                    {account?.role !== 2 ? (
+                      <div className="walletoption-item">
+                        {/* eslint-disable-next-line jsx-a11y/click-events-have-key-events,jsx-a11y/no-static-element-interactions */}
+                        <div
+                          className={
+                            account?.user_role >= 2
+                              ? 'walletoption-item-acc'
+                              : 'walletoption-item-acc walletoption-item-passive'
                           }
-                        }}
-                      >
-                        <img src="/img/user_avatar_3.svg" alt="" />
-                        <p>{t('header.author')}</p>
+                          onClick={() => {
+                            if (account?.user_role >= 2) {
+                              dispatch({ type: 'SET_ROLE', payload: 2 });
+                              navigate('/');
+                            }
+                          }}
+                        >
+                          <img src="/img/user_avatar_3.svg" alt="" />
+                          <p>{t('header.author')}</p>
+                        </div>
+                        {account?.role === 2 ? (
+                          <p className="current">{t('header.current')}</p>
+                        ) : (
+                          ''
+                        )}
                       </div>
-                      {account?.role === 2 ? (
-                        <p className="current">{t('header.current')}</p>
-                      ) : (
-                        ""
-                      )}
-                    </div>:""}
+                    ) : (
+                      ''
+                    )}
                   </div>
                   <div className="wallet-switch wallet">
                     <img src="/img/empty-wallet-change.svg" alt="" />
                     <p>{t('header.switchWallet')}</p>
                   </div>
-                  <div className="wallet-disable wallet" onClick={() => { logOut(); }} >
+                  {/* eslint-disable-next-line jsx-a11y/click-events-have-key-events,jsx-a11y/no-static-element-interactions */}
+                  <div
+                    className="wallet-disable wallet"
+                    onClick={() => {
+                      logOut();
+                    }}
+                  >
                     <img src="/img/empty-wallet-remove.svg" alt="" />
                     <p>{t('header.disconnectWallet')}</p>
                   </div>
@@ -688,27 +744,34 @@ const Header = () => {
               </div>
             </UiSelectwallet>
           ) : (
-            <>
-              <span
-                className="btn account"
-                onClick={() => openAuthModal(true)}
-                style={{ marginLeft: 10 }}
-              >
-                <img src="/img/wallet.svg" alt="wallet" />
-                <span>{t('header.connectWallet')}</span>
+            // eslint-disable-next-line jsx-a11y/click-events-have-key-events,jsx-a11y/no-static-element-interactions
+            <span
+              className="btn account"
+              onClick={() => {
+                if (!isCorrectNetwork && walletData?.isConnect)
+                  setAuthAction(3);
+                openAuthModal(true);
+              }}
+              style={{ marginLeft: 10 }}
+            >
+              <img src="/img/wallet.svg" alt="wallet" />
+              <span>
+                {isCorrectNetwork
+                  ? t('header.connectWallet')
+                  : t('header.wrongNetwork')}
               </span>
-            </>
+            </span>
           )}
         </div>
         <NavIcon onClick={() => toggleNav(!toggle)}>
           {toggle === true ? (
             <>
               <img
-                style={{ cursor: "pointer" }}
+                style={{ cursor: 'pointer' }}
                 src="/img/close-menu.svg"
                 alt=""
                 // onClick={() => toggleNav(!toggle)}
-              />{" "}
+              />{' '}
             </>
           ) : (
             <>
@@ -721,6 +784,7 @@ const Header = () => {
       </HeaderContainer>
       <Overlay open={toggle} account__role={account?.role}>
         <OverlayMenu open={toggle}>
+          {/* eslint-disable-next-line no-nested-ternary */}
           {account?.role === 2 ? (
             <>
               {/* <Item>
@@ -744,7 +808,8 @@ const Header = () => {
                 </NavLink>
               </Item>
             </>
-          ) : account?.role === 4 ? (
+          ) : // eslint-disable-next-line no-nested-ternary
+          account?.role === 4 ? (
             <>
               <Item>
                 <NavLink className="btn" to="/validator/articles-for-review">
@@ -803,45 +868,47 @@ const Header = () => {
           <Item>
             <UiSelect
               isActive={active}
-              onClick={(e) => {
+              onClick={e => {
                 e.stopPropagation();
                 setActive(!active);
               }}
             >
               <div
                 style={{
-                  cursor: "pointer",
-                  alignItems: "center",
-                  display: "flex",
-                  padding: "5px 0px",
-                  justifyContent:'space-between'
+                  cursor: 'pointer',
+                  alignItems: 'center',
+                  display: 'flex',
+                  padding: '5px 0px',
+                  justifyContent: 'space-between',
                 }}
               >
                 <span className="langspan">
                   {/* {lan === "ru" ? "Руc" : "Eng"} */}
-                  {lan === "ru" ? "Русский" : "English"}
+                  {lan === 'ru' ? 'Русский' : 'English'}
                 </span>
                 {active ? <Up /> : <Down />}
               </div>
-              <ul style={{ top: "15px"  ,width:'100%'}}>
-                <div onClick={() => onLanguageHandle("ru")}>
+              <ul style={{ top: '15px', width: '100%' }}>
+                {/* eslint-disable-next-line jsx-a11y/click-events-have-key-events,jsx-a11y/no-static-element-interactions */}
+                <div onClick={() => onLanguageHandle('ru')}>
                   <span
                     //   onClick={() => onLanguageHandle("ru")}
                     style={{
-                      display: "flex",
-                      justifyContent: "left",
-                      alignItems: "center",
+                      display: 'flex',
+                      justifyContent: 'left',
+                      alignItems: 'center',
                     }}
-                    className={lan === "en" ? "" : "activelanguage"}
+                    className={lan === 'en' ? '' : 'activelanguage'}
                   >
                     {t('header.ruLang')}
                   </span>
                 </div>
-                <div onClick={() => onLanguageHandle("en")}>
+                {/* eslint-disable-next-line jsx-a11y/click-events-have-key-events,jsx-a11y/no-static-element-interactions */}
+                <div onClick={() => onLanguageHandle('en')}>
                   <span
                     //   onClick={() => onLanguageHandle("en")}
-                    style={{ display: "flex", justifyContent: "left" }}
-                    className={lan === "en" ? "activelanguage" : ""}
+                    style={{ display: 'flex', justifyContent: 'left' }}
+                    className={lan === 'en' ? 'activelanguage' : ''}
                   >
                     {t('header.engLang')}
                   </span>
@@ -879,58 +946,75 @@ const Header = () => {
                   {activewallet ? <Up /> : <Down />}
                 </div>
               </span>
-             
+
             </UiSelectwallet>
               ): null
             } */}
-            {walletData?.isConnect ? (
+            {walletData?.isConnect && isCorrectNetwork ? (
               <>
-              <span
-                className="btn  btn-wallet" 
-                onClick={() => setModalWallet(true)} 
-              >
-                <div className="wallet_target">
-                  <img src="/img/avatar.svg" alt="wallet" />
-                  <div >
-                    <div className="wallet_id">
-                      {walletData?.accountAddress.slice(0, 5)}
-                      ...
-                      {walletData?.accountAddress.slice(-4)}
-                    </div>
-                    <div className="balance">
-                      {walletData?.tokenBalance} {walletData?.tokenName}
+                {/* eslint-disable-next-line jsx-a11y/click-events-have-key-events,jsx-a11y/no-static-element-interactions */}
+                <span
+                  className="btn  btn-wallet"
+                  onClick={() => setModalWallet(true)}
+                >
+                  <div className="wallet_target">
+                    <img src="/img/avatar.svg" alt="wallet" />
+                    <div>
+                      <div className="wallet_id">
+                        {walletData?.accountAddress.slice(0, 5)}
+                        ...
+                        {walletData?.accountAddress.slice(-4)}
+                      </div>
+                      <div className="balance">
+                        {walletData?.tokenBalance < 0
+                          ? t('header.noToken')
+                          : `${walletData?.tokenBalance} ${walletData?.tokenName}`}
+                      </div>
                     </div>
                   </div>
-                </div>
-                <div style={{ marginLeft: "9px" }}>
-                  {activewallet ? <Up /> : <Down />}
-                </div>
-              </span>
-              {account?.user_role === 1 ? (
-                  <span className="btn account" >
-                    <Link to="/select-author">{t('header.contributeAuthor')}</Link>/
-                    <Link to="/select-validator">{t('header.contributeReviewer')}</Link>
+                  <div style={{ marginLeft: '9px' }}>
+                    {activewallet ? <Up /> : <Down />}
+                  </div>
+                </span>
+                {account?.user_role === 1 ? (
+                  <span className="btn account">
+                    <Link to="/select-author">
+                      {t('header.contributeAuthor')}
+                    </Link>
+                    /
+                    <Link to="/select-validator">
+                      {t('header.contributeReviewer')}
+                    </Link>
                   </span>
-                ):''} 
+                ) : (
+                  ''
+                )}
               </>
             ) : (
-              <>
-                <span
-                  className="btn account"
-                  onClick={() => openAuthModal(true)}
-                >
-                  <img src="/img/wallet.svg" alt="wallet" />
-                  <span>{t('header.connectWallet')}</span>
+              // eslint-disable-next-line jsx-a11y/click-events-have-key-events,jsx-a11y/no-static-element-interactions
+              <span
+                className="btn account"
+                onClick={() => {
+                  if (!isCorrectNetwork && walletData?.isConnect)
+                    setAuthAction(3);
+                  openAuthModal(true);
+                }}
+              >
+                <img src="/img/wallet.svg" alt="wallet" />
+                <span>
+                  {isCorrectNetwork
+                    ? t('header.connectWallet')
+                    : t('header.wrongNetwork')}
                 </span>
-              </>
+              </span>
             )}
           </div>
         </OverlayMenu>
       </Overlay>
       {/* Bottom menu  */}
-      <BottomMenu className="bottom-menu"
-      account__role={account?.role}>
+      <BottomMenu className="bottom-menu" account__role={account?.role}>
         <div className="bottom-menu-items">
+          {/* eslint-disable-next-line no-nested-ternary */}
           {account?.role === 2 ? (
             <>
               {/* <NavLink className="bottom-menu-item" to={"/author/dashboard"}>
@@ -944,7 +1028,7 @@ const Header = () => {
                   <span>{t('header.statistics')}</span>
                 </div>
               </NavLink> */}
-              <NavLink className="bottom-menu-item" to={"/author/my-articles"}>
+              <NavLink className="bottom-menu-item" to="/author/my-articles">
                 <div className="bottom-menu-item-icon">
                   <div className="img">
                     <img src="/img/my_article_author_menu_bottom.svg" alt="" />
@@ -952,13 +1036,13 @@ const Header = () => {
                   <span>{t('header.myPapers')}</span>
                 </div>
               </NavLink>
-              <NavLink className="bottom-menu-item" to={"/author/create"}>
+              <NavLink className="bottom-menu-item" to="/author/create">
                 <div className="bottom-menu-item-icon">
                   <div
                     style={{
-                      display: "flex",
-                      justifyContent: "center",
-                      alignItems: "center",
+                      display: 'flex',
+                      justifyContent: 'center',
+                      alignItems: 'center',
                     }}
                   >
                     <div className="create">+</div>
@@ -966,7 +1050,7 @@ const Header = () => {
                   <span>{t('header.create')}</span>
                 </div>
               </NavLink>
-              <NavLink className="bottom-menu-item" to={"/settings-mobile"}>
+              <NavLink className="bottom-menu-item" to="/settings-mobile">
                 <div className="bottom-menu-item-icon">
                   <div className="img">
                     <img src="/img/setting_bottom_menu.svg" alt="" />
@@ -974,11 +1058,12 @@ const Header = () => {
                   <span>{t('header.settings')}</span>
                 </div>
               </NavLink>
+              {/* eslint-disable-next-line jsx-a11y/click-events-have-key-events,jsx-a11y/no-static-element-interactions */}
               <div
                 className={
                   modalwallet === true
-                    ? "bottom-menu-item "
-                    : "bottom-menu-item"
+                    ? 'bottom-menu-item '
+                    : 'bottom-menu-item'
                 }
                 onClick={() => setModalWallet(true)}
               >
@@ -990,11 +1075,12 @@ const Header = () => {
                 </div>
               </div>
             </>
-          ) : account?.role === 4 ? (
+          ) : // eslint-disable-next-line no-nested-ternary
+          account?.role === 4 ? (
             <>
               <NavLink
                 className="bottom-menu-item"
-                to={"/validator/articles-for-review"}
+                to="/validator/articles-for-review"
               >
                 <div className="bottom-menu-item-icon">
                   <div className="img">
@@ -1011,7 +1097,7 @@ const Header = () => {
                   <span>{t('header.rewards')}</span>
                 </div>
               </NavLink> */}
-              <NavLink className="bottom-menu-item" to={"/settings-mobile"}>
+              <NavLink className="bottom-menu-item" to="/settings-mobile">
                 <div className="bottom-menu-item-icon">
                   <div className="img">
                     <img src="/img/setting_bottom_menu.svg" alt="" />
@@ -1019,11 +1105,12 @@ const Header = () => {
                   <span>{t('header.settings')}</span>
                 </div>
               </NavLink>
+              {/* eslint-disable-next-line jsx-a11y/click-events-have-key-events,jsx-a11y/no-static-element-interactions */}
               <div
                 className={
                   modalwallet === true
-                    ? "bottom-menu-item "
-                    : "bottom-menu-item"
+                    ? 'bottom-menu-item '
+                    : 'bottom-menu-item'
                 }
                 onClick={() => setModalWallet(true)}
               >
@@ -1037,7 +1124,7 @@ const Header = () => {
             </>
           ) : account?.role === 1 ? (
             <>
-              <NavLink className="bottom-menu-item" to={"/my-library"}>
+              <NavLink className="bottom-menu-item" to="/my-library">
                 <div className="bottom-menu-item-icon">
                   <div className="img">
                     <img src="/img/my_article_author_menu_bottom.svg" alt="" />
@@ -1053,7 +1140,7 @@ const Header = () => {
                   <span>{t('header.statistics')}</span>
                 </div>
               </NavLink> */}
-              <NavLink className="bottom-menu-item" to={"/settings-mobile"}>
+              <NavLink className="bottom-menu-item" to="/settings-mobile">
                 <div className="bottom-menu-item-icon">
                   <div className="img">
                     <img src="/img/setting_bottom_menu.svg" alt="" />
@@ -1061,11 +1148,12 @@ const Header = () => {
                   <span>{t('header.settings')}</span>
                 </div>
               </NavLink>
+              {/* eslint-disable-next-line jsx-a11y/click-events-have-key-events,jsx-a11y/no-static-element-interactions */}
               <div
                 className={
                   modalwallet === true
-                    ? "bottom-menu-item "
-                    : "bottom-menu-item"
+                    ? 'bottom-menu-item '
+                    : 'bottom-menu-item'
                 }
                 onClick={() => setModalWallet(true)}
               >
@@ -1077,9 +1165,7 @@ const Header = () => {
                 </div>
               </div>
             </>
-          ) : (
-            <></>
-          )}
+          ) : null}
         </div>
       </BottomMenu>
       <ModalWalletMobile
@@ -1091,7 +1177,7 @@ const Header = () => {
         copyToClipboard={copyToClipboard}
       />
 
-      <FillYourProfile/>
+      <FillYourProfile />
     </>
   );
 };

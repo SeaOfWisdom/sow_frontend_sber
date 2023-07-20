@@ -31,33 +31,35 @@ const TestWeb3 = () => {
         .then(() => {
           console.log('Networks replaced');
         })
-        .catch((error) => {
+        .catch(error => {
           console.error('Error replacing networks:', error);
         });
     } else {
       console.error('MetaMask is not installed');
     }
-  }
-  const switchProvider = async () =>{
+  };
+  const switchProvider = async () => {
     console.log('start switch');
     try {
-      await window.ethereum.request({
-        method: 'wallet_switchEthereumChain',
-        params: [
-          {
-            chainId: '0x61', 
-            // chainName:'Smart Chain - Testnet',
-            // rpcUrls:['https://data-seed-prebsc-1-s1.binance.org:8545/'],                   
-            // blockExplorerUrls:['https://testnet.bscscan.com'],  
-            // nativeCurrency: { 
-            //   symbol:'BNB',   
-            //   decimals: 18
-            // }     
-          }
-        ],
-      }).then(r=>{
-        console.log('r=>>', r);
-      });
+      await window.ethereum
+        .request({
+          method: 'wallet_switchEthereumChain',
+          params: [
+            {
+              chainId: '0x61',
+              // chainName:'Smart Chain - Testnet',
+              // rpcUrls:['https://data-seed-prebsc-1-s1.binance.org:8545/'],
+              // blockExplorerUrls:['https://testnet.bscscan.com'],
+              // nativeCurrency: {
+              //   symbol:'BNB',
+              //   decimals: 18
+              // }
+            },
+          ],
+        })
+        .then(r => {
+          console.log('r=>>', r);
+        });
     } catch (switchError) {
       console.log('switchError=>', switchError);
       // This error code indicates that the chain has not been added to MetaMask.
@@ -67,14 +69,14 @@ const TestWeb3 = () => {
         //     method: 'wallet_addEthereumChain',
         //     params: [
         //         {
-        //           chainId: '0x89', 
+        //           chainId: '0x89',
         //           chainName:'Polygon',
-        //           rpcUrls:['https://polygon-rpc.com '],                   
-        //           blockExplorerUrls:['https://polygonscan.com/'],  
-        //           nativeCurrency: { 
-        //             symbol:'MATIC',   
+        //           rpcUrls:['https://polygon-rpc.com '],
+        //           blockExplorerUrls:['https://polygonscan.com/'],
+        //           nativeCurrency: {
+        //             symbol:'MATIC',
         //             decimals: 18
-        //           }     
+        //           }
         //         }
         //       ]
         //   });
@@ -85,16 +87,23 @@ const TestWeb3 = () => {
       }
       // handle other "switch" errors
     }
-  }
-  return(<>
-  <h1>TestWeb3</h1>
-  <button onClick={()=>getChainId()}>getChainId</button>
-  <br/>
-  <button onClick={()=>changeNetwork()}>changeNetwork</button>
-  <br/>
-  <button onClick={()=>switchProvider()}>switchProvider</button>
-  <div>
-  </div> 
-  </>)
-}
-export default TestWeb3; 
+  };
+  return (
+    <>
+      <h1>TestWeb3</h1>
+      <button type="button" onClick={() => getChainId()}>
+        getChainId
+      </button>
+      <br />
+      <button type="button" onClick={() => changeNetwork()}>
+        changeNetwork
+      </button>
+      <br />
+      <button type="button" onClick={() => switchProvider()}>
+        switchProvider
+      </button>
+      <div />
+    </>
+  );
+};
+export default TestWeb3;

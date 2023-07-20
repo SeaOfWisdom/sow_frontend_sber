@@ -1,11 +1,11 @@
-import styled from "styled-components";
+import styled from 'styled-components';
 
 export const HelpSettingsContainer = styled.div`
-padding-bottom: 32px;
+  padding-bottom: 32px;
   @media (max-width: 900px) {
   }
   & .htitle {
-    font-family: "Lora";
+    font-family: 'Lora';
     font-style: normal;
     font-weight: 600;
     font-size: 24px;
@@ -13,7 +13,7 @@ padding-bottom: 32px;
     color: #2a2c35;
   }
   & .hdesc {
-    font-family: "Golos";
+    font-family: 'Golos';
     font-style: normal;
     font-weight: 400;
     font-size: 16px;
@@ -35,7 +35,7 @@ padding-bottom: 32px;
       justify-content: center;
       padding: 0 24px;
       margin-right: 16px;
-      font-family: "Golos";
+      font-family: 'Golos';
       font-style: normal;
       font-weight: 500;
       font-size: 14px;
@@ -50,7 +50,7 @@ padding-bottom: 32px;
     }
   }
   & .help {
-    font-family: "Lora";
+    font-family: 'Lora';
     font-style: normal;
     font-weight: 600;
     font-size: 24px;
@@ -75,7 +75,7 @@ padding-bottom: 32px;
 
         & h4 {
           margin: 0;
-          font-family: "Lora";
+          font-family: 'Lora';
           font-style: normal;
           font-weight: 600;
           font-size: 18px;
@@ -92,7 +92,7 @@ padding-bottom: 32px;
         }
       }
       & .text {
-        font-family: "Golos";
+        font-family: 'Golos';
         font-style: normal;
         font-weight: 400;
         font-size: 16px;

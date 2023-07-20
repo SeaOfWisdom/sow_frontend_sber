@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled from 'styled-components';
 
 export const FillYourProfileStyle = styled.div`
   & .fill_you_profile {
@@ -10,14 +10,19 @@ export const FillYourProfileStyle = styled.div`
     bottom: 100px;
     right: 36px;
     border: 1.5px solid transparent;
-    background: linear-gradient(0deg, rgba(42, 44, 53, 0.95), rgba(42, 44, 53, 0.95)) padding-box,
+    background: linear-gradient(
+          0deg,
+          rgba(42, 44, 53, 0.95),
+          rgba(42, 44, 53, 0.95)
+        )
+        padding-box,
       linear-gradient(259.76deg, #d890f0 -0.6%, #73dac8 107.36%) border-box;
     box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.2);
     border-radius: 10px;
     padding: 16px 12px;
     width: 207px;
     animation: fill_you_profile 0.5s ease;
-    display: ${({ isActive }) => (isActive ? "none" : "block")};
+    display: ${({ isActive }) => (isActive ? 'none' : 'block')};
     cursor: pointer;
     & img {
       margin-bottom: 8px;
@@ -32,12 +37,12 @@ export const FillYourProfileStyle = styled.div`
       color: #ffffff;
       margin-bottom: 8px;
       & p {
-        font-family: "Golos";
+        font-family: 'Golos';
         font-weight: 400;
         font-size: 12px;
       }
       & .percentage {
-        font-family: "Golos";
+        font-family: 'Golos';
         font-weight: 400;
         font-size: 12px;
       }
@@ -57,7 +62,7 @@ export const FillYourProfileStyle = styled.div`
   }
   & .modal {
     cursor: pointer;
-    display: ${({ isActive }) => (isActive ? "block" : "none")};
+    display: ${({ isActive }) => (isActive ? 'block' : 'none')};
     z-index: 4;
     position: fixed;
     bottom: 180px;
@@ -95,7 +100,7 @@ export const FillYourProfileStyle = styled.div`
 
           & h5 {
             color: #2a2c35;
-            font-family: "Lora";
+            font-family: 'Lora';
             font-style: normal;
             font-weight: 600;
             font-size: 14px;
@@ -103,7 +108,7 @@ export const FillYourProfileStyle = styled.div`
             margin-bottom: 4px;
           }
           & p {
-            font-family: "Golos";
+            font-family: 'Golos';
             font-style: normal;
             font-weight: 400;
             font-size: 12px;
@@ -114,7 +119,7 @@ export const FillYourProfileStyle = styled.div`
         & .btn {
           background: #8be4d4;
           padding: 12px 24px;
-          font-family: "Golos";
+          font-family: 'Golos';
           font-style: normal;
           font-weight: 500;
           font-size: 12px;
@@ -139,10 +144,15 @@ export const FillYourProfileStyle = styled.div`
   }
   & .close {
     border: 1.5px solid transparent;
-    background: linear-gradient(0deg, rgba(42, 44, 53, 0.95), rgba(42, 44, 53, 0.95)) padding-box,
+    background: linear-gradient(
+          0deg,
+          rgba(42, 44, 53, 0.95),
+          rgba(42, 44, 53, 0.95)
+        )
+        padding-box,
       linear-gradient(259.76deg, #d890f0 -0.6%, #73dac8 107.36%) border-box;
     cursor: pointer;
-    display: ${({ isActive }) => (isActive ? "block" : "none")};
+    display: ${({ isActive }) => (isActive ? 'block' : 'none')};
     z-index: 1;
     position: fixed;
     bottom: 100px;

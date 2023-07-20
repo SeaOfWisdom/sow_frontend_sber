@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled from 'styled-components';
 
 export const MyArticleStyle = styled.div`
   padding: 0px 36px;
@@ -31,21 +31,21 @@ export const MyArticleStyle = styled.div`
         justify-content: space-between;
         line-height: 140%;
         h4 {
-          font-family: "Lora";
+          font-family: 'Lora';
           font-weight: 600;
           font-size: 24px;
         }
-        @media (max-width:900px) {
+        @media (max-width: 900px) {
           h4 {
             font-size: 20px;
           }
         }
-      
+
         .btn-article {
           display: flex;
 
           & .add-status {
-            font-family: "Golos";
+            font-family: 'Golos';
             display: flex;
             align-items: center;
             justify-content: center;
@@ -62,7 +62,7 @@ export const MyArticleStyle = styled.div`
               margin-right: 10px;
             }
           }
-          
+
           @media (max-width: 600px) {
             display: block;
             & .add-status {
@@ -94,10 +94,10 @@ export const MyArticleStyle = styled.div`
             border-radius: 1000px;
             border: 1px solid #2a2c35;
             cursor: pointer;
-            & span{
+            & span {
               font-weight: 500;
-            font-size: 14px;
-            font-family: Golos;
+              font-size: 14px;
+              font-family: Golos;
             }
           }
         }
@@ -117,7 +117,7 @@ export const MyArticleStyle = styled.div`
           margin-bottom: 24px;
         }
         & h4 {
-          font-family: "Lora";
+          font-family: 'Lora';
           font-weight: 600;
           font-size: 16px;
           color: #2a2c35;
@@ -130,7 +130,7 @@ export const MyArticleStyle = styled.div`
             color: #2a2c35;
             font-weight: 400;
             font-size: 14px;
-            font-family: "Golos";
+            font-family: 'Golos';
             width: 25%;
             @media (max-width: 900px) {
               width: 100%;

@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled from 'styled-components';
 
 export const ErrorServerContainer = styled.section`
   padding: 76px 36px 145px 36px;
@@ -23,7 +23,7 @@ export const ErrorServerContainer = styled.section`
       height: 205px;
     }
     & > h1 {
-      font-family: "Lora";
+      font-family: 'Lora';
       font-style: normal;
       font-weight: 600;
       font-size: 36px;
@@ -33,7 +33,7 @@ export const ErrorServerContainer = styled.section`
       padding: 24px 0 16px 0;
     }
     & > .desc {
-      font-family: "Golos";
+      font-family: 'Golos';
       font-style: normal;
       font-weight: 400;
       font-size: 18px;
@@ -47,7 +47,7 @@ export const ErrorServerContainer = styled.section`
       border: 1px solid #2a2c35;
       box-shadow: 0px 2px 0px #2a2c35;
       border-radius: 1000px;
-      font-family: "Golos";
+      font-family: 'Golos';
       font-style: normal;
       font-weight: 500;
       font-size: 14px;

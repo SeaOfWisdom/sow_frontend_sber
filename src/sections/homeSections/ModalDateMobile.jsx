@@ -1,6 +1,6 @@
-import React from "react";
-import styled from "styled-components";
-import Checkbox from "../utils/Checkbox";
+import React from 'react';
+import styled from 'styled-components';
+import Checkbox from '../utils/Checkbox';
 
 const ModalDateMobileStyle = styled.div`
   & .date {
@@ -11,8 +11,8 @@ const ModalDateMobileStyle = styled.div`
       margin-bottom: 12px;
       padding: 16px;
       background: white;
-      :last-child{
-       margin-bottom: 0px;
+      :last-child {
+        margin-bottom: 0px;
       }
       & span {
         font-size: 14px;
@@ -43,59 +43,43 @@ const ModalDateMobileStyle = styled.div`
     background-color: #8be4d4;
   }
 `;
-const ModalDateMobile = ({ setIsDateModal  ,setmodal}) => {
-  return (
-    <ModalDateMobileStyle>
-      <div className="date">
-        <div className="date-item">
-          <span>За все время</span>{" "}
-          <Checkbox
-            className="checkbox"
-            name="check2"
-            // checked={check?.check2}
-            // onChange={(e) => {
-            //   setCheck({ ...check, check2: !check?.check2 });
-            //   setErr({ ...err, check2: false });
-            // }}
-          />
-        </div>
-        <div className="date-item">
-          <span>с 2023</span>{" "}
-          <Checkbox
-            className="checkbox"
-            name="check2"
-           
-          />
-        </div>
-        <div className="date-item">
-          <span>с 2022</span>{" "}
-          <Checkbox
-            className="checkbox"
-            name="check2"
-           
-          />
-        </div>
-        <div className="date-item">
-          <span>с 2021</span>{" "}
-          <Checkbox
-            className="checkbox"
-            name="check2"
-           
-          />
-        </div>
+const ModalDateMobile = ({ setIsDateModal, setmodal }) => (
+  <ModalDateMobileStyle>
+    <div className="date">
+      <div className="date-item">
+        <span>За все время</span>{' '}
+        <Checkbox
+          className="checkbox"
+          name="check2"
+          // checked={check?.check2}
+          // onChange={(e) => {
+          //   setCheck({ ...check, check2: !check?.check2 });
+          //   setErr({ ...err, check2: false });
+          // }}
+        />
       </div>
-      <div
-        className="btn btn-select"
-         onClick={()=>{setIsDateModal(true);
-          setmodal(false)
-        
-        }}
-      >
-        Выбрать даты
+      <div className="date-item">
+        <span>с 2023</span> <Checkbox className="checkbox" name="check2" />
       </div>
-      <div className="btn btn-confirm">Подтвердить</div>
-    </ModalDateMobileStyle>
-  );
-};
+      <div className="date-item">
+        <span>с 2022</span> <Checkbox className="checkbox" name="check2" />
+      </div>
+      <div className="date-item">
+        <span>с 2021</span> <Checkbox className="checkbox" name="check2" />
+      </div>
+    </div>
+    {/* eslint-disable-next-line jsx-a11y/click-events-have-key-events,jsx-a11y/no-static-element-interactions */}
+    <div
+      className="btn btn-select"
+      onClick={() => {
+        setIsDateModal(true);
+        setmodal(false);
+      }}
+    >
+      Выбрать даты
+    </div>
+    <div className="btn btn-confirm">Подтвердить</div>
+  </ModalDateMobileStyle>
+);
 
 export default ModalDateMobile;

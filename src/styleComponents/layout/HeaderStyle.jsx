@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled from 'styled-components';
 
 export const HeaderContainer = styled.div`
   display: flex;
@@ -9,8 +9,8 @@ export const HeaderContainer = styled.div`
   @media (max-width: 900px) {
     padding: 15px;
     background-color: white;
-    position: ${(props) => (props.open ? "fixed" : "")};
-    top: ${(props) => (props.open ? "0px" : "")};
+    position: ${props => (props.open ? 'fixed' : '')};
+    top: ${props => (props.open ? '0px' : '')};
     width: 100%;
     z-index: 999;
     transition: 0.3s ease-in-out;
@@ -71,7 +71,7 @@ export const HeaderContainer = styled.div`
       line-height: 17px;
       color: #2a2c35;
       align-items: center;
-      font-family: "Golos";
+      font-family: 'Golos';
       height: 48px;
       & img {
         margin-right: 10px;
@@ -79,7 +79,7 @@ export const HeaderContainer = styled.div`
     }
     & .validator-btn {
       color: #ffffff;
-      font-family: "Golos";
+      font-family: 'Golos';
       font-style: normal;
       font-weight: 500;
       font-size: 14px;
@@ -112,7 +112,7 @@ export const HeaderContainer = styled.div`
         }
       }
       & .wallet_id {
-        font-family: "Golos";
+        font-family: 'Golos';
         font-style: normal;
         font-weight: 500;
         font-size: 14px;
@@ -121,7 +121,7 @@ export const HeaderContainer = styled.div`
         margin-left: 8px;
       }
       & .balance {
-        font-family: "Golos";
+        font-family: 'Golos';
         font-style: normal;
         font-weight: 400;
         font-size: 12px;
@@ -146,12 +146,12 @@ export const HeaderContainer = styled.div`
   }
   & .btn-wallet {
     background: ${({ isActivewallet }) =>
-      isActivewallet ? "#F0F3F4" : "#F0F3F4"};
+      isActivewallet ? '#F0F3F4' : '#F0F3F4'};
     position: inherit;
     z-index: 99999999999;
   }
   & .btn {
-    font-family: "Golos";
+    font-family: 'Golos';
     font-style: normal;
     font-weight: 500;
     font-size: 14px;

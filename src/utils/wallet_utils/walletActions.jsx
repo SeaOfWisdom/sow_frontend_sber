@@ -1,11 +1,38 @@
 import Web3 from 'web3';
-import { ERC20ABI } from './abi';
 import { UniPassPopupSDK } from '@unipasswallet/popup-sdk';
-import { RPC_URL, wallet_types } from '../../utils/constants';
+import { ERC20ABI } from './abi';
+import { RPC_URL, walletTypes } from '../constants';
+import libraryAbi from './libraryAbi.json';
+
+function uuidToBigInt(uuid) {
+  // UUID validation regex pattern
+  let uuidPattern = new RegExp(
+      '^[0-9a-f]{8}-[0-9a-f]{4}-[1-5][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$',
+      'i'
+  );
+
+  if (typeof uuid !== 'string' || !uuidPattern.test(uuid)) {
+    console.error('Invalid UUID');
+    return null;
+  }
+
+  let uuidWithoutHyphens = uuid.replace(/-/g, '');
+
+  let bigIntValue;
+  try {
+    bigIntValue = BigInt(`0x${uuidWithoutHyphens}`);
+  } catch (err) {
+    console.error('Failed to convert UUID to BigInt', err);
+    return null;
+  }
+
+  return bigIntValue;
+}
 
 const tokenSOW = {
   tokenName: 'SOW',
-  contractAddress: '0x800fC10baC18a0e2bD00fFfaA760301cACeC119B',
+  contractAddress: '0x391e586deE95dFa1c994B89F8349a5Ef3Fd5a7f1',
+  libraryAddress: '0x56EAC6230bF6Cf9e674B2950F075945b662a9F69',
   decimals: 18,
 };
 const getWeb3 = () => {
@@ -15,24 +42,29 @@ const getWeb3 = () => {
 
 let upWallet;
 
-export const isWalletConnect = () => {
-  return window?.ethereum?.isConnected();
-};
+export const isWalletConnect = () => window?.ethereum?.isConnected();
 
-export const getWalletData = async (walletType) => {
+export const getWalletData = async walletType => {
   try {
     const web3 = getWeb3();
     const contract = new web3.eth.Contract(ERC20ABI, tokenSOW.contractAddress);
 
     switch (walletType) {
-      case wallet_types.MetaMask: {
+      case walletTypes.MetaMask: {
         await window.ethereum.request({ method: 'eth_requestAccounts' });
         const accounts = await web3.eth.getAccounts();
         const accountAddress = accounts[0];
-        // console.log('accountAddress', accountAddress);
-        const balance = await contract.methods.balanceOf(accountAddress).call();
-        const tokenBalance = parseFloat(web3.utils.fromWei(balance, 'ether')).toFixed(2);
-        // console.log('tokenBalance', tokenBalance);
+        let tokenBalance = 0;
+        try {
+          const balance = await contract.methods
+            .balanceOf(accountAddress)
+            .call();
+          tokenBalance = parseFloat(
+            web3.utils.fromWei(balance, 'ether')
+          ).toFixed(2);
+        } catch (error) {
+          console.log('ERROR', error);
+        }
         return {
           isConnect: true,
           accountAddress,
@@ -42,7 +74,7 @@ export const getWalletData = async (walletType) => {
         };
       }
 
-      case wallet_types.Unipass: {
+      case walletTypes.Unipass: {
         upWallet = new UniPassPopupSDK({
           env: 'test',
           chainType: 'bsc',
@@ -61,7 +93,9 @@ export const getWalletData = async (walletType) => {
 
         web3.setProvider(RPC_URL);
         const balance = await contract.methods.balanceOf(accountAddress).call();
-        const tokenBalance = parseFloat(web3.utils.fromWei(balance, 'ether')).toFixed(2);
+        const tokenBalance = parseFloat(
+          web3.utils.fromWei(balance, 'ether')
+        ).toFixed(2);
 
         return {
           isConnect: true,
@@ -71,6 +105,8 @@ export const getWalletData = async (walletType) => {
           walletType,
         };
       }
+
+      default:
     }
   } catch (error) {
     return {
@@ -88,23 +124,27 @@ export const getWalletBalance = async () => {
     if (accountAddress && accountAddress.length) {
       const web3 = getWeb3();
 
-      if (walletType === wallet_types.Unipass) {
+      if (walletType === walletTypes.Unipass) {
         web3.setProvider(RPC_URL);
       }
 
-      const contract = new web3.eth.Contract(ERC20ABI, tokenSOW.contractAddress);
+      const contract = new web3.eth.Contract(
+        ERC20ABI,
+        tokenSOW.contractAddress
+      );
       const balance = await contract.methods.balanceOf(accountAddress).call();
-      const tokenBalance = parseFloat(web3.utils.fromWei(balance, 'ether')).toFixed(2);
+      const tokenBalance = parseFloat(
+        web3.utils.fromWei(balance, 'ether')
+      ).toFixed(2);
       return {
         isError: false,
-        tokenBalance: tokenBalance,
-      };
-    } else {
-      return {
-        isError: true,
-        tokenBalance: -1,
+        tokenBalance,
       };
     }
+    return {
+      isError: true,
+      tokenBalance: -1,
+    };
   } catch (error) {
     return {
       isError: true,
@@ -121,56 +161,89 @@ export const getNetworkChainId = async () => {
   if (typeof window.ethereum !== 'undefined') {
     // await window.ethereum.request({ method: 'eth_requestAccounts' });
     const web3 = getWeb3();
-    let n = await web3.eth.net.getId();
+    const n = await web3.eth.net.getId();
     return {
       status: 1,
       networkId: n,
     };
-  } else {
-    return {
-      status: -1,
-      networkId: null,
-    };
   }
+  return {
+    status: -1,
+    networkId: null,
+  };
 };
 
-export const switchNetwork = async (network={}) =>{
-  console.log('start switch');
-  let result = {}
+export const switchNetwork = async (network = {}) => {
+  const web3 = new Web3(window.ethereum);
+  const chainId = web3.utils.toHex(network.chainId).toString();
+  let result = {};
   try {
-    await window.ethereum.request({
-      method: 'wallet_switchEthereumChain',
-      params: [  { chainId: network?.chainId_hexadecimal??'' }  ],
-    }).then(r=>{
-      result = {
-        isSwitch: true
-      }
-    });
-  } catch (switchError) { 
+    await window.ethereum
+      .request({
+        method: 'wallet_switchEthereumChain',
+        params: [{ chainId }],
+      })
+      .then(r => {
+        result = {
+          isSwitch: true,
+        };
+      });
+  } catch (switchError) {
     if (switchError.code === 4902) {
       try {
-        await window.ethereum.request({
-          method: 'wallet_addEthereumChain',
-          params: [
+        await window.ethereum
+          .request({
+            method: 'wallet_addEthereumChain',
+            params: [
               {
-                chainId: network?.chainId_hexadecimal??'', 
-                chainName: network?.chainName??'',
-                rpcUrls: network?.rpcUrls??'',                   
-                blockExplorerUrls: network?.blockExplorerUrls??'',  
-                nativeCurrency: network?.nativeCurrency??''    
-              }
-            ]
-        }).then(r=>{
-          result = {
-            isSwitch: true
-          }
-        });
-      } catch (addError) { 
+                chainId,
+                chainName: network?.chainName ?? '',
+                rpcUrls: network?.rpcUrls ?? '',
+                blockExplorerUrls: network?.blockExplorerUrls ?? '',
+                nativeCurrency: network?.nativeCurrency ?? '',
+              },
+            ],
+          })
+          .then(r => {
+            result = {
+              isSwitch: true,
+            };
+          });
+      } catch (addError) {
         result = {
-          isSwitch: false
-        }
+          isSwitch: false,
+        };
       }
-    } 
+    }
   }
   return result;
-}
+};
+
+export const buyArticle = async articleId => {
+  const id = uuidToBigInt(articleId).toString();
+  try {
+    const web3 = getWeb3();
+    const accounts = await web3.eth.getAccounts();
+    const contract = new web3.eth.Contract(ERC20ABI, tokenSOW.contractAddress);
+    const library = new web3.eth.Contract(libraryAbi, tokenSOW.libraryAddress);
+
+    try {
+      await contract.methods
+        .approve(tokenSOW.libraryAddress, '50000000000000000000')
+        .send({
+          from: accounts[0],
+          gasPrice: '50000000000',
+          gas: '10000000',
+        });
+      await library.methods.purchasePaper(id).send({
+        from: accounts[0],
+        gasPrice: '50000000000',
+        gas: '10000000',
+      });
+    } catch (error) {
+      console.log(error);
+    }
+  } catch (error) {
+    console.log(error);
+  }
+};

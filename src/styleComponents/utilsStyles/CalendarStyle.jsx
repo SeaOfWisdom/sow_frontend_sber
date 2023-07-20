@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled from 'styled-components';
 
 export const CalendarContainer = styled.div`
   /* margin: 36px; */
@@ -7,7 +7,7 @@ export const CalendarContainer = styled.div`
   /* box-shadow: 0px 5px 12px rgba(0, 0, 0, 0.05); */
   border-radius: 6px;
   /* width: 251px; */
-  font-family: "Golos";
+  font-family: 'Golos';
   font-style: normal;
   box-shadow: 0px 5px 12px rgba(0, 0, 0, 0.05);
   font-weight: 400;
@@ -17,7 +17,7 @@ export const CalendarContainer = styled.div`
   display: inline-flex;
   flex-direction: column;
   & .date {
-    font-family: "Golos";
+    font-family: 'Golos';
     font-style: normal;
     font-weight: 400;
     font-size: 12px;
@@ -55,7 +55,7 @@ export const CalendarContainer = styled.div`
   }
   & .days {
     padding-top: 10px;
-   
+
     & .d_row {
       display: flex;
       /* width: 168px; */
@@ -100,14 +100,14 @@ export const CalendarContainer = styled.div`
     background: #f0f3f4;
     border-radius: 4px;
     position: absolute;
-    
+
     margin-left: -60px;
     margin-top: -8px;
     box-shadow: rgba(0, 0, 0, 0.05) 0px 5px 12px;
     & > div {
       padding: 3px 11px;
       cursor: pointer;
-      font-family: "Golos";
+      font-family: 'Golos';
       &:hover {
         background: #8be4d4;
         border-radius: 4px;
@@ -118,7 +118,7 @@ export const CalendarContainer = styled.div`
       align-items: center;
       justify-content: center;
       cursor: pointer;
-      font-family: "Golos";
+      font-family: 'Golos';
       &:hover {
         background: #fff;
       }

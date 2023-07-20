@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled from 'styled-components';
 
 export const BottomMenu = styled.div`
   display: none;
@@ -13,16 +13,14 @@ export const BottomMenu = styled.div`
     justify-content: space-between;
     height: 100%;
     align-items: center;
-    background:${(props) =>
-        props?.account__role === 85
-          ? "white"
-          : "none"}!important;
+    background: ${props =>
+      props?.account__role === 85 ? 'white' : 'none'}!important;
     & .active {
       /* background: white !important; */
-      background: ${(props) =>
+      background: ${props =>
         props?.account__role === 85
-          ? "rgba(216, 144, 240, 0.10)"
-          : "white"}!important;
+          ? 'rgba(216, 144, 240, 0.10)'
+          : 'white'}!important;
       & .bottom-menu-item-icon {
         & .img {
           opacity: 1 !important;
@@ -30,16 +28,19 @@ export const BottomMenu = styled.div`
       }
     }
     & .bottom-menu-item {
-      background: ${(props) =>
+      background: ${props =>
+        // eslint-disable-next-line no-nested-ternary
         props?.account__role === 1
-          ? "#f0f3f4"
-          : props?.account__role === 2
-          ? "#f9f0f0"
-          : props?.account__role === 4
-          ? "#f5fffe"
+          ? '#f0f3f4'
+          : // eslint-disable-next-line no-nested-ternary
+          props?.account__role === 2
+          ? '#f9f0f0'
+          : // eslint-disable-next-line no-nested-ternary
+          props?.account__role === 4
+          ? '#f5fffe'
           : props?.account__role === 85
-          ? "white"
-          : ""};
+          ? 'white'
+          : ''};
       width: 100%;
       height: 100%;
       & .bottom-menu-item-icon {
@@ -66,7 +67,7 @@ export const BottomMenu = styled.div`
           opacity: 0.5;
         }
         span {
-          font-family: "Golos";
+          font-family: 'Golos';
           font-style: normal;
           font-weight: 400;
           font-size: 10px;
@@ -100,7 +101,7 @@ export const BottomMenu = styled.div`
           /* opacity: 0.5; */
         }
         span {
-          font-family: "Golos";
+          font-family: 'Golos';
           font-style: normal;
           font-weight: 400;
           font-size: 10px;

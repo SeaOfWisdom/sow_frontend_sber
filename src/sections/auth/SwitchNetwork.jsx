@@ -1,68 +1,77 @@
-import { useState } from "react";
-import { ConnectWalletContainer } from "../../styleComponents/auth/ConnectWalletStyle";
-import { wallet_types, network_list } from "../../utils/constants";
-import { switchNetwork } from "../../utils/wallet_utils/walletActions";
+import { useState } from 'react';
+import { Link } from 'react-router-dom';
+import { ConnectWalletContainer } from '../../styleComponents/auth/ConnectWalletStyle';
+import { walletTypes, networkList } from '../../utils/constants';
+import { switchNetwork } from '../../utils/wallet_utils/walletActions';
 
 const SwitchNetwork = ({ connectingWallet, walletData }) => {
-  const [connect_wallet, setConnect_wallet] = useState(null);
-  const switchFunk = async (network_obj) => {
-    const s = await switchNetwork(network_obj);
-    console.log('switchFunk=>', s); 
-    if(s?.isSwitch){
-      connectingWallet(wallet_types.MetaMask);
-    } 
-  }
+  const [connectWallet, setConnectWallet] = useState(null);
+  const switchFunk = async networkObj => {
+    const s = await switchNetwork(networkObj);
+    console.log('switchFunk=>', s);
+    if (s?.isSwitch) {
+      connectingWallet(walletTypes.MetaMask);
+    }
+  };
   return (
-    <>
-      <ConnectWalletContainer>
-        <div className="title">Сеть не поддерживается</div>
-        <div className="desc">
+    <ConnectWalletContainer>
+      <div className="title">Сеть не поддерживается</div>
+      <div className="desc">
         Пожалуйста, переключиться на поддерживаемую крипто-сеть.
-        </div>
-        <div className="wallets">
-          {network_list.map((item, index)=>(
-          <div key={index}
-            style={item?.is_disabled?{opacity: '0.3', cursor: 'default'}:{}}
-            className="wallet"
-            onClick={() => {
-              if(!item?.is_disabled){
-                setConnect_wallet(index);
-                switchFunk(item);
+      </div>
+      <div className="wallets">
+        {networkList.map(item => {
+          const index = Math.random() * Date.now();
+          return (
+            // eslint-disable-next-line jsx-a11y/click-events-have-key-events,jsx-a11y/no-static-element-interactions
+            <div
+              key={index}
+              style={
+                item?.is_disabled ? { opacity: '0.3', cursor: 'default' } : {}
               }
-             }}
-          >
-            <div className="name">
-              <img src={item?.icon} alt={item?.chainName} />{" "}
-              <span>{item?.chainName}</span>
-            </div>
-            {connect_wallet === index  ?(
-              <div className="loading">
-                <img src="/img/loader_wallet.svg" alt="" />
+              className="wallet"
+              onClick={() => {
+                if (!item?.is_disabled) {
+                  setConnectWallet(index);
+                  switchFunk(item);
+                }
+              }}
+            >
+              <div className="name">
+                <img src={item?.icon} alt={item?.chainName} />{' '}
+                <span>{item?.chainName}</span>
               </div>
-            ) : (
-              ""
-            )}
-          </div>
-          ))}
+              {connectWallet === index ? (
+                <div className="loading">
+                  <img src="/img/loader_wallet.svg" alt="" />
+                </div>
+              ) : (
+                ''
+              )}
+            </div>
+          );
+        })}
+      </div>
+      {walletData?.isError ? (
+        <div className="err">
+          {walletData?.textError ??
+            'Сеть, к которой вы подключаетесь, несовместима. Проверьте сеть, к которой вы подключаетесь.'}
         </div>
-        {walletData?.isError ? (
-          <div className="err">
-            {walletData?.textError ??
-              "Сеть, к которой вы подключаетесь, несовместима. Проверьте сеть, к которой вы подключаетесь."}
-          </div>
-        ) : (
-          ""
-        )}
-        <div className="hr">
-          <span></span>
-        </div>
-        <div className="fdesc">
-          Подключая свой кошелек, вы соглашаетесь с
-          <br />
-          <span>Условиями пользования</span> Sea of Wisdom
-        </div>
-      </ConnectWalletContainer>
-    </>
+      ) : (
+        ''
+      )}
+      <div className="hr">
+        <span />
+      </div>
+      <div className="fdesc">
+        Подключая свой кошелек, вы соглашаетесь с
+        <br />
+        <Link to="/privacy" target="_blank">
+          политикой конфиденциальности
+        </Link>{' '}
+        Sea of Wisdom
+      </div>
+    </ConnectWalletContainer>
   );
 };
 export default SwitchNetwork;

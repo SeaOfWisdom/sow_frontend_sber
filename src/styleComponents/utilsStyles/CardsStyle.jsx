@@ -1,7 +1,7 @@
-import styled from "styled-components";
+import styled from 'styled-components';
 
 export const CardsContainer = styled.section`
-  &>.cards {
+  & > .cards {
     display: flex;
     align-items: stretch;
     flex-wrap: wrap;
@@ -57,7 +57,7 @@ export const CardsContainer = styled.section`
           align-items: center;
           & .time {
             margin-left: 8px;
-            font-family: "Golos";
+            font-family: 'Golos';
             font-style: normal;
             font-weight: 400;
             font-size: 14px;
@@ -66,21 +66,21 @@ export const CardsContainer = styled.section`
           }
         }
         & .title {
-          font-family: "Lora";
+          font-family: 'Lora';
           font-style: normal;
           font-weight: 500;
           font-size: 24px;
           line-height: 160%;
           color: #2a2c35;
           margin: 10px 0 5px 0;
-          @media (max-width:900px) {
+          @media (max-width: 900px) {
             font-size: 16px;
-line-height: 160%;
+            line-height: 160%;
           }
         }
         & .author {
           & span {
-            font-family: "Golos";
+            font-family: 'Golos';
             font-style: normal;
             font-weight: 400;
             font-size: 16px;
@@ -97,7 +97,7 @@ line-height: 160%;
           -webkit-line-clamp: 3;
           -webkit-box-orient: vertical;
           margin: 14px 0;
-          font-family: "Golos";
+          font-family: 'Golos';
           font-style: normal;
           font-weight: 400;
           font-size: 16px;
@@ -113,7 +113,7 @@ line-height: 160%;
             border: 1px solid #2a2c35;
             box-shadow: 0px 2px 0px #2a2c35;
             border-radius: 1000px;
-            background: #F0F3F4;
+            background: #f0f3f4;
             line-height: 17px;
             color: rgb(42, 44, 53);
             height: 40px;
@@ -130,7 +130,7 @@ line-height: 160%;
         & .price_target {
           padding-top: 10px;
           & .price {
-            font-family: "Golos";
+            font-family: 'Golos';
             font-style: normal;
             font-weight: 500;
             font-size: 24px;
@@ -138,7 +138,7 @@ line-height: 160%;
             color: #2a2c35;
           }
           & .unity {
-            font-family: "Golos";
+            font-family: 'Golos';
             font-style: normal;
             font-weight: 400;
             font-size: 14px;
@@ -149,63 +149,63 @@ line-height: 160%;
         }
       }
     }
-  } 
+  }
 `;
 export const CancelSavedContainer = styled.div`
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
-    &>.mtitle{
-      font-family: 'Lora';
-      font-style: normal;
-      font-weight: 600;
-      font-size: 24px;
-      line-height: 150%;
-      text-align: center;
-      color: #2A2C35;
-    }
-    &>.desc{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  & > .mtitle {
+    font-family: 'Lora';
+    font-style: normal;
+    font-weight: 600;
+    font-size: 24px;
+    line-height: 150%;
+    text-align: center;
+    color: #2a2c35;
+  }
+  & > .desc {
+    font-family: 'Golos';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 180%;
+    text-align: center;
+    color: #2a2c35;
+    margin: 8px 0 24px 0;
+  }
+  & > .btns {
+    text-align: center;
+    & > .btn1 {
+      width: 148px;
+      height: 45px;
+      background: #ff6a6a;
+      border: 1px solid #2a2c35;
+      box-shadow: 0px 3px 0px #2a2c35;
+      border-radius: 1000px;
+      margin: 0 8px;
       font-family: 'Golos';
       font-style: normal;
-      font-weight: 400;
+      font-weight: 500;
       font-size: 14px;
-      line-height: 180%;
-      text-align: center;
-      color: #2A2C35;
-      margin: 8px 0 24px 0;
+      line-height: 17px;
+      color: #ffffff;
     }
-    &>.btns{
-      text-align: center;
-      &>.btn1{
-        width: 148px;
-        height: 45px;
-        background: #FF6A6A;
-        border: 1px solid #2A2C35;
-        box-shadow: 0px 3px 0px #2A2C35;
-        border-radius: 1000px;
-        margin: 0 8px;
-        font-family: 'Golos';
-        font-style: normal;
-        font-weight: 500;
-        font-size: 14px;
-        line-height: 17px;
-        color: #FFFFFF;
-      }
-      &>.btn2{
-        width: 148px;
-        height: 45px;
-        background: #8BE4D4;
-        border: 1px solid #2A2C35;
-        box-shadow: 0px 3px 0px #2A2C35;
-        border-radius: 1000px;
-        margin: 8px;
-        font-family: 'Golos';
-        font-style: normal;
-        font-weight: 500;
-        font-size: 14px;
-        line-height: 17px; 
-        color: #2A2C35;
-      }
+    & > .btn2 {
+      width: 148px;
+      height: 45px;
+      background: #8be4d4;
+      border: 1px solid #2a2c35;
+      box-shadow: 0px 3px 0px #2a2c35;
+      border-radius: 1000px;
+      margin: 8px;
+      font-family: 'Golos';
+      font-style: normal;
+      font-weight: 500;
+      font-size: 14px;
+      line-height: 17px;
+      color: #2a2c35;
     }
-`
+  }
+`;

@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled from 'styled-components';
 
 export const FooterContainer = styled.footer`
   padding: 36px;
@@ -7,7 +7,7 @@ export const FooterContainer = styled.footer`
     padding-bottom: 78px;
   }
   @media (max-width: 450px) {
-    padding: 15px 0 78px 0; 
+    padding: 15px 0 78px 0;
   }
   & .footer {
     border-top: 1px solid #2a2c35;
@@ -49,7 +49,7 @@ export const FooterContainer = styled.footer`
         }
         & .flink {
           display: block;
-          font-family: "Golos";
+          font-family: 'Golos';
           font-style: normal;
           font-weight: 400;
           font-size: 16px;
@@ -100,9 +100,9 @@ export const FooterContainer = styled.footer`
       & .privacy-policy {
         display: none;
         @media (max-width: 450px) {
-            display: block;
-          }
-        font-family: "Golos";
+          display: block;
+        }
+        font-family: 'Golos';
         font-style: normal;
         font-weight: 400;
         font-size: 16px;

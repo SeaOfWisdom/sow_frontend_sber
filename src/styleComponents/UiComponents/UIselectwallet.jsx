@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled from 'styled-components';
 
 export const UiSelectwallet = styled.div`
   position: relative;
@@ -8,7 +8,7 @@ export const UiSelectwallet = styled.div`
     margin-right: 10px;
     line-height: 17px;
     font-weight: 500;
-    font-family: "Golos";
+    font-family: 'Golos';
     color: #2a2c35;
     @media (max-width: 600px) {
       font-size: 24px;
@@ -42,12 +42,12 @@ export const UiSelectwallet = styled.div`
       /* display: flex;
       justify-content: center;
       align-items: center; */
-      position: ${({ isActivewallet }) => (isActivewallet ? "fixed" : "block")};
+      position: ${({ isActivewallet }) => (isActivewallet ? 'fixed' : 'block')};
       width: 100%;
       height: 100%;
-      background: ${({ isActivewallet }) => (isActivewallet ? "#2A2C35" : "")};
+      background: ${({ isActivewallet }) => (isActivewallet ? '#2A2C35' : '')};
       /* transform: translateY(${({ isActivewallet }) =>
-        isActivewallet ? "0" : "-12px"}); */
+        isActivewallet ? '0' : '-12px'}); */
       display: flex;
       justify-content: center;
       align-items: center;
@@ -68,11 +68,11 @@ export const UiSelectwallet = styled.div`
     } */
     & ul {
       transform: translateY(
-        ${({ isActivewallet }) => (isActivewallet ? "0" : "-12px")}
+        ${({ isActivewallet }) => (isActivewallet ? '0' : '-12px')}
       );
       opacity: ${({ isActivewallet }) => (isActivewallet ? 1 : 0)};
       visibility: ${({ isActivewallet }) =>
-        isActivewallet ? "visible" : "hidden"};
+        isActivewallet ? 'visible' : 'hidden'};
       background: #ffffff;
       transition: opacity 0.4s ease, transform 0.4s ease, visibility 0.4s;
       box-shadow: 0 0 10px rgba(13, 46, 105, 0.2);
@@ -99,7 +99,7 @@ export const UiSelectwallet = styled.div`
           font-weight: 600;
           font-size: 16px;
           line-height: 20px;
-          font-family: "Lora";
+          font-family: 'Lora';
           margin-bottom: 16px;
         }
         & .walletoption-item {
@@ -107,23 +107,23 @@ export const UiSelectwallet = styled.div`
           justify-content: space-between;
           align-items: center;
           margin-bottom: 24px;
-          
+
           & .current {
             color: #53c5b0;
             font-weight: 400;
             font-size: 12px;
-            
-            font-family: "Golos";
+
+            font-family: 'Golos';
             padding: 6px 12px;
             background: rgba(83, 197, 176, 0.1);
             border-radius: 100px;
           }
           & .under-review {
-            color: #F28F33;
+            color: #f28f33;
             font-weight: 400;
             font-size: 12px;
-            font-family: "Golos";
-        
+            font-family: 'Golos';
+
             padding: 6px 12px;
             background: rgba(242, 143, 51, 0.1);
             border-radius: 100px;
@@ -131,7 +131,7 @@ export const UiSelectwallet = styled.div`
           & .walletoption-item-acc {
             display: flex;
             align-items: center;
-            
+
             & img {
               margin-right: 12px;
             }
@@ -139,21 +139,20 @@ export const UiSelectwallet = styled.div`
               color: #2a2c35;
               font-weight: 400;
               font-size: 16px;
-              font-family: "Golos";
+              font-family: 'Golos';
             }
             & .walletoption-item-acc-text {
-              
               & span {
                 color: #847f99;
                 font-weight: 400;
                 font-size: 14px;
                 line-height: 17px;
-                font-family: "Golos";
+                font-family: 'Golos';
               }
             }
           }
           & .walletoption-item-passive {
-            opacity: .3;
+            opacity: 0.3;
           }
         }
         & .wallet-switch {
@@ -170,7 +169,7 @@ export const UiSelectwallet = styled.div`
           margin-right: 16px;
         }
         & p {
-          font-family: "Golos";
+          font-family: 'Golos';
           font-weight: 500;
           font-size: 16px;
           color: #2a2c35;

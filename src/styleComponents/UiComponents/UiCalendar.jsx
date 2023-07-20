@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled from 'styled-components';
 
 export const UiCalendar = styled.div`
   position: relative;
@@ -14,9 +14,9 @@ export const UiCalendar = styled.div`
     z-index: 2;
     box-shadow: 0px 5px 12px rgba(0, 0, 0, 0.05);
     transition: opacity 0.4s ease, transform 0.4s ease, visibility 0.4s;
-    transform: translateY(${({ isActive }) => (isActive ? "0" : "-12px")});
+    transform: translateY(${({ isActive }) => (isActive ? '0' : '-12px')});
     opacity: ${({ isActive }) => (isActive ? 1 : 0)};
-    visibility: ${({ isActive }) => (isActive ? "visible" : "hidden")};
+    visibility: ${({ isActive }) => (isActive ? 'visible' : 'hidden')};
     @media (max-width: 900px) {
       left: -36px;
       top: 12px;
@@ -27,7 +27,7 @@ export const UiCalendar = styled.div`
     }
   }
   & .modal-backdrop {
-    position: ${({ isActive }) => (isActive ? "fixed" : "")};
+    position: ${({ isActive }) => (isActive ? 'fixed' : '')};
     width: 100%;
     height: 100%;
     top: 0;

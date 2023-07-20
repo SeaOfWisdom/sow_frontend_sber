@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled from 'styled-components';
 
 export const SelectRoleContainer = styled.div`
   background: #ffffff;
@@ -9,7 +9,7 @@ export const SelectRoleContainer = styled.div`
     padding: 16px;
   }
   & > .title {
-    font-family: "Lora";
+    font-family: 'Lora';
     font-style: normal;
     font-weight: 600;
     font-size: 24px;
@@ -44,7 +44,7 @@ export const SelectRoleContainer = styled.div`
         }
       }
       & .rtitle {
-        font-family: "Lora";
+        font-family: 'Lora';
         font-style: normal;
         font-weight: 600;
         font-size: 18px;
@@ -52,7 +52,7 @@ export const SelectRoleContainer = styled.div`
         color: #2a2c35;
       }
       & .desc {
-        font-family: "Golos";
+        font-family: 'Golos';
         font-style: normal;
         font-weight: 400;
         font-size: 16px;

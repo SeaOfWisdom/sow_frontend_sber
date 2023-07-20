@@ -1,10 +1,10 @@
-import React from "react";
-import styled from "styled-components";
+import React from 'react';
+import styled from 'styled-components';
 import { useTranslation } from 'react-i18next';
 
 export const ModalEmailStyle = styled.div`
   & h2 {
-    font-family: "Lora";
+    font-family: 'Lora';
     font-style: normal;
     font-weight: 600;
     font-size: 16px;
@@ -37,7 +37,7 @@ export const ModalEmailStyle = styled.div`
         font-family: 'Golos';
       }
       & label {
-        font-family: "Golos";
+        font-family: 'Golos';
         font-style: normal;
         font-weight: 400;
         font-size: 14px;
@@ -48,7 +48,7 @@ export const ModalEmailStyle = styled.div`
         justify-content: flex-start;
         align-items: center;
         & span {
-          font-family: "Golos";
+          font-family: 'Golos';
           font-style: normal;
           font-weight: 500;
           font-size: 14px;
@@ -58,7 +58,7 @@ export const ModalEmailStyle = styled.div`
         }
       }
       & button {
-        font-family: "Golos";
+        font-family: 'Golos';
         font-style: normal;
         font-weight: 500;
         font-size: 16px;
@@ -77,12 +77,12 @@ export const ModalEmailStyle = styled.div`
     }
   }
 `;
-const ModalEmail = ({ setmodal, setTab ,setmodasms }) => {
+const ModalEmail = ({ setmodal, setTab, setmodasms }) => {
   const { t, i18n } = useTranslation();
   const OpenModal = () => {
     setTab(2);
     setmodal(false);
-    setmodasms(true)
+    setmodasms(true);
   };
   return (
     <ModalEmailStyle>
@@ -90,11 +90,14 @@ const ModalEmail = ({ setmodal, setTab ,setmodasms }) => {
       <hr />
       <div className="form">
         <div className="input-target">
+          {/* eslint-disable-next-line jsx-a11y/label-has-associated-control */}
           <label htmlFor="">
-            {t('modal_email.email')}  <span>*</span>
+            {t('modal_email.email')} <span>*</span>
           </label>
           <input type="text" />
-          <button onClick={OpenModal}>{t('modal_email.confirm')}</button>
+          <button type="button" onClick={OpenModal}>
+            {t('modal_email.confirm')}
+          </button>
         </div>
       </div>
     </ModalEmailStyle>

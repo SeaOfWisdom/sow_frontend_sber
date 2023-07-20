@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled from 'styled-components';
 
 export const EmptyStyle = styled.div`
   border-radius: 12px;
@@ -7,8 +7,8 @@ export const EmptyStyle = styled.div`
     padding: 150px 0px;
     background: white;
     border-radius: 12px;
-    @media (max-width:900px) {
-     padding : 84px  33px;
+    @media (max-width: 900px) {
+      padding: 84px 33px;
     }
     & .img {
       display: flex;
@@ -16,7 +16,7 @@ export const EmptyStyle = styled.div`
       margin-bottom: 24px;
     }
     & h4 {
-      font-family: "Lora";
+      font-family: 'Lora';
       font-weight: 600;
       font-size: 16px;
       color: #2a2c35;
@@ -29,7 +29,7 @@ export const EmptyStyle = styled.div`
         color: #2a2c35;
         font-weight: 400;
         font-size: 14px;
-        font-family: "Golos";
+        font-family: 'Golos';
         width: 25%;
         @media (max-width: 900px) {
           width: 100%;

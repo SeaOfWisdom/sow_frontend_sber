@@ -1,10 +1,11 @@
-import React from "react";
-import styled from "styled-components";
+import React from 'react';
+import styled from 'styled-components';
+
 const ModalDateStyle = styled.div`
   & h2 {
     font-weight: 600;
     font-size: 24px;
-    font-family: "Lora";
+    font-family: 'Lora';
     color: #2a2c35;
     text-align: center;
     margin-bottom: 24px;
@@ -22,7 +23,7 @@ const ModalDateStyle = styled.div`
         border-radius: 6px;
       }
       & label {
-        font-family: "Golos";
+        font-family: 'Golos';
         font-style: normal;
         font-weight: 400;
         font-size: 14px;
@@ -33,7 +34,7 @@ const ModalDateStyle = styled.div`
         justify-content: flex-start;
         align-items: center;
         & span {
-          font-family: "Golos";
+          font-family: 'Golos';
           font-style: normal;
           font-weight: 500;
           font-size: 14px;
@@ -59,34 +60,36 @@ const ModalDateStyle = styled.div`
     border: 1px solid #2a2c35;
     box-shadow: 0px 3px 0px #2a2c35;
     border-radius: 1000px;
-    font-family: "Golos";
+    font-family: 'Golos';
     font-weight: 500;
     font-size: 16px;
     color: #2a2c35;
     padding: 20px;
   }
 `;
-const ModalDate = ({ setmodal }) => {
-  return (
-    <ModalDateStyle>
-      <h2>Выбрать даты</h2>
-      <div className="form">
-        <div className="input-target">
-          <label htmlFor="">
-            C <span>*</span>
-          </label>
-          <input type="text" />
-        </div>
-        <div className="input-target">
-          <label htmlFor="">
-            До <span>*</span>
-          </label>
-          <input type="text" />
-        </div>
+const ModalDate = ({ setmodal }) => (
+  <ModalDateStyle>
+    <h2>Выбрать даты</h2>
+    <div className="form">
+      <div className="input-target">
+        {/* eslint-disable-next-line jsx-a11y/label-has-associated-control */}
+        <label htmlFor="">
+          C <span>*</span>
+        </label>
+        <input type="text" />
       </div>
-      <button onClick={() => setmodal(false)}>Подтвердить</button>
-    </ModalDateStyle>
-  );
-};
+      <div className="input-target">
+        {/* eslint-disable-next-line jsx-a11y/label-has-associated-control */}
+        <label htmlFor="">
+          До <span>*</span>
+        </label>
+        <input type="text" />
+      </div>
+    </div>
+    <button type="button" onClick={() => setmodal(false)}>
+      Подтвердить
+    </button>
+  </ModalDateStyle>
+);
 
 export default ModalDate;

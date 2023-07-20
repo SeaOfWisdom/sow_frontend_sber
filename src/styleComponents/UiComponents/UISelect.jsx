@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled from 'styled-components';
 
 export const UiSelect = styled.div`
   position: relative;
@@ -12,7 +12,7 @@ export const UiSelect = styled.div`
     margin-right: 10px;
     line-height: 17px;
     font-weight: 500;
-    font-family: "Golos";
+    font-family: 'Golos';
     color: #2a2c35;
   }
   & button {
@@ -50,28 +50,27 @@ export const UiSelect = styled.div`
     box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.05);
     border-radius: 16px;
     transition: opacity 0.4s ease, transform 0.4s ease, visibility 0.4s;
-    transform: translateY(${({ isActive }) => (isActive ? "0" : "-12px")});
+    transform: translateY(${({ isActive }) => (isActive ? '0' : '-12px')});
     opacity: ${({ isActive }) => (isActive ? 1 : 0)};
-    visibility: ${({ isActive }) => (isActive ? "visible" : "hidden")};
+    visibility: ${({ isActive }) => (isActive ? 'visible' : 'hidden')};
     /* @media (max-width: 1500px) {
       margin-top: 50px;
     } */
-   
 
     & div {
       cursor: pointer;
       font-weight: 500;
       font-size: 16px;
       line-height: 19px;
-      font-family: "Golos";
+      font-family: 'Golos';
       padding: 12px 0px;
       white-space: nowrap;
       margin: 0;
-      &[data-active="active"] {
+      &[data-active='active'] {
         background: #5762f7;
         color: #ffffff;
       }
-      &[data-active="inactive"] {
+      &[data-active='inactive'] {
         background: transparent;
       }
       &:last-child {
@@ -89,7 +88,7 @@ export const UiSelect = styled.div`
         align-items: center;
         font-family: Golos;
         & .statuslabel {
-          font-family: "Golos";
+          font-family: 'Golos';
           color: #2a2c35;
           font-weight: 400;
           font-size: 14px;
@@ -105,7 +104,7 @@ export const UiSelect = styled.div`
           border-radius: 2px;
         } */
 
-        input[type="checkbox"] {
+        input[type='checkbox'] {
           background: #8be4d4;
         }
       }

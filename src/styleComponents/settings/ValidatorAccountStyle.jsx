@@ -1,8 +1,8 @@
-import styled from "styled-components";
+import styled from 'styled-components';
 
 export const ValidatorAccountContainer = styled.div`
   & .title {
-    font-family: "Lora";
+    font-family: 'Lora';
     font-style: normal;
     font-weight: 600;
     font-size: 24px;
@@ -25,7 +25,7 @@ export const ValidatorAccountContainer = styled.div`
         display: block;
       }
       & .title {
-        font-family: "Lora";
+        font-family: 'Lora';
         font-style: normal;
         font-weight: 600;
         font-size: 24px;
@@ -34,7 +34,7 @@ export const ValidatorAccountContainer = styled.div`
         margin-bottom: 0;
       }
       & > .bolt {
-        font-family: "Golos";
+        font-family: 'Golos';
         font-style: normal;
         font-weight: 500;
         font-size: 16px;
@@ -44,7 +44,7 @@ export const ValidatorAccountContainer = styled.div`
       }
     }
     & .desc {
-      font-family: "Golos";
+      font-family: 'Golos';
       font-style: normal;
       font-weight: 400;
       font-size: 16px;
@@ -71,7 +71,7 @@ export const ValidatorAccountContainer = styled.div`
       }
       & .ftext1 {
         max-width: 374px;
-        font-family: "Lora";
+        font-family: 'Lora';
         font-style: normal;
         font-weight: 600;
         font-size: 18px;
@@ -81,7 +81,7 @@ export const ValidatorAccountContainer = styled.div`
         padding: 24px 0 12px 0;
       }
       & .ftext2 {
-        font-family: "Golos";
+        font-family: 'Golos';
         font-style: normal;
         font-weight: 400;
         font-size: 14px;
@@ -90,7 +90,7 @@ export const ValidatorAccountContainer = styled.div`
         padding-bottom: 24px;
       }
       & > .btn {
-        font-family: "Golos";
+        font-family: 'Golos';
         font-style: normal;
         font-weight: 400;
         font-size: 14px;
@@ -107,7 +107,7 @@ export const ValidatorAccountContainer = styled.div`
       }
     }
     & .image_err {
-      font-family: "Golos";
+      font-family: 'Golos';
       font-style: normal;
       font-weight: 500;
       font-size: 14px;
@@ -125,8 +125,8 @@ export const ValidatorAccountContainer = styled.div`
         display: flex;
         justify-content: space-between;
         align-items: center;
-        :last-child{
-         margin-bottom: 0px;
+        :last-child {
+          margin-bottom: 0px;
         }
         & .info {
           display: flex;
@@ -143,7 +143,7 @@ export const ValidatorAccountContainer = styled.div`
           }
           & .img_info {
             & .name {
-              font-family: "Lora";
+              font-family: 'Lora';
               font-style: normal;
               font-weight: 600;
               font-size: 16px;
@@ -152,7 +152,7 @@ export const ValidatorAccountContainer = styled.div`
               padding-bottom: 4px;
             }
             & .size {
-              font-family: "Golos";
+              font-family: 'Golos';
               font-style: normal;
               font-weight: 400;
               font-size: 12px;
@@ -178,7 +178,7 @@ export const ValidatorAccountContainer = styled.div`
         & > .checkbox {
           display: flex;
           align-items: center;
-          font-family: "Golos";
+          font-family: 'Golos';
           font-style: normal;
           font-weight: 400;
           font-size: 14px;
@@ -188,7 +188,7 @@ export const ValidatorAccountContainer = styled.div`
             margin-right: 14px;
           }
           & > span {
-            font-family: "Golos";
+            font-family: 'Golos';
             font-style: normal;
             font-weight: 500;
             font-size: 14px;
@@ -197,7 +197,7 @@ export const ValidatorAccountContainer = styled.div`
             margin-left: 2px;
           }
           & > .bolt {
-            font-family: "Golos";
+            font-family: 'Golos';
             font-style: normal;
             font-weight: 400;
             font-size: 14px;
@@ -217,7 +217,7 @@ export const ValidatorAccountContainer = styled.div`
   }
 
   & > .title {
-    font-family: "Lora";
+    font-family: 'Lora';
     font-style: normal;
     font-weight: 600;
     font-size: 24px;
@@ -244,7 +244,7 @@ export const ValidatorAccountContainer = styled.div`
       box-shadow: 0px 3px 0px #2a2c35;
       border-radius: 1000px;
       padding: 20px 24px;
-      font-family: "Golos";
+      font-family: 'Golos';
       font-style: normal;
       font-weight: 500;
       font-size: 16px;

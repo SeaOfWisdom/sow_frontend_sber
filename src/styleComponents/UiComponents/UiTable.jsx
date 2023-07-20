@@ -1,10 +1,9 @@
-import styled from "styled-components";
+import styled from 'styled-components';
 
 const UiTable = styled.div`
-@media (max-width:900px) {
-  display: none;
-  
-}
+  @media (max-width: 900px) {
+    display: none;
+  }
   & .tableContainer {
     & thead {
       & tr {
@@ -20,11 +19,14 @@ const UiTable = styled.div`
       }
     }
     & tbody {
+      td.single {
+        text-align: center;
+      }
       /* &:nth-child(even) {background-color: #F4F6F9;} */
     }
     & tr {
       /* background-color: #F4F6F9; */
-      font-family: "Golos";
+      font-family: 'Golos';
 
       cursor: pointer;
       /* &:nth-child(even) {background-color: #ffffff;} */
@@ -71,7 +73,7 @@ const UiTable = styled.div`
         font-size: 16px;
         line-height: 20px;
         /* max-width: 155px; */
-        font-family: "Lora";
+        font-family: 'Lora';
         letter-spacing: inherit;
         color: #2a2c35;
         text-transform: auto;
@@ -86,7 +88,7 @@ const UiTable = styled.div`
         padding-top: 24px;
         padding-bottom: 24px;
         line-height: 170%;
-        font-family: "Golos";
+        font-family: 'Golos';
         :nth-child(1) {
           padding-left: 0;
         }
@@ -107,7 +109,7 @@ const UiTable = styled.div`
       border-top: 1px solid #e8e5e0;
       border-bottom: 1px solid #e8e5e0;
       text-transform: none;
-      font-family: "Golos";
+      font-family: 'Golos';
       padding: 16px;
       /* max-width: 200px; */
       /* white-space: pre; */
@@ -122,7 +124,7 @@ const UiTable = styled.div`
       padding-left: 24px;
     }
     & td {
-      font-family: "Golos";
+      font-family: 'Golos';
       padding: 14px;
       font-size: 14px;
       text-transform: none;
@@ -140,10 +142,10 @@ const UiTable = styled.div`
       :last-child {
         padding-right: 24px;
       }
-      span{
+      span {
         font-family: 'Golos';
       }
-      & .text_word{
+      & .text_word {
         font-size: 14px;
       }
       & img {
@@ -153,7 +155,7 @@ const UiTable = styled.div`
         color: #847f99;
       }
       & .btn-table {
-        font-family: "Golos";
+        font-family: 'Golos';
         font-weight: 500;
         font-size: 14px;
         padding: 12px 16px;
@@ -193,7 +195,7 @@ const UiTable = styled.div`
         font-weight: 400;
         font-size: 14px;
         /* text-align: center; */
-        font-family: "Golos";
+        font-family: 'Golos';
         width: max-content;
         padding: 6px 12px;
       }
@@ -221,10 +223,11 @@ const UiTable = styled.div`
         color: #ff6a6a;
         background: rgba(255, 106, 106, 0.1);
       }
-      &.reward, & .reward {
+      &.reward,
+      & .reward {
         font-weight: 500;
         font-size: 14px;
-        font-family: "Golos";
+        font-family: 'Golos';
       }
       & .validators {
         display: flex;
