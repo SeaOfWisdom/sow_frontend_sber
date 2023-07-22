@@ -6,17 +6,15 @@ import libraryAbi from './libraryAbi.json';
 
 function uuidToBigInt(uuid) {
   // UUID validation regex pattern
-  let uuidPattern = new RegExp(
-      '^[0-9a-f]{8}-[0-9a-f]{4}-[1-5][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$',
-      'i'
-  );
+  const uuidPattern =
+    /^[0-9a-f]{8}-[0-9a-f]{4}-[1-5][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$/i;
 
   if (typeof uuid !== 'string' || !uuidPattern.test(uuid)) {
     console.error('Invalid UUID');
     return null;
   }
 
-  let uuidWithoutHyphens = uuid.replace(/-/g, '');
+  const uuidWithoutHyphens = uuid.replace(/-/g, '');
 
   let bigIntValue;
   try {
@@ -31,8 +29,8 @@ function uuidToBigInt(uuid) {
 
 const tokenSOW = {
   tokenName: 'SOW',
-  contractAddress: '0x391e586deE95dFa1c994B89F8349a5Ef3Fd5a7f1',
-  libraryAddress: '0x56EAC6230bF6Cf9e674B2950F075945b662a9F69',
+  contractAddress: '0x5bb2e2fDa826F0D7Dff634a63fCb2c39ad42C96a',
+  libraryAddress: '0xf986BF7dB0557236aA011224484F1f9d6Bf2baEa',
   decimals: 18,
 };
 const getWeb3 = () => {
@@ -240,6 +238,7 @@ export const buyArticle = async articleId => {
         gasPrice: '50000000000',
         gas: '10000000',
       });
+      return true;
     } catch (error) {
       console.log(error);
     }

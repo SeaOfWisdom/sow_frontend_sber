@@ -1,6 +1,6 @@
 import { Link, useParams } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { Box, useToast } from '@chakra-ui/react';
 import { useTranslation } from 'react-i18next';
 import Web3 from 'web3';
@@ -14,6 +14,7 @@ import {
   buyArticle,
   isWalletConnect,
 } from '../../utils/wallet_utils/walletActions';
+import loadingImg from '../../assets/images/180-ring.svg';
 
 const ArticleView = () => {
   const { t } = useTranslation();
@@ -26,7 +27,8 @@ const ArticleView = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState('');
-  const getWorks = () => {
+  const toastRef = useRef();
+  const getWorks = () =>
     Axios()
       .get('/works')
       .then(res => {
@@ -38,12 +40,12 @@ const ArticleView = () => {
         });
         setPurchase(!!obj?.work?.content);
         setWork(obj);
+        return res.data;
       })
       .catch(r => {})
       .finally(() => {
         setLoading(false);
       });
-  };
 
   useEffect(() => {
     getWorks();
@@ -56,131 +58,293 @@ const ArticleView = () => {
       'ether'
     );
     if (balance >= 50000000000000000000) {
-      await buyArticle(params?.id);
-      // dispatch({ type: 'SET_LOADING', payload: true });
-      // tx = await sowToken.approve(sowLibrary.address, '50000000000000000000')
-      // tx = await sowLibrary.purchasePaper('90877779078408050669327339819568009876');
-      // Axios()
-      //   .get(`/purchase_work/${params?.id ?? ''}`)
-      //   .then(res => {
-      //     setPurchase(true);
-      //     toast({
-      //       // title: "Account created.",
-      //       status: 'succes',
-      //       duration: 1000,
-      //       position: 'top',
-      //       isClosable: true,
-      //
-      //       render: () => (
-      //         <Box
-      //           color="#2A2C35"
-      //           p={3}
-      //           bg="white.500"
-      //           style={{
-      //             display: 'flex',
-      //             fontFamily: 'Lora',
-      //             fontSize: '16px',
-      //             background: 'white',
-      //             fontWeight: '600',
-      //             lineHeight: '150%',
-      //             position: 'absolute',
-      //             top: '60px',
-      //             padding: '24px 36px',
-      //             borderRadius: '8px',
-      //             boxShadow: '0px 4px 15px rgba(0, 0, 0, 0.05)',
-      //           }}
-      //         >
-      //           <img
-      //             style={{ marginRight: '14px' }}
-      //             src="/img/vector.svg"
-      //             alt=""
-      //           />
-      //           {t('article_view.alreadyPurchasedPaper')}
-      //         </Box>
-      //       ),
-      //     });
-      //   })
-      //   .catch(error => {
-      //     if (error.response && error.response.status === 400) {
-      //       // setError();
-      //       toast({
-      //         // title: "Account created.",
-      //         status: 'error',
-      //         duration: 1000,
-      //         position: 'top',
-      //         isClosable: true,
-      //
-      //         render: () => (
-      //           <Box
-      //             color="#2A2C35"
-      //             p={3}
-      //             bg="white.500"
-      //             style={{
-      //               display: 'flex',
-      //               fontFamily: 'Lora',
-      //               fontSize: '16px',
-      //               background: 'white',
-      //               fontWeight: '600',
-      //               lineHeight: '150%',
-      //               position: 'absolute',
-      //               top: '60px',
-      //               padding: '24px 36px',
-      //               borderRadius: '8px',
-      //               boxShadow: '0px 4px 15px rgba(0, 0, 0, 0.05)',
-      //             }}
-      //           >
-      //             <img
-      //               style={{ marginRight: '14px' }}
-      //               src="/img/close.svg"
-      //               alt=""
-      //             />
-      //             {t('article_view.insufficientBalance')}
-      //           </Box>
-      //         ),
-      //       });
-      //     } else {
-      //       toast({
-      //         // title: "Account created.",
-      //         status: 'error',
-      //         duration: 1000,
-      //         position: 'top',
-      //         isClosable: true,
-      //
-      //         render: () => (
-      //           <Box
-      //             color="#2A2C35"
-      //             p={3}
-      //             bg="white.500"
-      //             style={{
-      //               display: 'flex',
-      //               fontFamily: 'Lora',
-      //               fontSize: '16px',
-      //               background: 'white',
-      //               fontWeight: '600',
-      //               lineHeight: '150%',
-      //               position: 'absolute',
-      //               top: '60px',
-      //               padding: '24px 36px',
-      //               borderRadius: '8px',
-      //               boxShadow: '0px 4px 15px rgba(0, 0, 0, 0.05)',
-      //             }}
-      //           >
-      //             <img
-      //               style={{ marginRight: '14px' }}
-      //               src="/img/close.svg"
-      //               alt=""
-      //             />
-      //             {t('article_view.errorWhileBuying')}
-      //           </Box>
-      //         ),
-      //       });
-      //     }
-      //   })
-      //   .finally(() => {
-      //     dispatch({ type: 'SET_LOADING', payload: false });
-      //   });
-    } else {
-      toast({
+      try {
+        toastRef.current = toast({
+          // title: "Account created.",
+          status: 'loading',
+          duration: null,
+          position: 'top',
+          isClosable: false,
+
+          render: () => (
+            <Box
+              color="#2A2C35"
+              p={3}
+              bg="white.500"
+              style={{
+                display: 'flex',
+                fontFamily: 'Lora',
+                fontSize: '16px',
+                background: 'white',
+                fontWeight: '600',
+                lineHeight: '150%',
+                position: 'absolute',
+                top: '60px',
+                padding: '24px 36px',
+                borderRadius: '8px',
+                boxShadow: '0px 4px 15px rgba(0, 0, 0, 0.05)',
+              }}
+            >
+              <img
+                style={{ marginRight: '14px' }}
+                src={loadingImg}
+                alt="loading"
+              />
+              Подождите пожалуйста, происходит покупка статьи
+            </Box>
+          ),
+        });
+        const result = await buyArticle(params?.id);
+        if (result) {
+          setTimeout(async () => {
+            const works = await getWorks();
+            if (works.find(w => w.work.id === params?.id)?.work.content) {
+              toastRef.current = toast({
+                // title: "Account created.",
+                status: 'success',
+                duration: 1000,
+                position: 'top',
+                isClosable: true,
+
+                render: () => (
+                  <Box
+                    color="#2A2C35"
+                    p={3}
+                    bg="white.500"
+                    style={{
+                      display: 'flex',
+                      fontFamily: 'Lora',
+                      fontSize: '16px',
+                      background: 'white',
+                      fontWeight: '600',
+                      lineHeight: '150%',
+                      position: 'absolute',
+                      top: '60px',
+                      padding: '24px 36px',
+                      borderRadius: '8px',
+                      boxShadow: '0px 4px 15px rgba(0, 0, 0, 0.05)',
+                    }}
+                  >
+                    <img
+                      style={{ marginRight: '14px' }}
+                      src="/img/vector.svg"
+                      alt=""
+                    />
+                    {t('article_view.alreadyPurchasedPaper')}
+                  </Box>
+                ),
+              });
+            } else {
+              toast.close(toastRef.current);
+            }
+          }, 3000);
+        } else {
+          toast.close(toastRef.current);
+        }
+      } catch (error) {
+        if (error.response && error.response.status === 400) {
+          // setError();
+          toast({
+            // title: "Account created.",
+            status: 'error',
+            duration: 1000,
+            position: 'top',
+            isClosable: true,
+
+            render: () => (
+              <Box
+                color="#2A2C35"
+                p={3}
+                bg="white.500"
+                style={{
+                  display: 'flex',
+                  fontFamily: 'Lora',
+                  fontSize: '16px',
+                  background: 'white',
+                  fontWeight: '600',
+                  lineHeight: '150%',
+                  position: 'absolute',
+                  top: '60px',
+                  padding: '24px 36px',
+                  borderRadius: '8px',
+                  boxShadow: '0px 4px 15px rgba(0, 0, 0, 0.05)',
+                }}
+              >
+                <img
+                  style={{ marginRight: '14px' }}
+                  src="/img/close.svg"
+                  alt=""
+                />
+                {t('article_view.insufficientBalance')}
+              </Box>
+            ),
+          });
+        } else if (error.code !== 4001) {
+          toastRef.current = toast({
+            // title: "Account created.",
+            status: 'error',
+            duration: 1000,
+            position: 'top',
+            isClosable: true,
+
+            render: () => (
+              <Box
+                color="#2A2C35"
+                p={3}
+                bg="white.500"
+                style={{
+                  display: 'flex',
+                  fontFamily: 'Lora',
+                  fontSize: '16px',
+                  background: 'white',
+                  fontWeight: '600',
+                  lineHeight: '150%',
+                  position: 'absolute',
+                  top: '60px',
+                  padding: '24px 36px',
+                  borderRadius: '8px',
+                  boxShadow: '0px 4px 15px rgba(0, 0, 0, 0.05)',
+                }}
+              >
+                <img
+                  style={{ marginRight: '14px' }}
+                  src="/img/close.svg"
+                  alt=""
+                />
+                {t('article_view.errorWhileBuying')}
+              </Box>
+            ),
+          });
+        } else {
+          toast.close(toastRef.current);
+        }
+      }
+      setTimeout(() => toast.close(toastRef.current), 1000);
+    }
+    // dispatch({ type: 'SET_LOADING', payload: true });
+    // tx = await sowToken.approve(sowLibrary.address, '50000000000000000000')
+    // tx = await sowLibrary.purchasePaper('90877779078408050669327339819568009876');
+    // Axios()
+    //   .get(`/purchase_work/${params?.id ?? ''}`)
+    //   .then(res => {
+    //     setPurchase(true);
+    //     toast({
+    //       // title: "Account created.",
+    //       status: 'succes',
+    //       duration: 1000,
+    //       position: 'top',
+    //       isClosable: true,
+    //
+    //       render: () => (
+    //         <Box
+    //           color="#2A2C35"
+    //           p={3}
+    //           bg="white.500"
+    //           style={{
+    //             display: 'flex',
+    //             fontFamily: 'Lora',
+    //             fontSize: '16px',
+    //             background: 'white',
+    //             fontWeight: '600',
+    //             lineHeight: '150%',
+    //             position: 'absolute',
+    //             top: '60px',
+    //             padding: '24px 36px',
+    //             borderRadius: '8px',
+    //             boxShadow: '0px 4px 15px rgba(0, 0, 0, 0.05)',
+    //           }}
+    //         >
+    //           <img
+    //             style={{ marginRight: '14px' }}
+    //             src="/img/vector.svg"
+    //             alt=""
+    //           />
+    //           {t('article_view.alreadyPurchasedPaper')}
+    //         </Box>
+    //       ),
+    //     });
+    //   })
+    //   .catch(error => {
+    //     if (error.response && error.response.status === 400) {
+    //       // setError();
+    //       toast({
+    //         // title: "Account created.",
+    //         status: 'error',
+    //         duration: 1000,
+    //         position: 'top',
+    //         isClosable: true,
+    //
+    //         render: () => (
+    //           <Box
+    //             color="#2A2C35"
+    //             p={3}
+    //             bg="white.500"
+    //             style={{
+    //               display: 'flex',
+    //               fontFamily: 'Lora',
+    //               fontSize: '16px',
+    //               background: 'white',
+    //               fontWeight: '600',
+    //               lineHeight: '150%',
+    //               position: 'absolute',
+    //               top: '60px',
+    //               padding: '24px 36px',
+    //               borderRadius: '8px',
+    //               boxShadow: '0px 4px 15px rgba(0, 0, 0, 0.05)',
+    //             }}
+    //           >
+    //             <img
+    //               style={{ marginRight: '14px' }}
+    //               src="/img/close.svg"
+    //               alt=""
+    //             />
+    //             {t('article_view.insufficientBalance')}
+    //           </Box>
+    //         ),
+    //       });
+    //     } else {
+    //       toast({
+    //         // title: "Account created.",
+    //         status: 'error',
+    //         duration: 1000,
+    //         position: 'top',
+    //         isClosable: true,
+    //
+    //         render: () => (
+    //           <Box
+    //             color="#2A2C35"
+    //             p={3}
+    //             bg="white.500"
+    //             style={{
+    //               display: 'flex',
+    //               fontFamily: 'Lora',
+    //               fontSize: '16px',
+    //               background: 'white',
+    //               fontWeight: '600',
+    //               lineHeight: '150%',
+    //               position: 'absolute',
+    //               top: '60px',
+    //               padding: '24px 36px',
+    //               borderRadius: '8px',
+    //               boxShadow: '0px 4px 15px rgba(0, 0, 0, 0.05)',
+    //             }}
+    //           >
+    //             <img
+    //               style={{ marginRight: '14px' }}
+    //               src="/img/close.svg"
+    //               alt=""
+    //             />
+    //             {t('article_view.errorWhileBuying')}
+    //           </Box>
+    //         ),
+    //       });
+    //     }
+    //   })
+    //   .finally(() => {
+    //     dispatch({ type: 'SET_LOADING', payload: false });
+    //   });
+    else {
+      toastRef.current = toast({
         // title: "Account created.",
         status: 'error',
         duration: 1000,

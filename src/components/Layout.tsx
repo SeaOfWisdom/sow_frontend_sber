@@ -83,11 +83,14 @@ const Layout: FC<Props> = ({ footerShow = true }) => {
         }
       })
       .catch(e => {
+        if (e?.response?.data?.error === 'participant does not exist') {
+          setAction(2);
+          return;
+        }
         if (e?.response?.status === 400) {
           setAction(2);
           setWalletObj(walletObj);
         } else {
-          // console.log("err===>", e?.response);
           setWalletObj({
             ...walletObj,
             isError: true,

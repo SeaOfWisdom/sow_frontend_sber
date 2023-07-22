@@ -194,7 +194,7 @@
     "inputs": [
       {
         "internalType": "uint256",
-        "name": "workId",
+        "name": "paperId",
         "type": "uint256"
       },
       {
@@ -208,7 +208,7 @@
         "type": "uint8[]"
       }
     ],
-    "name": "addReviewsForWork",
+    "name": "addReviewsForPaper",
     "outputs": [],
     "stateMutability": "nonpayable",
     "type": "function"
@@ -251,7 +251,7 @@
     "inputs": [
       {
         "internalType": "uint256",
-        "name": "workId",
+        "name": "paperId",
         "type": "uint256"
       }
     ],
@@ -332,7 +332,7 @@
         "type": "uint256"
       }
     ],
-    "name": "getPaperByID",
+    "name": "getPaperById",
     "outputs": [
       {
         "internalType": "contract SPT",
@@ -347,7 +347,7 @@
     "inputs": [
       {
         "internalType": "uint256",
-        "name": "workId",
+        "name": "paperId",
         "type": "uint256"
       },
       {
@@ -356,7 +356,7 @@
         "type": "address"
       }
     ],
-    "name": "getReviewerRewardsForWork",
+    "name": "getReviewerRewardsForPaper",
     "outputs": [
       {
         "internalType": "uint256",
@@ -586,12 +586,17 @@
       },
       {
         "internalType": "string",
-        "name": "tokenURI",
+        "name": "paperURI",
         "type": "string"
       },
       {
         "internalType": "uint256",
         "name": "paperId",
+        "type": "uint256"
+      },
+      {
+        "internalType": "uint256",
+        "name": "paperPrice",
         "type": "uint256"
       }
     ],
@@ -604,7 +609,7 @@
     "inputs": [
       {
         "internalType": "uint256",
-        "name": "workId",
+        "name": "paperId",
         "type": "uint256"
       },
       {
@@ -627,7 +632,7 @@
     "inputs": [
       {
         "internalType": "uint256",
-        "name": "workId",
+        "name": "paperId",
         "type": "uint256"
       }
     ],
